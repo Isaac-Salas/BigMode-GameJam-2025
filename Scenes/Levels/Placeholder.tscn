@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxtb4w8hr2r8c"]
+
+[ext_resource type="Texture2D" uid="uid://bbhbeegeyl6eo" path="res://Assets/Sprites/Placeholders/FULL 2SNEK.png" id="1_4owbm"]
+[ext_resource type="Texture2D" uid="uid://de6o4o6oviad7" path="res://Assets/Backgrounds/Placeholders/FondoTuto.png" id="2_etm4b"]
+
+[node name="Placeholder" type="Node2D"]
+
+[node name="Snek" type="Sprite2D" parent="."]
+position = Vector2(640, 7)
+texture = ExtResource("1_4owbm")
+
+[node name="Back" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_etm4b")
+centered = false

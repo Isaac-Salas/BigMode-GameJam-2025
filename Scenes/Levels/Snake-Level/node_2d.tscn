@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctj7o5n7a3eo3"]
+
+[ext_resource type="Texture2D" uid="uid://uyk2lxb3ac1t" path="res://Assets/Backgrounds/Snake/Jellytext.png" id="1_0d2j8"]
+
+[node name="Tablero" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_0d2j8")
+centered = false

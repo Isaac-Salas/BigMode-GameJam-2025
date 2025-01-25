@@ -47,23 +47,25 @@ script = ExtResource("1_tnx25")
 [node name="Head" type="AnimatedSprite2D" parent="."]
 position = Vector2(16, 0)
 sprite_frames = SubResource("SpriteFrames_gjbdb")
-frame_progress = 0.958732
+frame_progress = 0.516043
 
 [node name="Segment" parent="." instance=ExtResource("2_ud2qt")]
-animation = &"Eat"
+animation = &"Idle"
 
 [node name="Segment2" parent="." instance=ExtResource("2_ud2qt")]
+visible = false
 position = Vector2(-16, 0)
-animation = &"Eat"
+animation = &"Idle"
+frame_progress = 0.165659
 index = 1
 
 [node name="Segment3" parent="." instance=ExtResource("2_ud2qt")]
+visible = false
 position = Vector2(-32, 0)
 animation = &"Eat"
 index = 2
 
 [node name="Tail" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(-16, 0)
 sprite_frames = SubResource("SpriteFrames_kh7h1")
 

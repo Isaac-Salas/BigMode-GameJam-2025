@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://bujmgm1kjflx1"]
+
+[ext_resource type="Texture2D" uid="uid://wywox1gjscjr" path="res://Assets/Sprites/SnakeLevel/Snake.png" id="1_u7c07"]
+[ext_resource type="Script" path="res://Scripts/SnakeLevel/segment.gd" id="2_1m6uv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgg13"]
+atlas = ExtResource("1_u7c07")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_786rf"]
+atlas = ExtResource("1_u7c07")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhmvs"]
+atlas = ExtResource("1_u7c07")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vksbg"]
+atlas = ExtResource("1_u7c07")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xobmn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgg13")
+}],
+"loop": true,
+"name": &"Eat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_786rf")
+}],
+"loop": true,
+"name": &"Eat-turn",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhmvs")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vksbg")
+}],
+"loop": true,
+"name": &"Turn",
+"speed": 5.0
+}]
+
+[node name="Segment" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_xobmn")
+animation = &"Eat-turn"
+script = ExtResource("2_1m6uv")
+
+[node name="Timer" type="Timer" parent="."]

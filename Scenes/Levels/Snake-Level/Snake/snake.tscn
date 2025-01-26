@@ -50,29 +50,13 @@ sprite_frames = SubResource("SpriteFrames_gjbdb")
 frame_progress = 0.472859
 
 [node name="Segment" parent="." instance=ExtResource("2_ud2qt")]
-animation = &"Idle_left"
-
-[node name="Segment2" parent="." instance=ExtResource("2_ud2qt")]
-position = Vector2(-16, 0)
-animation = &"Idle_left"
-index = 1
-
-[node name="Segment3" parent="." instance=ExtResource("2_ud2qt")]
-position = Vector2(-16, 0)
-animation = &"Idle_left"
-index = 2
-
-[node name="Segment4" parent="." instance=ExtResource("2_ud2qt")]
-position = Vector2(-16, 0)
-animation = &"Idle_left"
-index = 3
 
 [node name="Tail" type="AnimatedSprite2D" parent="." groups=["Tail"]]
 position = Vector2(-32, 0)
 sprite_frames = SubResource("SpriteFrames_kh7h1")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.6
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctj7o5n7a3eo3"]
+[gd_scene load_steps=4 format=3 uid="uid://ctj7o5n7a3eo3"]
 
 [ext_resource type="Texture2D" uid="uid://uyk2lxb3ac1t" path="res://Assets/Backgrounds/Snake/Jellytext.png" id="1_0d2j8"]
 [ext_resource type="PackedScene" uid="uid://btrdct8207ogu" path="res://Scenes/Levels/Snake-Level/Snake/snake.tscn" id="2_5b5ta"]
+[ext_resource type="Script" path="res://Scripts/SnakeLevel/HUD.gd" id="3_e2cg3"]
 
 [node name="Tablero" type="Node2D"]
 
@@ -11,3 +12,15 @@ centered = false
 
 [node name="Snake" parent="." instance=ExtResource("2_5b5ta")]
 position = Vector2(160, 128)
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_e2cg3")
+
+[node name="Label" type="Label" parent="HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

@@ -37,13 +37,13 @@ region = Rect2(48, 16, 16, 16)
 atlas = ExtResource("2_x7k8y")
 region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mnlvb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_eadvq"]
 atlas = ExtResource("2_x7k8y")
-region = Rect2(48, 0, 16, 16)
+region = Rect2(32, 48, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0xspk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7apw"]
 atlas = ExtResource("2_x7k8y")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(48, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xobmn"]
 animations = [{
@@ -51,7 +51,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xgg13")
 }],
-"loop": true,
+"loop": false,
 "name": &"Eat",
 "speed": 5.0
 }, {
@@ -59,7 +59,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_786rf")
 }],
-"loop": true,
+"loop": false,
 "name": &"Eat-turn",
 "speed": 5.0
 }, {
@@ -67,7 +67,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u6udy")
 }],
-"loop": true,
+"loop": false,
 "name": &"Idle_down",
 "speed": 5.0
 }, {
@@ -75,7 +75,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gqftv")
 }],
-"loop": true,
+"loop": false,
 "name": &"Idle_left",
 "speed": 5.0
 }, {
@@ -83,7 +83,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jhmvs")
 }],
-"loop": true,
+"loop": false,
 "name": &"Idle_right",
 "speed": 5.0
 }, {
@@ -91,7 +91,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uw5yx")
 }],
-"loop": true,
+"loop": false,
 "name": &"Idle_up",
 "speed": 5.0
 }, {
@@ -99,7 +99,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jjvo8")
 }],
-"loop": true,
+"loop": false,
 "name": &"Turn_Down_left",
 "speed": 5.0
 }, {
@@ -107,30 +107,30 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bdej3")
 }],
-"loop": true,
+"loop": false,
 "name": &"Turn_Down_right",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mnlvb")
+"texture": SubResource("AtlasTexture_eadvq")
 }],
-"loop": true,
+"loop": false,
 "name": &"Turn_Up_left",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0xspk")
+"texture": SubResource("AtlasTexture_x7apw")
 }],
-"loop": true,
+"loop": false,
 "name": &"Turn_Up_right",
 "speed": 5.0
 }]
 
 [node name="Segment" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_xobmn")
-animation = &"Turn_Down_right"
+animation = &"Idle_up"
 script = ExtResource("2_1m6uv")
 
 [node name="Timer" type="Timer" parent="."]

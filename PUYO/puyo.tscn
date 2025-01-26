@@ -234,7 +234,7 @@ animations = [{
 "speed": 15.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_bl2ui")
 }, {
 "duration": 1.0,
@@ -291,7 +291,7 @@ animations = [{
 "speed": 15.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_1m6yt")
 }, {
 "duration": 1.0,
@@ -345,7 +345,7 @@ animations = [{
 "speed": 15.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_1bq24")
 }, {
 "duration": 1.0,
@@ -402,7 +402,7 @@ animations = [{
 "speed": 15.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_qvd0a")
 }, {
 "duration": 1.0,
@@ -456,8 +456,6 @@ script = ExtResource("1_yhwdu")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." groups=["puyo"]]
 sprite_frames = SubResource("SpriteFrames_hcgxv")
-animation = &"red_snap"
-frame = 4
-frame_progress = 1.0
+animation = &"yellow_explode"
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]

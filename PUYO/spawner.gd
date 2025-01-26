@@ -1,11 +1,16 @@
 extends Node2D
-
+@export var controller = 'player'
 @onready var fall: Timer = $fall
 @onready var puyo_blueprint: PackedScene = preload("res://puyo.tscn")
+@onready var popping_puyos = []
 
+var total_score = 0
+var current_mult = 1
+signal score_updated(score)
+signal score_base(base)
+signal puyo_multiplied(puyo_multiplied)
 signal free_puyo()
-signal pop_puyo()
-
+var shit_happening = false
 var puyo_rotate
 var puyo_main
 var puyorotation = 0
@@ -44,7 +49,7 @@ func spawn_puyos():
 func _ready():
 	spawn_puyos()
 
-func left(puyo):
+func left(puyo: Puyo):
 	match puyo.status:
 		"Rotate":
 			if puyorotation == 0 and is_clear(puyo.grid_pos + Vector2i(-2,0)):
@@ -95,40 +100,22 @@ func right(puyo: Puyo):
 				return false
 
 func is_clear(pos):
-	if in_bounds(pos):
-		return cells[pos.y][pos.x] == 0
+	return in_bounds(pos) and cells[pos.y][pos.x] == 0
 
-func update_cells(puyo : Puyo):
+func add_puyo(puyo: Puyo):
 	cells[puyo.grid_pos.y][puyo.grid_pos.x] = puyo.color
-	var connected = check_connected(puyo.grid_pos, puyo.color)
-	if connected.size() > 3:
-		for pos in connected:
-			cells[pos.y][pos.x] = 0
-			var puyo_to_remove = get_puyo_at_position(pos)
-			if puyo_to_remove:
-				puyo_to_remove.pop()
+	if puyo.grid_pos.y == 0 and puyo.grid_pos.x == 2:
+		get_tree().reload_current_scene()
 
-
-func get_puyo_at_position(pos: Vector2i) -> Puyo:
-	for child in get_children():
-		if child is Puyo and child.grid_pos == pos:
-			return child
-	return null
-
-func in_bounds(pos: Vector2i):
-	if pos.x < 0 or pos.x > 5 or pos.y < 0 or pos.y > 11:
-		return false
-	else:
-		return true
-
-func is_same_color(color: int, pos: Vector2i):
-	if in_bounds(pos) and color == get_puyo_at_position(pos).color:
-		return true
-	else:
-		return false
-
-func check_connected(pos: Vector2i, color: int, connected: Array = []) -> Array:
+func grid_to_world(grid_pos: Vector2i):
+	return Vector2((grid_pos.x-2) * 36, grid_pos.y * 36)
+	
+func check_connected(pos: Vector2i, color: int, connected: Array = [], visited: Dictionary = {}):
+	if visited.has(pos):
+		return connected
+	visited[pos] = true
 	connected.append(pos)
+	
 	var directions = [
 		Vector2i(1, 0),
 		Vector2i(0, 1),
@@ -138,12 +125,62 @@ func check_connected(pos: Vector2i, color: int, connected: Array = []) -> Array:
 
 	for direction in directions:
 		var next_pos = pos + direction
-		if !is_clear(next_pos) and is_same_color(color, next_pos) and next_pos not in connected:
-			check_connected(next_pos, color, connected)
+		if in_bounds(next_pos) and !is_clear(next_pos) and is_same_color(color, next_pos) and next_pos not in visited:
+			check_connected(next_pos, color, connected, visited)
 	return connected
 
+func get_puyo_at_position(pos: Vector2i):
+	for child in get_children():
+		if child is Puyo and child.grid_pos == pos:
+			return child
+	return null
 
-func drop_puyos():
+func update_cells(target_puyos: Array, score) -> bool:
+	var all_popped_positions = {}
+	var chain_occurred = false
+	fall.stop()
+
+	for puyo in target_puyos:
+		var connected = check_connected(puyo.grid_pos, puyo.color)
+		if connected.size() > 3:
+			chain_occurred = true
+			for pos in connected:
+				all_popped_positions[pos] = true
+				
+	if chain_occurred:
+		current_mult += 1
+		emit_signal("puyo_multiplied", current_mult)
+		popping_puyos.clear()
+		for pos in all_popped_positions.keys():
+			cells[pos.y][pos.x] = 0
+			var puyo_to_pop = get_puyo_at_position(pos)
+			if puyo_to_pop:
+				if not puyo_to_pop.is_connected("pop_finished", _on_puyo_popped):
+					puyo_to_pop.connect("pop_finished", _on_puyo_popped)
+				popping_puyos.append(puyo_to_pop)
+				puyo_to_pop.pop()
+				score += 200
+				emit_signal("score_base", 200)
+
+		while popping_puyos.size() > 0:
+			await get_tree().process_frame
+		
+		
+		var dropped_puyos = drop_puyos()
+		if !dropped_puyos.is_empty():
+			await update_cells(dropped_puyos, score)
+			
+		fall.start(0.5)
+		return true
+
+	return false
+
+func _on_puyo_popped(puyo):
+	if puyo in popping_puyos:
+		popping_puyos.erase(puyo)
+		
+func drop_puyos() -> Array:
+	var dropped = []
 	for x in range(6):
 		var drop_to = 11
 		for y in range(11, -1, -1):
@@ -151,39 +188,68 @@ func drop_puyos():
 				if drop_to != y:
 					cells[drop_to][x] = cells[y][x]
 					cells[y][x] = 0
+					var puyo = get_puyo_at_position(Vector2i(x, y))
+					if puyo:
+						dropped.append(puyo)
+						puyo.grid_pos = Vector2i(x, drop_to)
+						puyo.position = grid_to_world(Vector2i(x, drop_to))
 				drop_to -= 1
+	return dropped
 
+func in_bounds(pos: Vector2i):
+	return pos.x >= 0 and pos.x <= 5 and pos.y >= 0 and pos.y <= 11
+
+func is_same_color(color: int, pos: Vector2i):
+	if in_bounds(pos) and !is_clear(pos):
+		var puyo_at_pos = get_puyo_at_position(pos)
+		return puyo_at_pos and color == puyo_at_pos.color
+	return false
 
 func find_fall():
+	var score = 0
 	match puyorotation:
 		0, 2, 3:
 			while is_clear(puyo_main.grid_pos + Vector2i(0, 1)):
 				puyo_main.position += Vector2(0, 36)
 				puyo_main.grid_pos += Vector2i(0, 1)
-			update_cells(puyo_main)
+			add_puyo(puyo_main)
+			score += 100
+			emit_signal("score_base", 100)
 			while is_clear(puyo_rotate.grid_pos + Vector2i(0, 1)):
 				puyo_rotate.position += Vector2(0, 36)
 				puyo_rotate.grid_pos += Vector2i(0, 1)
-			update_cells(puyo_rotate)
+			add_puyo(puyo_rotate)
+			score += 100
+			emit_signal("score_base", 100)
+			#await get_tree().create_timer(0.3).timeout
+			update_cells([puyo_main, puyo_rotate], score)
 		1:
 			while is_clear(puyo_rotate.grid_pos + Vector2i(0, 1)):
 				puyo_rotate.position += Vector2(0, 36)
 				puyo_rotate.grid_pos += Vector2i(0, 1)
-			update_cells(puyo_rotate)
+			add_puyo(puyo_rotate)
+			score += 100
+			emit_signal("score_base", 100)
 			while is_clear(puyo_main.grid_pos + Vector2i(0, 1)):
 				puyo_main.position += Vector2(0, 36)
 				puyo_main.grid_pos += Vector2i(0, 1)
-			update_cells(puyo_main)
-	
-func _input(event):
+			add_puyo(puyo_main)
+			score += 100
+			emit_signal("score_base", 100)
+			update_cells([puyo_rotate, puyo_main], score)
+	return score
+
+func _input(_event):
+	if shit_happening == true:
+		return
 	if Input.is_action_pressed("ui_down"):
-		if fall.time_left > 0.2:
-			fall.start(0.2)
-	
+		if fall.time_left > 0.1:
+			fall.start(0.1)
+
 	if Input.is_action_just_pressed("ui_right"):
 		right(puyo_main)
 		right(puyo_rotate)
-	
+
 	if Input.is_action_just_pressed("ui_left"):
 		left(puyo_main)
 		left(puyo_rotate)
@@ -218,7 +284,7 @@ func _input(event):
 					puyo_rotate.position = puyo_main.position + Vector2(36, 0)
 					puyo_rotate.grid_pos = puyo_main.grid_pos + Vector2i(1, 0)
 					puyorotation = 0
-	
+
 	if Input.is_action_just_pressed("counterclockwise"):
 		match puyorotation:
 			0:
@@ -251,17 +317,21 @@ func _input(event):
 					puyorotation = 2
 
 func _on_fall_timeout():
-	fall.start(0.5)
 	if is_clear(puyo_main.grid_pos + Vector2i(0, 1)) and is_clear(puyo_rotate.grid_pos + Vector2i(0, 1)):
 		puyo_main.position.y += 36
 		puyo_rotate.position.y += 36
 		puyo_main.grid_pos.y += 1
 		puyo_rotate.grid_pos.y += 1
+		fall.start(0.5)
 	else:
-		find_fall()
+		shit_happening = true
+		total_score += current_mult * find_fall()
+		current_mult = 1
+		emit_signal("score_updated", total_score)
 		free_puyo.emit()
-		disconnect("free_puyo", puyo_main._on_puyo_free)
-		disconnect("free_puyo", puyo_rotate._on_puyo_free)
-		for i in range(12):
-			print(cells[i][0], cells[i][1], cells[i][2], cells[i][3], cells[i][4], cells[i][5])
+		await get_tree().create_timer(0.5).timeout
+		puyo_main = null
+		puyo_rotate = null
+		fall.start(0.5)
+		shit_happening = false
 		spawn_puyos()

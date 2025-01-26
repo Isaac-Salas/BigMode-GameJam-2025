@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bujmgm1kjflx1"]
+[gd_scene load_steps=16 format=3 uid="uid://bujmgm1kjflx1"]
 
 [ext_resource type="Texture2D" uid="uid://wywox1gjscjr" path="res://Assets/Sprites/SnakeLevel/Snake.png" id="1_u7c07"]
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/segment.gd" id="2_1m6uv"]
+[ext_resource type="Texture2D" uid="uid://bjr66xqnai7ey" path="res://Assets/Sprites/SnakeLevel/TurnsSegment.png" id="2_ahox4"]
+[ext_resource type="Texture2D" uid="uid://baduxy855qfwq" path="res://Assets/Sprites/SnakeLevel/Allturns.png" id="2_x7k8y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xgg13"]
 atlas = ExtResource("1_u7c07")
@@ -11,13 +13,37 @@ region = Rect2(32, 32, 16, 16)
 atlas = ExtResource("1_u7c07")
 region = Rect2(16, 32, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6udy"]
+atlas = ExtResource("2_ahox4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqftv"]
+atlas = ExtResource("2_ahox4")
+region = Rect2(0, 48, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jhmvs"]
 atlas = ExtResource("1_u7c07")
 region = Rect2(16, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vksbg"]
-atlas = ExtResource("1_u7c07")
-region = Rect2(0, 32, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw5yx"]
+atlas = ExtResource("2_ahox4")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjvo8"]
+atlas = ExtResource("2_x7k8y")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdej3"]
+atlas = ExtResource("2_x7k8y")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnlvb"]
+atlas = ExtResource("2_x7k8y")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xspk"]
+atlas = ExtResource("2_x7k8y")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xobmn"]
 animations = [{
@@ -39,24 +65,74 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jhmvs")
+"texture": SubResource("AtlasTexture_u6udy")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"Idle_down",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vksbg")
+"texture": SubResource("AtlasTexture_gqftv")
 }],
 "loop": true,
-"name": &"Turn",
+"name": &"Idle_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhmvs")
+}],
+"loop": true,
+"name": &"Idle_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw5yx")
+}],
+"loop": true,
+"name": &"Idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjvo8")
+}],
+"loop": true,
+"name": &"Turn_Down_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdej3")
+}],
+"loop": true,
+"name": &"Turn_Down_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnlvb")
+}],
+"loop": true,
+"name": &"Turn_Up_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xspk")
+}],
+"loop": true,
+"name": &"Turn_Up_right",
 "speed": 5.0
 }]
 
 [node name="Segment" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_xobmn")
-animation = &"Eat-turn"
+animation = &"Turn_Down_right"
 script = ExtResource("2_1m6uv")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true

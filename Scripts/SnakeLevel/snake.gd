@@ -5,51 +5,129 @@ extends Node2D
 @onready var timer = $Timer
 @onready var previous
 @onready var pieces : Array
+@onready var snakesize : int
 @onready var currentdir : Vector2
 @onready var previoushead : Vector2
 @onready var prevsegment
+@onready var selectedpiece : int = 1 
+@onready var starturning: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in self.get_children():
 		pieces.append(i)
-	print(pieces)
+	#print(pieces)
 	currentdir =  Vector2(1,0)
+	snakesize = pieces.size()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-func _input(event):
-
+func _unhandled_input(event):
+	
 	if Input.is_action_just_pressed("ui_left"):
-		currentdir =  Vector2(-1,0)
-	if Input.is_action_just_pressed("ui_right"):
-		currentdir =  Vector2(1,0)
-	if Input.is_action_just_pressed("ui_up"):
-		currentdir =  Vector2(0,-1)
-	if Input.is_action_just_pressed("ui_down"):
-		currentdir =  Vector2(0,1)
+		if currentdir != Vector2(1,0) and currentdir != Vector2(-1,0):
+			currentdir =  Vector2(-1,0)
+			starturning = true
+			head.rotation_degrees = 0
+			head.rotation_degrees = -180
+	if Input.is_action_just_pressed("ui_right") and currentdir != Vector2(1,0):
+		if currentdir != Vector2(-1,0):
+			currentdir =  Vector2(1,0)
+			starturning = true
+			head.rotation_degrees = 0
+	if Input.is_action_just_pressed("ui_up") and currentdir != Vector2(0,-1):
+		if currentdir != Vector2(0,1):
+			currentdir =  Vector2(0,-1)
+			starturning = true
+			head.rotation_degrees = -90
+	if Input.is_action_just_pressed("ui_down")and currentdir != Vector2(0,1):
+		if currentdir != Vector2(0,-1):
+			currentdir =  Vector2(0,1)
+			starturning = true
+			head.rotation_degrees = 90
 		
 
 func _on_timer_timeout():
+	var comparison = head.position - previoushead
+	print(comparison,currentdir) 
+	
+	#print(starturning)
+	match starturning:
+		true:
+			var segment = pieces[selectedpiece]
+			match currentdir:
+				Vector2(-1,0):
+					pass
+				Vector2(1,0):
+					pass
+				Vector2(0,-1): #Arriba
+					if comparison.x < 0:
+						segment.play("Turn_Down_right")
+					elif comparison.x > 0:
+						segment.play("Turn_Down_left")
+					
+					
+				Vector2(0,1): #Abajo
+					if comparison.x < 0:
+						segment.play("Turn_Up_right")
+					elif comparison.x > 0:
+						segment.play("Turn_Up_left")
+			
+			if selectedpiece < snakesize - 3 :
+				if snakesize-3 == 1:
+					starturning = false
+				else:
+					selectedpiece +=1
+			else:
+				starturning = false
+				selectedpiece = 1
+				
+		false:
+			#match currentdir:
+				#Vector2(-1,0):
+					#segment.play("Idle_right")
+				#Vector2(1,0):
+					#segment.play("Idle_left")
+				#Vector2(0,-1): #Abajo
+					#segment.play("Idle_down")
+				#Vector2(0,1): #Arriba
+					#segment.play("Idle_up")
+			
+			
+			for i in pieces:
+				if i is SegmentSnake:
+					i.play("Idle_right")
+				elif i.is_in_group("Tail"):
+					i.rotation_degrees = head.rotation_degrees
+			
+	
+	
+	
+	#print(selectedpiece)
+	
 	previoushead = head.position
 	head.position += currentdir * 16
+	
 	for i in pieces:
+		
 		if i is SegmentSnake:
+			#print(i.tracking)
 			if i.index == 0:
+				i.previouspos = i.position
 				i.position = previoushead
+				i.tracking = head
+				#print(i.position, i.previouspos)
 				prevsegment = i
-				#prevsegment.previouspos = prevsegment.position
 				#print(prevsegment)
 			elif i.index != 0:
-				
-				print (prevsegment)
+				#print(i)
+				i.previouspos = i.position
+				i.tracking = prevsegment
 				i.position = prevsegment.previouspos
-				print(prevsegment.previouspos)
 				prevsegment = i
-				#prevsegment.previouspos = prevsegment.position
-				#
-				#prevsegment = i
-				
-				
+		
+		if i.is_in_group("Tail"):
+			tail.position = prevsegment.previouspos
+			#print(tail.position)

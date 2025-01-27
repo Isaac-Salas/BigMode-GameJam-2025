@@ -10,6 +10,8 @@ signal score_updated(score)
 signal score_base(base)
 signal puyo_multiplied(puyo_multiplied)
 signal free_puyo()
+var explode_puyo = -1
+
 var shit_happening = false
 var puyo_rotate
 var puyo_main
@@ -28,6 +30,15 @@ var cells = [
 	[0, 0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0, 0],
 ]
+
+func clear_all(color):
+	for row in range (12):
+		for col in range(6):
+			var puyo_maybe_pop = get_puyo_at_position(Vector2(row, col))
+			if puyo_maybe_pop != null and puyo_maybe_pop.color == color:
+				puyo_maybe_pop.pop()
+	explode_puyo = -1
+	drop_puyos()
 
 func spawn_puyos():
 	puyorotation = 0
@@ -139,6 +150,10 @@ func update_cells(target_puyos: Array, score) -> bool:
 	var all_popped_positions = {}
 	var chain_occurred = false
 	fall.stop()
+	
+	if explode_puyo != -1:
+		clear_all(explode_puyo)
+		chain_occurred = true
 
 	for puyo in target_puyos:
 		var connected = check_connected(puyo.grid_pos, puyo.color)
@@ -178,7 +193,7 @@ func update_cells(target_puyos: Array, score) -> bool:
 func _on_puyo_popped(puyo):
 	if puyo in popping_puyos:
 		popping_puyos.erase(puyo)
-		
+
 func drop_puyos() -> Array:
 	var dropped = []
 	for x in range(6):
@@ -193,6 +208,7 @@ func drop_puyos() -> Array:
 						dropped.append(puyo)
 						puyo.grid_pos = Vector2i(x, drop_to)
 						puyo.position = grid_to_world(Vector2i(x, drop_to))
+						free_puyo.emit()
 				drop_to -= 1
 	return dropped
 
@@ -317,7 +333,7 @@ func _input(_event):
 					puyorotation = 2
 
 func _on_fall_timeout():
-	if is_clear(puyo_main.grid_pos + Vector2i(0, 1)) and is_clear(puyo_rotate.grid_pos + Vector2i(0, 1)):
+	if is_clear(puyo_main.grid_pos + Vector2i(0, 1)) and is_clear(puyo_rotate.grid_pos + Vector2i(0, 1)) and !shit_happening:
 		puyo_main.position.y += 36
 		puyo_rotate.position.y += 36
 		puyo_main.grid_pos.y += 1
@@ -332,6 +348,6 @@ func _on_fall_timeout():
 		await get_tree().create_timer(0.5).timeout
 		puyo_main = null
 		puyo_rotate = null
-		fall.start(0.5)
 		shit_happening = false
+		fall.start(0.5)
 		spawn_puyos()

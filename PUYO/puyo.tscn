@@ -1,7 +1,7 @@
 [gd_scene load_steps=59 format=3 uid="uid://bapqb1gvotcod"]
 
-[ext_resource type="Texture2D" uid="uid://q8dhh0jlfrme" path="res://resource/puyofull.png" id="1_c0t3g"]
-[ext_resource type="Script" path="res://puyo.gd" id="1_yhwdu"]
+[ext_resource type="Texture2D" uid="uid://q8dhh0jlfrme" path="res://Assets/puyo/sprites_OLD/puyofull.png" id="1_c0t3g"]
+[ext_resource type="Script" path="res://PUYO/puyo.gd" id="1_yhwdu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ph7rp"]
 atlas = ExtResource("1_c0t3g")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q8dhh0jlfrme"
-path="res://.godot/imported/puyofull.png-11d515c3b48b06028807cabec01bad41.ctex"
+uid="uid://btbkhkd7cx0i0"
+path="res://.godot/imported/puyo_frame.png-325f9d04552f55c532e6f2cffdb5f41a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resource/puyofull.png"
-dest_files=["res://.godot/imported/puyofull.png-11d515c3b48b06028807cabec01bad41.ctex"]
+source_file="res://Assets/puyo/puyo_frame.png"
+dest_files=["res://.godot/imported/puyo_frame.png-325f9d04552f55c532e6f2cffdb5f41a.ctex"]
 
 [params]
 

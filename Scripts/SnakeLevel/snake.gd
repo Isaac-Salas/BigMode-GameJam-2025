@@ -70,37 +70,18 @@ func _on_timer_timeout():
 			match currentdir:
 				Vector2(-1,0): #Izquierda 
 					segments = pieces[1]
-					segments.play("Idle_right")
+					segments.play("Always")
 				Vector2(1,0):
-					pass
+					segments = pieces[1]
+					segments.play("Always")
 				Vector2(0,-1): #Arriba
-					if comparison.x < 0: #Arriba moviendose a la Izq
-						segments = pieces[1]
-						segments.play("Turn_Up_left")
-					elif comparison.x > 0: #Arriba moviendose a la der
-						segments = pieces[1]
-						segments.play("Turn_Up_right")
-					elif comparison.x == 0:
-						if selectedpiece > 1:
-							var modsegment = pieces[selectedpiece-1]
-							modsegment.stop()
-							modsegment.play("Idle_up")
-							print("Cambiando para arriba")
+					segments = pieces[1]
+					segments.play("Always")
 						
 					
 				Vector2(0,1): #Abajo
-					if comparison.x < 0: #Abajo moviendose a la Izq
-						segments = pieces[1]
-						segments.play("Turn_Down_left")
-					elif comparison.x > 0: #Abajo moviendose a la der
-						segments = pieces[1]
-						segments.play("Turn_Down_right")
-					elif comparison.x == 0:
-						if selectedpiece > 1:
-							var modsegment = pieces[selectedpiece-1]
-							modsegment.stop()
-							modsegment.play("Idle_down")
-							print("Cambiando para arriba")
+					segments = pieces[1]
+					segments.play("Always")
 			
 			if selectedpiece < score :
 				if score == 1:
@@ -116,15 +97,7 @@ func _on_timer_timeout():
 			
 			for i in pieces:
 				if i is SegmentSnake:
-					match currentdir:
-						Vector2(-1,0):
-							i.play("Idle_left")
-						Vector2(1,0):
-							i.play("Idle_right")
-						Vector2(0,-1): #Arriba
-							i.play("Idle_up")
-						Vector2(0,1):
-							i.play("Idle_down")
+					i.play("Always")
 							
 				elif i.is_in_group("Tail"):
 					i.rotation_degrees = head.rotation_degrees
@@ -164,21 +137,25 @@ func add_segment(sibling : Node2D, num_pieces : int) :
 		score += 1
 		var newsegment : SegmentSnake = SEGMENT.instantiate()
 		newsegment.index = score-1
-		newsegment.position = sibling.position
+		newsegment.position = segment.position
 		sibling.add_sibling(newsegment)
+		#sibling.call_deferred("add_sibling", newsegment)
 		
-	
+		
 	#Aqui refrescame el ass
 	pieces = []
 	for i in self.get_children():
 		pieces.append(i)
+
 	snakesize = pieces.size()
 	segments = pieces[selectedpiece]
+	
+
 func die():
 	queue_free()
 
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("Pared"):
+	if body.is_in_group("Pared") or body.is_in_group("Segment"):
 		die()
 	elif body is Fruit:
 		add_segment(segment,body.value)

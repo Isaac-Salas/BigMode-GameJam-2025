@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://crqm7yqxvx50a"]
+
+[ext_resource type="Texture2D" uid="uid://ddt707gvj000o" path="res://Assets/puyo/puyo-frame.png" id="1_88x16"]
+
+[node name="Puyo-frame" type="Sprite2D"]
+z_index = 5
+position = Vector2(137, 239)
+texture = ExtResource("1_88x16")
+region_enabled = true
+region_rect = Rect2(184, 0, 266, 480)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = -1
+offset_left = -109.0
+offset_top = -216.0
+offset_right = 107.0
+offset_bottom = 217.0
+color = Color(0.0823529, 0, 0.133333, 0.196078)

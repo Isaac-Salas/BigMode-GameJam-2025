@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://pqvr0nmuev2o"]
+
+[ext_resource type="Texture2D" uid="uid://3nurx1icx1a1" path="res://Assets/Sprites/Portraits/enemigote.png" id="1_ld2vm"]
+[ext_resource type="Texture2D" uid="uid://b6arv8vfw3dto" path="res://Assets/puyo/puyo-sprite-frame_red.png" id="2_c7fg5"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -54.0
+offset_top = -54.0
+offset_right = 54.0
+offset_bottom = 54.0
+color = Color(0.0823529, 0, 0.133333, 1)
+
+[node name="Enemigote" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(2, 2)
+texture = ExtResource("1_ld2vm")
+region_enabled = true
+region_rect = Rect2(23, -5, 54, 54)
+
+[node name="Puyo-sprite-frameRed" type="Sprite2D" parent="."]
+texture = ExtResource("2_c7fg5")

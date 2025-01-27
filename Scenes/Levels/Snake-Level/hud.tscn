@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmnwwednc0i2e"]
+
+[ext_resource type="Script" path="res://Scripts/SnakeLevel/HUD.gd" id="1_7s0cr"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_7s0cr")
+
+[node name="Score" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 72.0
+offset_bottom = 87.0

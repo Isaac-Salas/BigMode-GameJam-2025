@@ -5,6 +5,7 @@
 
 # Godot-specific ignores
 .import/
+*.import
 export.cfg
 export_presets.cfg
 
@@ -16,3 +17,7 @@ export_presets.cfg
 data_*/
 mono_crash.*.json
 .DS_Store
+project.godot
+project.godot
+*.godot
+*.import

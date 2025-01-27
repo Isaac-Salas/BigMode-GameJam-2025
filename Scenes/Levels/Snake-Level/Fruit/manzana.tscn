@@ -8,7 +8,7 @@ size = Vector2(16, 16)
 
 [node name="Manzana" type="StaticBody2D" groups=["Fruit"]]
 script = ExtResource("1_ge83r")
-value = 2
+value = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_o4enp")

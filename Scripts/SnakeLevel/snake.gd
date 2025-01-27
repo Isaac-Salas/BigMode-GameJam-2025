@@ -1,8 +1,10 @@
 extends Node2D
+class_name FullSnake
 @onready var head = $Head
 @onready var segment = $Segment
 @onready var tail = $Tail
 @onready var timer = $Timer
+
 @onready var previous
 @onready var pieces : Array
 @onready var snakesize : int
@@ -13,7 +15,7 @@ extends Node2D
 @onready var starturning: bool = false
 @onready var comparison 
 @onready var segments
-@onready var score
+@onready var score : int
 const SEGMENT = preload("res://Scenes/Levels/Snake-Level/Segment/segment.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,8 +27,7 @@ func _ready():
 	segments = pieces[selectedpiece]
 	score = snakesize - 3
 	comparison = head.position - previoushead
-	
-	add_segment(segment, 10)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -67,8 +68,9 @@ func _on_timer_timeout():
 		true:
 			
 			match currentdir:
-				Vector2(-1,0):
-					pass
+				Vector2(-1,0): #Izquierda 
+					segments = pieces[1]
+					segments.play("Idle_right")
 				Vector2(1,0):
 					pass
 				Vector2(0,-1): #Arriba
@@ -87,12 +89,18 @@ func _on_timer_timeout():
 						
 					
 				Vector2(0,1): #Abajo
-					if comparison.x < 0:
-						#segment.play("Turn_Up_right")
-						pass
-					elif comparison.x > 0:
-						pass
-						#segment.play("Turn_Up_left")
+					if comparison.x < 0: #Abajo moviendose a la Izq
+						segments = pieces[1]
+						segments.play("Turn_Down_left")
+					elif comparison.x > 0: #Abajo moviendose a la der
+						segments = pieces[1]
+						segments.play("Turn_Down_right")
+					elif comparison.x == 0:
+						if selectedpiece > 1:
+							var modsegment = pieces[selectedpiece-1]
+							modsegment.stop()
+							modsegment.play("Idle_down")
+							print("Cambiando para arriba")
 			
 			if selectedpiece < score :
 				if score == 1:
@@ -108,7 +116,6 @@ func _on_timer_timeout():
 			
 			for i in pieces:
 				if i is SegmentSnake:
-					i.stop()
 					match currentdir:
 						Vector2(-1,0):
 							i.play("Idle_left")
@@ -157,7 +164,9 @@ func add_segment(sibling : Node2D, num_pieces : int) :
 		score += 1
 		var newsegment : SegmentSnake = SEGMENT.instantiate()
 		newsegment.index = score-1
+		newsegment.position = sibling.position
 		sibling.add_sibling(newsegment)
+		
 	
 	#Aqui refrescame el ass
 	pieces = []
@@ -165,3 +174,12 @@ func add_segment(sibling : Node2D, num_pieces : int) :
 		pieces.append(i)
 	snakesize = pieces.size()
 	segments = pieces[selectedpiece]
+func die():
+	queue_free()
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("Pared"):
+		die()
+	elif body is Fruit:
+		add_segment(segment,body.value)
+		body.queue_free()

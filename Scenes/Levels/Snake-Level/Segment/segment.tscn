@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bujmgm1kjflx1"]
+[gd_scene load_steps=17 format=3 uid="uid://bujmgm1kjflx1"]
 
 [ext_resource type="Texture2D" uid="uid://wywox1gjscjr" path="res://Assets/Sprites/SnakeLevel/Snake.png" id="1_u7c07"]
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/segment.gd" id="2_1m6uv"]
@@ -29,13 +29,13 @@ region = Rect2(16, 16, 16, 16)
 atlas = ExtResource("2_ahox4")
 region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jjvo8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y87x7"]
 atlas = ExtResource("2_x7k8y")
-region = Rect2(48, 16, 16, 16)
+region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bdej3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4wqb"]
 atlas = ExtResource("2_x7k8y")
-region = Rect2(0, 16, 16, 16)
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eadvq"]
 atlas = ExtResource("2_x7k8y")
@@ -97,7 +97,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jjvo8")
+"texture": SubResource("AtlasTexture_y87x7")
 }],
 "loop": false,
 "name": &"Turn_Down_left",
@@ -105,7 +105,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bdej3")
+"texture": SubResource("AtlasTexture_c4wqb")
 }],
 "loop": false,
 "name": &"Turn_Down_right",
@@ -128,11 +128,19 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ya45u"]
+size = Vector2(16, 16)
+
 [node name="Segment" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_xobmn")
-animation = &"Idle_up"
+animation = &"Idle_right"
 script = ExtResource("2_1m6uv")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Segment"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_ya45u")

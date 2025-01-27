@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccsbdas7eqi25"]
+
+[ext_resource type="Script" path="res://Scripts/SnakeLevel/Fruit.gd" id="1_ge83r"]
+[ext_resource type="Texture2D" uid="uid://wxf0srhapkgy" path="res://Assets/Sprites/Portraits/Fruit_Manzanai.png" id="2_o4enp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kp8y2"]
+size = Vector2(16, 16)
+
+[node name="Manzana" type="StaticBody2D" groups=["Fruit"]]
+script = ExtResource("1_ge83r")
+value = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_o4enp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kp8y2")

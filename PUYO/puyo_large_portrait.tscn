@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4m1fvrdh7hnm"]
+
+[ext_resource type="Texture2D" uid="uid://cpn344wjhttp1" path="res://Assets/puyo/puyo-frame_bg.png" id="1_l4gpq"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n14qy"]
+blend_mode = 3
+
+[node name="Puyo-frameBg" type="Sprite2D"]
+z_index = -1
+material = SubResource("CanvasItemMaterial_n14qy")
+position = Vector2(-1, -12)
+texture = ExtResource("1_l4gpq")
+region_rect = Rect2(211, 0, 218, 458)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://btrdct8207ogu"]
+[gd_scene load_steps=13 format=3 uid="uid://btrdct8207ogu"]
 
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/snake.gd" id="1_tnx25"]
 [ext_resource type="Texture2D" uid="uid://cfn3w4cxn5nck" path="res://Assets/Sprites/SnakeLevel/SuperHyperMegaNewSnake.png" id="2_88c27"]
 [ext_resource type="PackedScene" uid="uid://bujmgm1kjflx1" path="res://Scenes/Levels/Snake-Level/Segment/segment.tscn" id="2_ud2qt"]
+[ext_resource type="Texture2D" uid="uid://b07y102kvupth" path="res://Assets/Lights/Lamparacolgosa.png" id="3_xf4h4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5jww"]
 atlas = ExtResource("2_88c27")
@@ -28,6 +29,9 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mijaa"]
 size = Vector2(16, 16)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mlhbv"]
+blend_mode = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wy0kr"]
 atlas = ExtResource("2_88c27")
@@ -57,12 +61,24 @@ script = ExtResource("1_tnx25")
 [node name="Head" type="AnimatedSprite2D" parent="."]
 position = Vector2(16, 0)
 sprite_frames = SubResource("SpriteFrames_gjbdb")
-frame_progress = 0.942651
+frame_progress = 0.0492857
 
 [node name="Area2D" type="Area2D" parent="Head"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head/Area2D"]
 shape = SubResource("RectangleShape2D_mijaa")
+
+[node name="Shadow" type="Sprite2D" parent="Head"]
+modulate = Color(1, 1, 1, 0.784314)
+z_index = -1
+material = SubResource("CanvasItemMaterial_mlhbv")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_xf4h4")
+
+[node name="PointLight2D" type="PointLight2D" parent="Head"]
+scale = Vector2(0.3, 0.3)
+color = Color(1, 0.35, 0.35, 1)
+texture = ExtResource("3_xf4h4")
 
 [node name="Segment" parent="." instance=ExtResource("2_ud2qt")]
 

@@ -1,27 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctj7o5n7a3eo3"]
+[gd_scene load_steps=6 format=3 uid="uid://ctj7o5n7a3eo3"]
 
-[ext_resource type="Texture2D" uid="uid://uyk2lxb3ac1t" path="res://Assets/Backgrounds/Snake/Jellytext.png" id="1_0d2j8"]
+[ext_resource type="Texture2D" uid="uid://bn7pgm05ahxv3" path="res://Assets/Sprites/Background/BacknoHUD.png" id="1_sb58o"]
 [ext_resource type="PackedScene" uid="uid://btrdct8207ogu" path="res://Scenes/Levels/Snake-Level/Snake/snake.tscn" id="2_5b5ta"]
 [ext_resource type="PackedScene" uid="uid://bmnwwednc0i2e" path="res://Scenes/Levels/Snake-Level/hud.tscn" id="3_am324"]
+[ext_resource type="Texture2D" uid="uid://6jth6ie70nra" path="res://Assets/Sprites/Background/HUD.png" id="4_hx0r5"]
 [ext_resource type="PackedScene" uid="uid://ccsbdas7eqi25" path="res://Scenes/Levels/Snake-Level/Fruit/manzana.tscn" id="4_sgnkp"]
 
 [node name="Tablero" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
-texture = ExtResource("1_0d2j8")
+z_index = -3
+texture = ExtResource("1_sb58o")
 centered = false
 
 [node name="Snake" parent="." instance=ExtResource("2_5b5ta")]
-position = Vector2(160, 128)
+position = Vector2(344, 136)
 
 [node name="HUD" parent="." node_paths=PackedStringArray("snake") instance=ExtResource("3_am324")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 snake = NodePath("../Snake")
 
+[node name="Sprite2D" type="Sprite2D" parent="HUD"]
+texture = ExtResource("4_hx0r5")
+centered = false
+
 [node name="Manzana" parent="." instance=ExtResource("4_sgnkp")]
-position = Vector2(256, 144)
+position = Vector2(272, 136)
 
 [node name="Manzana2" parent="." instance=ExtResource("4_sgnkp")]
 position = Vector2(320, 96)
 
 [node name="Manzana3" parent="." instance=ExtResource("4_sgnkp")]
 position = Vector2(352, 208)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.9, 0.9, 0.9, 1)

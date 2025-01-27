@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=4 uid="uid://u85s4lo3myge"]
 
-[ext_resource type="Script" path="res://board.gd" id="1_5iwgv"]
-[ext_resource type="Texture2D" uid="uid://b1bn0ydu0qfmx" path="res://resource/bg.png" id="1_218ak"]
-[ext_resource type="PackedScene" uid="uid://qvi3jqqm0ej8" path="res://spawner.tscn" id="2_wpv5b"]
+[ext_resource type="Script" path="res://PUYO/board.gd" id="1_5iwgv"]
+[ext_resource type="Texture2D" uid="uid://b1bn0ydu0qfmx" path="res://Assets/puyo/sprites_OLD/bg.png" id="1_218ak"]
+[ext_resource type="PackedScene" uid="uid://qvi3jqqm0ej8" path="res://PUYO/spawner.tscn" id="2_wpv5b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qkknt"]
 texture = ExtResource("1_218ak")
@@ -33,7 +33,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAA
 tile_set = SubResource("TileSet_7av04")
 
 [node name="Spawner" parent="." instance=ExtResource("2_wpv5b")]
-position = Vector2(104, 42)
+position = Vector2(104, 41)
 
 [node name="Scoreboard" type="Control" parent="."]
 layout_mode = 3

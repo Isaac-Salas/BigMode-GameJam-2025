@@ -1,7 +1,7 @@
 extends Node2D
 @export var controller = 'player'
 @onready var fall: Timer = $fall
-@onready var puyo_blueprint: PackedScene = preload("res://puyo.tscn")
+@onready var puyo_blueprint: PackedScene = preload("res://PUYO/puyo.tscn")
 @onready var popping_puyos = []
 
 var total_score = 0

@@ -27,6 +27,8 @@ window/stretch/scale_mode="integer"
 [global_group]
 
 Tail=""
+Fruit=""
+Segment=""
 
 [rendering]
 

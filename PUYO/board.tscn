@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://u85s4lo3myge"]
+[gd_scene load_steps=9 format=3 uid="uid://u85s4lo3myge"]
 
 [ext_resource type="Script" path="res://PUYO/board.gd" id="1_5iwgv"]
 [ext_resource type="PackedScene" uid="uid://brac12iovg0jy" path="res://background_tiles.tscn" id="2_2kfxe"]
@@ -6,9 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://pqvr0nmuev2o" path="res://PUYO/portrait.tscn" id="4_fg0h2"]
 [ext_resource type="PackedScene" uid="uid://crqm7yqxvx50a" path="res://PUYO/puyo_frame.tscn" id="5_2rc2o"]
 [ext_resource type="PackedScene" uid="uid://b4m1fvrdh7hnm" path="res://PUYO/puyo_large_portrait.tscn" id="6_h5kko"]
+[ext_resource type="Texture2D" uid="uid://bsu5jp01frr7x" path="res://Assets/puyo/puyoscoreboard.png" id="7_hhc4m"]
+[ext_resource type="Texture2D" uid="uid://c2rdiqnbvfsh0" path="res://Assets/puyo/background_gradient.png" id="8_rw7xr"]
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_5iwgv")
+
+[node name="BackgroundGradient" type="Sprite2D" parent="."]
+texture = ExtResource("8_rw7xr")
+centered = false
 
 [node name="background" parent="." instance=ExtResource("2_2kfxe")]
 
@@ -61,14 +67,20 @@ position = Vector2(336, 80)
 position = Vector2(136, 240)
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 z_index = -100
-offset_right = 1088.0
-offset_bottom = 664.0
+offset_right = 640.0
+offset_bottom = 480.0
 color = Color(0.0784314, 0.0627451, 0.113725, 1)
 
 [node name="Puyo-frameBg" parent="." instance=ExtResource("6_h5kko")]
 z_index = 2
 position = Vector2(136, 229)
+
+[node name="Puyoscoreboard" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(326, 240)
+texture = ExtResource("7_hhc4m")
 
 [connection signal="puyo_multiplied" from="Spawner" to="." method="_on_spawner_puyo_multiplied"]
 [connection signal="score_base" from="Spawner" to="." method="_on_spawner_score_base"]

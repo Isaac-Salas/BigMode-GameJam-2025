@@ -21,8 +21,8 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=640
 window/size/viewport_height=480
+window/size/mode=2
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
 
 [global_group]
 
@@ -30,6 +30,7 @@ Tail=""
 Fruit=""
 Segment=""
 Wall=""
+Manzana=""
 
 [rendering]
 

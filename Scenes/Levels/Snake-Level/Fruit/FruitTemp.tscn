@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccsbdas7eqi25"]
+[gd_scene load_steps=7 format=3 uid="uid://cl0j0kdwhmoii"]
 
-[ext_resource type="Script" path="res://Scripts/SnakeLevel/Fruit.gd" id="1_ge83r"]
-[ext_resource type="Texture2D" uid="uid://wxf0srhapkgy" path="res://Assets/Sprites/Portraits/Fruit_Manzanai.png" id="2_o4enp"]
-[ext_resource type="Texture2D" uid="uid://bw80rjmsuoqsj" path="res://Assets/Lights/Lamparacolgosa.png" id="3_k745b"]
-[ext_resource type="Material" uid="uid://kdttekih34l2" path="res://Scenes/Levels/Snake-Level/Fruit/manzanaparticles.tres" id="4_wpr35"]
+[ext_resource type="Script" path="res://Scripts/SnakeLevel/Fruit.gd" id="1_gae4y"]
+[ext_resource type="Texture2D" uid="uid://wxf0srhapkgy" path="res://Assets/Sprites/Portraits/Fruit_Manzanai.png" id="2_ix25y"]
+[ext_resource type="Texture2D" uid="uid://bw80rjmsuoqsj" path="res://Assets/Lights/Lamparacolgosa.png" id="3_vu5ks"]
+[ext_resource type="Material" uid="uid://kdttekih34l2" path="res://Scenes/Levels/Snake-Level/Fruit/manzanaparticles.tres" id="4_wujwj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_31jgf"]
 radius = 8.0
@@ -13,11 +13,11 @@ blend_mode = 1
 
 [node name="Manzana" type="RigidBody2D" groups=["Fruit"]]
 can_sleep = false
-script = ExtResource("1_ge83r")
+script = ExtResource("1_gae4y")
 value = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_o4enp")
+texture = ExtResource("2_ix25y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_31jgf")
@@ -26,12 +26,12 @@ shape = SubResource("CircleShape2D_31jgf")
 modulate = Color(0, 1, 0, 0.117647)
 material = SubResource("CanvasItemMaterial_l4ga5")
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_k745b")
+texture = ExtResource("3_vu5ks")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 10
-process_material = ExtResource("4_wpr35")
+process_material = ExtResource("4_wujwj")
 speed_scale = 3.0
 explosiveness = 1.0
 fixed_fps = 60

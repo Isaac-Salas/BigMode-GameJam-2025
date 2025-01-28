@@ -11,7 +11,7 @@ var grand_total = 0
 func _ready() -> void:
 	mult.text = "x 1"
 	base.text = "0"
-	total.text = "Total= 0"
+	total.text = "0"
 
 
 func _on_spawner_puyo_multiplied(puyo_multiplied: Variant) -> void:
@@ -27,6 +27,6 @@ func _on_spawner_score_updated(score: Variant) -> void:
 	cum_base = 0
 	cum_mult = 0
 	grand_total += score
-	mult.text = "x1"
-	total.text = "Total = " + str(grand_total)
+	mult.text = "x 1"
+	total.text =  str(grand_total)
 	

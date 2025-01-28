@@ -6,8 +6,11 @@ extends Node2D
 
 var total_score = 0
 var current_mult = 1
+@warning_ignore("unused_signal")
 signal score_updated(score)
+@warning_ignore("unused_signal")
 signal score_base(base)
+@warning_ignore("unused_signal")
 signal puyo_multiplied(puyo_multiplied)
 signal free_puyo()
 var explode_puyo = -1
@@ -147,9 +150,10 @@ func get_puyo_at_position(pos: Vector2i):
 	return null
 
 func update_cells(target_puyos: Array, score) -> bool:
+	fall.stop()
+	shit_happening = true
 	var all_popped_positions = {}
 	var chain_occurred = false
-	fall.stop()
 	
 	if explode_puyo != -1:
 		clear_all(explode_puyo)
@@ -176,18 +180,16 @@ func update_cells(target_puyos: Array, score) -> bool:
 				puyo_to_pop.pop()
 				score += 200
 				emit_signal("score_base", 200)
-
+		
 		while popping_puyos.size() > 0:
 			await get_tree().process_frame
+		await get_tree().create_timer(0.2).timeout
 		
-		
-		var dropped_puyos = drop_puyos()
+		var dropped_puyos = await drop_puyos()
 		if !dropped_puyos.is_empty():
 			await update_cells(dropped_puyos, score)
-			
-		fall.start(0.5)
 		return true
-
+	shit_happening = false
 	return false
 
 func _on_puyo_popped(puyo):
@@ -207,11 +209,17 @@ func drop_puyos() -> Array:
 					if puyo:
 						dropped.append(puyo)
 						puyo.grid_pos = Vector2i(x, drop_to)
-						puyo.position = grid_to_world(Vector2i(x, drop_to))
+						animate_fall(puyo, grid_to_world(Vector2i(x, drop_to)))
 						free_puyo.emit()
 				drop_to -= 1
+	await get_tree().create_timer(0.3).timeout
 	return dropped
-
+	
+func animate_fall(puyo, drop_to):
+	while puyo.position.y != drop_to.y:
+		puyo.position += Vector2(0, 36)
+		await get_tree().create_timer(0.05).timeout
+	return true
 func in_bounds(pos: Vector2i):
 	return pos.x >= 0 and pos.x <= 5 and pos.y >= 0 and pos.y <= 11
 
@@ -228,31 +236,37 @@ func find_fall():
 			while is_clear(puyo_main.grid_pos + Vector2i(0, 1)):
 				puyo_main.position += Vector2(0, 36)
 				puyo_main.grid_pos += Vector2i(0, 1)
+				await get_tree().create_timer(0.05).timeout
 			add_puyo(puyo_main)
 			score += 100
 			emit_signal("score_base", 100)
 			while is_clear(puyo_rotate.grid_pos + Vector2i(0, 1)):
 				puyo_rotate.position += Vector2(0, 36)
 				puyo_rotate.grid_pos += Vector2i(0, 1)
+				await get_tree().create_timer(0.05).timeout
 			add_puyo(puyo_rotate)
 			score += 100
 			emit_signal("score_base", 100)
 			#await get_tree().create_timer(0.3).timeout
-			update_cells([puyo_main, puyo_rotate], score)
+			free_puyo.emit()
+			await update_cells([puyo_main, puyo_rotate], score)
 		1:
 			while is_clear(puyo_rotate.grid_pos + Vector2i(0, 1)):
 				puyo_rotate.position += Vector2(0, 36)
 				puyo_rotate.grid_pos += Vector2i(0, 1)
+				await get_tree().create_timer(0.05).timeout
 			add_puyo(puyo_rotate)
 			score += 100
 			emit_signal("score_base", 100)
 			while is_clear(puyo_main.grid_pos + Vector2i(0, 1)):
 				puyo_main.position += Vector2(0, 36)
 				puyo_main.grid_pos += Vector2i(0, 1)
+				await get_tree().create_timer(0.05).timeout
 			add_puyo(puyo_main)
 			score += 100
 			emit_signal("score_base", 100)
-			update_cells([puyo_rotate, puyo_main], score)
+			free_puyo.emit()
+			await update_cells([puyo_rotate, puyo_main], score)
 	return score
 
 func _input(_event):
@@ -339,15 +353,16 @@ func _on_fall_timeout():
 		puyo_main.grid_pos.y += 1
 		puyo_rotate.grid_pos.y += 1
 		fall.start(0.5)
-	else:
+	elif !shit_happening:
 		shit_happening = true
-		total_score += current_mult * find_fall()
+		total_score += current_mult * await find_fall()
 		current_mult = 1
 		emit_signal("score_updated", total_score)
+		shit_happening = false
 		free_puyo.emit()
-		await get_tree().create_timer(0.5).timeout
 		puyo_main = null
 		puyo_rotate = null
-		shit_happening = false
 		fall.start(0.5)
 		spawn_puyos()
+	else:
+		fall.start(0.5)

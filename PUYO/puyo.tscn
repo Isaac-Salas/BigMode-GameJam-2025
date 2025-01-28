@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://bapqb1gvotcod"]
+[gd_scene load_steps=87 format=3 uid="uid://bapqb1gvotcod"]
 
 [ext_resource type="Script" path="res://PUYO/puyo.gd" id="1_yhwdu"]
 [ext_resource type="Texture2D" uid="uid://wec1yrtsc6pq" path="res://Assets/Sprites/Portraits/BlueSlave_.png" id="2_nqbo8"]
@@ -9,18 +9,6 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_ch5k0"]
 atlas = ExtResource("2_nqbo8")
 region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8upwa"]
-atlas = ExtResource("2_nqbo8")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oy1d1"]
-atlas = ExtResource("2_nqbo8")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jr6co"]
-atlas = ExtResource("2_nqbo8")
-region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_osuh6"]
 atlas = ExtResource("2_nqbo8")
@@ -93,14 +81,6 @@ region = Rect2(32, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jqcb2"]
 atlas = ExtResource("3_pdayo")
 region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_grxne"]
-atlas = ExtResource("3_pdayo")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_15bbq"]
-atlas = ExtResource("3_pdayo")
-region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yq5wc"]
 atlas = ExtResource("3_pdayo")
@@ -182,14 +162,6 @@ region = Rect2(128, 0, 32, 32)
 atlas = ExtResource("4_ydqnh")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_olqjo"]
-atlas = ExtResource("4_ydqnh")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7g44f"]
-atlas = ExtResource("4_ydqnh")
-region = Rect2(64, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_g1cfe"]
 atlas = ExtResource("4_ydqnh")
 region = Rect2(32, 32, 32, 32)
@@ -263,18 +235,6 @@ atlas = ExtResource("4_ydqnh")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2x83y"]
-atlas = ExtResource("4_oiqw4")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8oyty"]
-atlas = ExtResource("4_oiqw4")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n6nkt"]
-atlas = ExtResource("4_oiqw4")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cs051"]
 atlas = ExtResource("4_oiqw4")
 region = Rect2(0, 0, 32, 32)
 
@@ -371,15 +331,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ch5k0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8upwa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oy1d1")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_jr6co")
 }],
 "loop": true,
 "name": &"blue",
@@ -454,12 +405,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jqcb2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_grxne")
-}, {
-"duration": 6.0,
-"texture": SubResource("AtlasTexture_15bbq")
 }],
 "loop": true,
 "name": &"green",
@@ -540,12 +485,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_es2kr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_olqjo")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_7g44f")
 }],
 "loop": true,
 "name": &"red",
@@ -623,15 +562,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2x83y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8oyty")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n6nkt")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_cs051")
 }],
 "loop": true,
 "name": &"yellow",
@@ -725,8 +655,7 @@ script = ExtResource("1_yhwdu")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." groups=["puyo"]]
 sprite_frames = SubResource("SpriteFrames_hcgxv")
-animation = &"red_snap"
-frame = 4
-frame_progress = 1.0
+animation = &"green"
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="animation_looped" from="Sprite" to="." method="_on_sprite_animation_looped"]

@@ -13,7 +13,7 @@ extends Node
 
 # Export the shake duration
 @export var shake_duration: = 0.4
-@onready var newpos : Vector2
+@onready var newpos = null
 # Store the current amount we are shaking the node (this value will decrease over time)
 var shake = 0
 

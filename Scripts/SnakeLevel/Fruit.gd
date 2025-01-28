@@ -1,15 +1,14 @@
 extends RigidBody2D
-class_name Fruit
-@export var value = 0
-@onready var ogpos : Vector2
-@onready var particles : CPUParticles2D = $GPUParticles2D
-@onready var burbuji_as : CPUParticles2D = $"Burbujiñas"
+class_name Aliens
+@onready var moving : bool = false
+@onready var monitos = $Monitos
 
 func _ready():
-	ogpos = position
-	set_deferred("freeze",true)
-	
+	monitos.play("Idle")
 
-func eaten():
-	particles.global_position = ogpos
-	particles.emitting = true
+
+func run():
+	monitos.play("Run")
+	
+func scare():
+	monitos.play("Scare")

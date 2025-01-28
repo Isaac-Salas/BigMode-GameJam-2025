@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=3 uid="uid://rtx5yg0m0c30"]
+
+[ext_resource type="Script" path="res://Scripts/SnakeLevel/Fruit.gd" id="1_f6nyn"]
+[ext_resource type="Texture2D" uid="uid://cqq4g6ubmtxrx" path="res://Assets/Sprites/SnakeLevel/Small-Aliens-Run.png" id="2_lp472"]
+[ext_resource type="Texture2D" uid="uid://bw80rjmsuoqsj" path="res://Assets/Lights/Lamparacolgosa.png" id="2_n0gw8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spd0l"]
+atlas = ExtResource("2_lp472")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bwhj"]
+atlas = ExtResource("2_lp472")
+region = Rect2(14, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnqgf"]
+atlas = ExtResource("2_lp472")
+region = Rect2(84, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ylqt"]
+atlas = ExtResource("2_lp472")
+region = Rect2(98, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8am27"]
+atlas = ExtResource("2_lp472")
+region = Rect2(28, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo57h"]
+atlas = ExtResource("2_lp472")
+region = Rect2(42, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km2cr"]
+atlas = ExtResource("2_lp472")
+region = Rect2(56, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbn2t"]
+atlas = ExtResource("2_lp472")
+region = Rect2(70, 0, 14, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_or2t5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spd0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bwhj")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnqgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ylqt")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8am27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fo57h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km2cr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbn2t")
+}],
+"loop": true,
+"name": &"Scare",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_31jgf"]
+radius = 8.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l4ga5"]
+blend_mode = 1
+
+[node name="Aliens" type="RigidBody2D" groups=["Alien"]]
+can_sleep = false
+script = ExtResource("1_f6nyn")
+
+[node name="Monitos" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_or2t5")
+animation = &"Scare"
+frame_progress = 0.482262
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_31jgf")
+
+[node name="LuzFalsa" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.196078)
+material = SubResource("CanvasItemMaterial_l4ga5")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_n0gw8")

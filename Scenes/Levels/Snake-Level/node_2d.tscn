@@ -1,12 +1,13 @@
-[gd_scene load_steps=31 format=3 uid="uid://ctj7o5n7a3eo3"]
+[gd_scene load_steps=33 format=3 uid="uid://ctj7o5n7a3eo3"]
 
 [ext_resource type="Texture2D" uid="uid://2f7vfa054btc" path="res://Assets/Sprites/Background/BacknoHUD.png" id="1_sb58o"]
 [ext_resource type="PackedScene" uid="uid://btrdct8207ogu" path="res://Scenes/Levels/Snake-Level/Snake/snake.tscn" id="2_5b5ta"]
 [ext_resource type="Texture2D" uid="uid://csph8np5lsrmu" path="res://Assets/Sprites/Background/BacknoHUD_n.png" id="2_q6i2k"]
 [ext_resource type="Texture2D" uid="uid://bnr32fk6kyk5m" path="res://Assets/Sprites/Background/HUD.png" id="4_hx0r5"]
 [ext_resource type="Texture2D" uid="uid://ctu8us2mw0lep" path="res://Assets/Sprites/Portraits/piggly.png" id="6_w5s6g"]
+[ext_resource type="Material" uid="uid://do655fufnrire" path="res://Scenes/Levels/Snake-Level/Snake/HappyOrsad.tres" id="7_8k2xt"]
 [ext_resource type="Texture2D" uid="uid://b5rndmg22ruw3" path="res://Assets/Sprites/SnakeLevel/GridExample.png" id="7_jqgpu"]
-[ext_resource type="Script" path="res://Components/shake_component.gd" id="7_njksf"]
+[ext_resource type="Script" path="res://Components/scale_component.gd" id="8_4bjmj"]
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/Portraitparticles.gd" id="8_du5pd"]
 [ext_resource type="Texture2D" uid="uid://cbsjuhvitlpqc" path="res://Assets/Sprites/Background/AcidLower_.png" id="9_cue6q"]
 [ext_resource type="Texture2D" uid="uid://bw80rjmsuoqsj" path="res://Assets/Lights/Lamparacolgosa.png" id="9_ysebs"]
@@ -23,8 +24,20 @@ normal_texture = ExtResource("2_q6i2k")
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3v81k"]
 light_mode = 1
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6sybc"]
-blend_mode = 1
+[sub_resource type="Shader" id="Shader_w1ht3"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_add;
+
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mbmjp"]
+shader = SubResource("Shader_w1ht3")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lhqau"]
 blend_mode = 1
@@ -113,31 +126,22 @@ position = Vector2(72, 88)
 texture = ExtResource("6_w5s6g")
 script = ExtResource("8_du5pd")
 
-[node name="GPUParticles2D" type="CPUParticles2D" parent="HUD/Borde/Portrait"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="HUD/Borde/Portrait"]
 z_index = 5
-material = SubResource("CanvasItemMaterial_6sybc")
+material = SubResource("ShaderMaterial_mbmjp")
 emitting = false
-amount = 15
+amount = 20
+process_material = ExtResource("7_8k2xt")
 lifetime = 3.0
 one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
 randomness = 1.0
-lifetime_randomness = 1.0
 fixed_fps = 60
-draw_order = 1
-emission_shape = 1
-emission_sphere_radius = 56.15
-gravity = Vector2(0, 98)
-linear_accel_min = 100.0
-linear_accel_max = 100.0
-radial_accel_min = 100.0
-radial_accel_max = 100.0
-scale_amount_max = 3.0
 
-[node name="ShakeComponent" type="Node" parent="HUD/Borde/Portrait" node_paths=PackedStringArray("node")]
-script = ExtResource("7_njksf")
-node = NodePath("..")
+[node name="ScaleComponent" type="Node" parent="HUD/Borde/Portrait" node_paths=PackedStringArray("sprite")]
+script = ExtResource("8_4bjmj")
+sprite = NodePath("..")
 
 [node name="ColorRect" type="ColorRect" parent="HUD/Borde"]
 z_index = -2

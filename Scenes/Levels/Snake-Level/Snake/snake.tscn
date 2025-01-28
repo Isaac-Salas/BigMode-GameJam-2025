@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://btrdct8207ogu"]
+[gd_scene load_steps=14 format=3 uid="uid://btrdct8207ogu"]
 
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/snake.gd" id="1_tnx25"]
 [ext_resource type="Texture2D" uid="uid://bgskelccql7ub" path="res://Assets/Sprites/SnakeLevel/SuperHyperMegaNewSnake.png" id="2_88c27"]
 [ext_resource type="PackedScene" uid="uid://bujmgm1kjflx1" path="res://Scenes/Levels/Snake-Level/Segment/segment.tscn" id="2_ud2qt"]
 [ext_resource type="Texture2D" uid="uid://bw80rjmsuoqsj" path="res://Assets/Lights/Lamparacolgosa.png" id="3_xf4h4"]
 [ext_resource type="Script" path="res://Components/scale_component.gd" id="5_13v0w"]
-[ext_resource type="Material" uid="uid://kdttekih34l2" path="res://Scenes/Levels/Snake-Level/Fruit/manzanaparticles.tres" id="6_mmwc8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5jww"]
 atlas = ExtResource("2_88c27")
@@ -59,6 +58,7 @@ animations = [{
 
 [node name="Snake" type="Node2D"]
 script = ExtResource("1_tnx25")
+fruitvel = 100
 
 [node name="Head" type="AnimatedSprite2D" parent="."]
 position = Vector2(16, 0)
@@ -87,15 +87,20 @@ texture = ExtResource("3_xf4h4")
 texture_scale = 3.0
 height = 10.0
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Head"]
+[node name="GPUParticles2D" type="CPUParticles2D" parent="Head"]
 z_index = 3
 emitting = false
 amount = 16
-process_material = ExtResource("6_mmwc8")
 one_shot = true
 speed_scale = 3.0
 explosiveness = 1.0
 fixed_fps = 60
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector2(0, -9.8)
+radial_accel_min = 86.02
+radial_accel_max = 86.02
 
 [node name="Segment" parent="." instance=ExtResource("2_ud2qt")]
 

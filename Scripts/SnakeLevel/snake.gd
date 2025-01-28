@@ -19,12 +19,14 @@ class_name FullSnake
 #@onready var shake_component = $ShakeComponent
 @onready var scale_component = $ScaleComponent
 @onready var particles = $Head/GPUParticles2D
-
-
+@onready var allthefruit : Array[RigidBody2D]
+@export var fruitvel : int = 50
 @export var spawner : Marker2D
 @export var portrait : Portrait_Snake
 const SEGMENT = preload("res://Scenes/Levels/Snake-Level/Segment/segment.tscn")
-
+const KIWI = preload("res://Assets/Sprites/Portraits/Fruit_Kiwi.png")
+const MANZANAI = preload("res://Assets/Sprites/Portraits/Fruit_Manzanai.png")
+const NARANJAI = preload("res://Assets/Sprites/Portraits/Fruit_Naranjai.png")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -47,6 +49,11 @@ func _process(delta):
 
 
 func _unhandled_input(event):
+	print(allthefruit)
+	
+	if allthefruit != null:
+				for i in allthefruit:
+					i.linear_velocity -= (currentdir*fruitvel)
 	
 	if Input.is_action_just_pressed("ui_left"):
 		if currentdir != Vector2(1,0) and currentdir != Vector2(-1,0):
@@ -54,6 +61,7 @@ func _unhandled_input(event):
 			starturning = true
 			head.rotation_degrees = 0
 			head.rotation_degrees = -180
+	
 	if Input.is_action_just_pressed("ui_right") and currentdir != Vector2(1,0):
 		if currentdir != Vector2(-1,0):
 			currentdir =  Vector2(1,0)
@@ -188,11 +196,11 @@ func die():
 	queue_free()
 
 func eat(body : RigidBody2D, spawner : Marker2D):
-	
 	body.position = spawner.position
 	#body.call_deferred("reparent",spawner,true)
 	body.set_deferred("freeze", false)
 	body.add_constant_force(Vector2(randi_range(-20,20),0))
+	allthefruit.append(body)
 
 
 func _on_area_2d_body_entered(body):
@@ -200,12 +208,8 @@ func _on_area_2d_body_entered(body):
 		die()
 	elif body is Fruit:
 		particles.emitting = true
-		if body.is_in_group("Manzana"):
-			portrait.choose_fruit(portrait.MANZANAI)
-		elif body.is_in_group("Kiwi"):
-			portrait.choose_fruit(portrait.KIWI)
-		elif body.is_in_group("Naranja"):
-				portrait.choose_fruit(portrait.NARANJAI)
+		body.burbuji_as.emitting = true
+		portrait.choose_emotion(portrait.CARA_FELIZ)
 				
 		scale_component.tween_scale()
 		add_segment(segment,body.value)

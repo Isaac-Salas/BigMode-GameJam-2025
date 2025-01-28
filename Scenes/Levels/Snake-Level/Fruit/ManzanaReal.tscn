@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://crxvneikqj06u"]
+
+[ext_resource type="PackedScene" uid="uid://cl0j0kdwhmoii" path="res://Scenes/Levels/Snake-Level/Fruit/FruitTemp.tscn" id="1_e4jyj"]
+[ext_resource type="Texture2D" uid="uid://wxf0srhapkgy" path="res://Assets/Sprites/Portraits/Fruit_Manzanai.png" id="2_wyvsh"]
+
+[node name="Manzana" groups=["Manzana"] instance=ExtResource("1_e4jyj")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_wyvsh")
+
+[node name="CollisionShape2D" parent="." index="1"]
+visible = false
+
+[node name="LuzFalsa" parent="." index="2"]
+modulate = Color(0.4015, 0.73, 0.292, 0.196078)

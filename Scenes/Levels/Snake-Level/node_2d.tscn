@@ -1,17 +1,20 @@
-[gd_scene load_steps=19 format=3 uid="uid://ctj7o5n7a3eo3"]
+[gd_scene load_steps=31 format=3 uid="uid://ctj7o5n7a3eo3"]
 
 [ext_resource type="Texture2D" uid="uid://2f7vfa054btc" path="res://Assets/Sprites/Background/BacknoHUD.png" id="1_sb58o"]
 [ext_resource type="PackedScene" uid="uid://btrdct8207ogu" path="res://Scenes/Levels/Snake-Level/Snake/snake.tscn" id="2_5b5ta"]
 [ext_resource type="Texture2D" uid="uid://csph8np5lsrmu" path="res://Assets/Sprites/Background/BacknoHUD_n.png" id="2_q6i2k"]
 [ext_resource type="Texture2D" uid="uid://bnr32fk6kyk5m" path="res://Assets/Sprites/Background/HUD.png" id="4_hx0r5"]
-[ext_resource type="Script" path="res://Scripts/SnakeLevel/HUD.gd" id="4_krm0j"]
-[ext_resource type="PackedScene" uid="uid://ccsbdas7eqi25" path="res://Scenes/Levels/Snake-Level/Fruit/manzana.tscn" id="4_sgnkp"]
-[ext_resource type="FontFile" uid="uid://bjpnjdweqm262" path="res://Assets/Fonts/gomarice_round_pop.ttf" id="5_8kxcf"]
 [ext_resource type="Texture2D" uid="uid://ctu8us2mw0lep" path="res://Assets/Sprites/Portraits/piggly.png" id="6_w5s6g"]
 [ext_resource type="Texture2D" uid="uid://b5rndmg22ruw3" path="res://Assets/Sprites/SnakeLevel/GridExample.png" id="7_jqgpu"]
-[ext_resource type="Texture2D" uid="uid://wxf0srhapkgy" path="res://Assets/Sprites/Portraits/Fruit_Manzanai.png" id="7_ldyrx"]
+[ext_resource type="Script" path="res://Components/shake_component.gd" id="7_njksf"]
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/Portraitparticles.gd" id="8_du5pd"]
+[ext_resource type="Texture2D" uid="uid://cbsjuhvitlpqc" path="res://Assets/Sprites/Background/AcidLower_.png" id="9_cue6q"]
 [ext_resource type="Texture2D" uid="uid://bw80rjmsuoqsj" path="res://Assets/Lights/Lamparacolgosa.png" id="9_ysebs"]
+[ext_resource type="PackedScene" uid="uid://crxvneikqj06u" path="res://Scenes/Levels/Snake-Level/Fruit/ManzanaReal.tscn" id="10_3ligm"]
+[ext_resource type="Script" path="res://Scripts/SnakeLevel/acid.gd" id="10_lrvun"]
+[ext_resource type="Texture2D" uid="uid://4w7j6ywvj4cs" path="res://Assets/Sprites/Background/AcidUpper_.png" id="11_rv2n6"]
+[ext_resource type="PackedScene" uid="uid://b2qtqejcaw661" path="res://Scenes/Levels/Snake-Level/Fruit/Kiwi.tscn" id="13_uhtmh"]
+[ext_resource type="PackedScene" uid="uid://dllvgv1rftyo" path="res://Scenes/Levels/Snake-Level/Fruit/Naranja.tscn" id="14_qvo2x"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_v6jk7"]
 diffuse_texture = ExtResource("1_sb58o")
@@ -20,26 +23,64 @@ normal_texture = ExtResource("2_q6i2k")
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3v81k"]
 light_mode = 1
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rc5eu"]
-lifetime_randomness = 1.0
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 56.15
-radial_velocity_min = 20.0
-radial_velocity_max = 84.51
-gravity = Vector3(0, 98, 0)
-linear_accel_min = 100.0
-linear_accel_max = 100.0
-radial_accel_min = 100.0
-radial_accel_max = 100.0
-turbulence_noise_strength = 15.11
-turbulence_noise_scale = 9.015
-turbulence_noise_speed = Vector3(28.33, 3.42, 0)
-turbulence_influence_min = 0.015
-turbulence_influence_max = 0.137
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6sybc"]
+blend_mode = 1
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lhqau"]
 blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3ttsw"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67c57"]
+atlas = ExtResource("9_cue6q")
+region = Rect2(0, 0, 104, 155)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyo5k"]
+atlas = ExtResource("9_cue6q")
+region = Rect2(104, 0, 104, 155)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_88guj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67c57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyo5k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cvnt7"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sk8vb"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqvnn"]
+atlas = ExtResource("11_rv2n6")
+region = Rect2(0, 0, 104, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ileyq"]
+atlas = ExtResource("11_rv2n6")
+region = Rect2(104, 0, 104, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fkw37"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqvnn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ileyq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gad3"]
 size = Vector2(112, 4)
@@ -59,28 +100,7 @@ position = Vector2(336, 184)
 spawner = NodePath("../HUD/EatenStuff")
 portrait = NodePath("../HUD/Borde/Portrait")
 
-[node name="HUD" type="Control" parent="." node_paths=PackedStringArray("snake")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("4_krm0j")
-snake = NodePath("../Snake")
-
-[node name="Score" type="RichTextLabel" parent="HUD"]
-visible = false
-z_index = 1
-layout_mode = 0
-offset_left = 40.0
-offset_top = 320.0
-offset_right = 104.0
-offset_bottom = 384.0
-theme_override_fonts/normal_font = ExtResource("5_8kxcf")
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
-text = "[center]1[/center]"
+[node name="HUD" type="Node2D" parent="."]
 
 [node name="Borde" type="Sprite2D" parent="HUD"]
 material = SubResource("CanvasItemMaterial_3v81k")
@@ -93,18 +113,31 @@ position = Vector2(72, 88)
 texture = ExtResource("6_w5s6g")
 script = ExtResource("8_du5pd")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="HUD/Borde/Portrait"]
+[node name="GPUParticles2D" type="CPUParticles2D" parent="HUD/Borde/Portrait"]
 z_index = 5
+material = SubResource("CanvasItemMaterial_6sybc")
 emitting = false
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_rc5eu")
-texture = ExtResource("7_ldyrx")
+amount = 15
 lifetime = 3.0
 one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
 randomness = 1.0
+lifetime_randomness = 1.0
 fixed_fps = 60
+draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 56.15
+gravity = Vector2(0, 98)
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+scale_amount_max = 3.0
+
+[node name="ShakeComponent" type="Node" parent="HUD/Borde/Portrait" node_paths=PackedStringArray("node")]
+script = ExtResource("7_njksf")
+node = NodePath("..")
 
 [node name="ColorRect" type="ColorRect" parent="HUD/Borde"]
 z_index = -2
@@ -124,14 +157,27 @@ texture = ExtResource("9_ysebs")
 [node name="EatenStuff" type="Marker2D" parent="HUD"]
 position = Vector2(72, 248)
 
-[node name="Manzana" parent="." instance=ExtResource("4_sgnkp")]
-position = Vector2(272, 136)
+[node name="Acid" type="AnimatedSprite2D" parent="HUD"]
+modulate = Color(0.4, 0.4, 0.4, 1)
+z_index = 5
+material = SubResource("CanvasItemMaterial_3ttsw")
+position = Vector2(72, 366)
+sprite_frames = SubResource("SpriteFrames_88guj")
+frame_progress = 0.491443
+script = ExtResource("10_lrvun")
 
-[node name="Manzana2" parent="." instance=ExtResource("4_sgnkp")]
-position = Vector2(392, 240)
+[node name="Sprite2D" type="Sprite2D" parent="HUD/Acid"]
+modulate = Color(0.32, 0.75, 0.15, 1)
+z_index = 6
+material = SubResource("CanvasItemMaterial_cvnt7")
+texture = ExtResource("9_ysebs")
 
-[node name="Manzana3" parent="." instance=ExtResource("4_sgnkp")]
-position = Vector2(424, 208)
+[node name="UpperLayer" type="AnimatedSprite2D" parent="HUD/Acid"]
+z_index = 5
+material = SubResource("CanvasItemMaterial_sk8vb")
+position = Vector2(0, -75)
+sprite_frames = SubResource("SpriteFrames_fkw37")
+frame_progress = 0.824599
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.8, 0.8, 0.8, 1)
@@ -165,13 +211,52 @@ texture = ExtResource("7_jqgpu")
 position = Vector2(80, 454)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Barrera"]
+visible = false
 position = Vector2(-8, -8)
 shape = SubResource("RectangleShape2D_3gad3")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Barrera"]
+visible = false
 position = Vector2(-61.9375, -120.149)
 shape = SubResource("RectangleShape2D_pc4ii")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Barrera"]
+visible = false
 position = Vector2(46, -118)
 shape = SubResource("RectangleShape2D_pc4ii")
+
+[node name="Manzana" parent="." instance=ExtResource("10_3ligm")]
+position = Vector2(408, 184)
+
+[node name="Manzana2" parent="." instance=ExtResource("10_3ligm")]
+position = Vector2(448, 184)
+
+[node name="Manzana3" parent="." instance=ExtResource("10_3ligm")]
+position = Vector2(448, 280)
+
+[node name="Manzana4" parent="." instance=ExtResource("10_3ligm")]
+position = Vector2(384, 304)
+
+[node name="Manzana5" parent="." instance=ExtResource("10_3ligm")]
+position = Vector2(448, 312)
+
+[node name="Kiwi" parent="." instance=ExtResource("13_uhtmh")]
+position = Vector2(408, 207)
+
+[node name="Kiwi2" parent="." instance=ExtResource("13_uhtmh")]
+position = Vector2(408, 240)
+
+[node name="Kiwi3" parent="." instance=ExtResource("13_uhtmh")]
+position = Vector2(448, 240)
+
+[node name="Frutiña" parent="." instance=ExtResource("14_qvo2x")]
+position = Vector2(488, 184)
+
+[node name="Frutiña2" parent="." instance=ExtResource("14_qvo2x")]
+position = Vector2(488, 216)
+
+[node name="Frutiña3" parent="." instance=ExtResource("14_qvo2x")]
+position = Vector2(488, 280)
+
+[node name="Frutiña4" parent="." instance=ExtResource("14_qvo2x")]
+position = Vector2(488, 312)

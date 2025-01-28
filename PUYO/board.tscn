@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://pqvr0nmuev2o" path="res://PUYO/portrait.tscn" id="4_fg0h2"]
 [ext_resource type="PackedScene" uid="uid://crqm7yqxvx50a" path="res://PUYO/puyo_frame.tscn" id="5_2rc2o"]
 [ext_resource type="PackedScene" uid="uid://b4m1fvrdh7hnm" path="res://PUYO/puyo_large_portrait.tscn" id="6_h5kko"]
-[ext_resource type="Texture2D" uid="uid://bsu5jp01frr7x" path="res://Assets/puyo/puyoscoreboard.png" id="7_hhc4m"]
-[ext_resource type="Texture2D" uid="uid://c2rdiqnbvfsh0" path="res://Assets/puyo/background_gradient.png" id="8_rw7xr"]
+[ext_resource type="Texture2D" uid="uid://dvqvk27ufejqs" path="res://Assets/puyo/puyoscoreboard.png" id="7_hhc4m"]
+[ext_resource type="Texture2D" uid="uid://gq60dijw41w2" path="res://Assets/puyo/background_gradient.png" id="8_rw7xr"]
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_5iwgv")

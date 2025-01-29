@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bujmgm1kjflx1"]
+[gd_scene load_steps=9 format=3 uid="uid://bujmgm1kjflx1"]
 
-[ext_resource type="Texture2D" uid="uid://cfn3w4cxn5nck" path="res://Assets/Sprites/SnakeLevel/SuperHyperMegaNewSnake.png" id="1_sitw5"]
+[ext_resource type="Texture2D" uid="uid://bgskelccql7ub" path="res://Assets/Sprites/SnakeLevel/SuperHyperMegaNewSnake.png" id="1_sitw5"]
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/segment.gd" id="2_1m6uv"]
+[ext_resource type="Texture2D" uid="uid://bw80rjmsuoqsj" path="res://Assets/Lights/Lamparacolgosa.png" id="3_f4nqj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tycy2"]
 atlas = ExtResource("1_sitw5")
@@ -28,6 +29,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ya45u"]
 size = Vector2(14, 14)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q64r8"]
+blend_mode = 2
+
 [node name="Segment" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_xobmn")
 animation = &"Always"
@@ -41,3 +45,12 @@ autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_ya45u")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.784314)
+z_index = -1
+material = SubResource("CanvasItemMaterial_q64r8")
+position = Vector2(9.53674e-07, 4.76837e-07)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_f4nqj")
+metadata/_edit_lock_ = true

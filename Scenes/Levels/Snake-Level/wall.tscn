@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://i02rf07aas0h"]
+
+[ext_resource type="Texture2D" uid="uid://qvq1x5vi4xib" path="res://Assets/Sprites/SnakeLevel/Rock.png" id="1_ehmfi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wr4o"]
+size = Vector2(16, 16)
+
+[node name="Wall" type="StaticBody2D" groups=["Wall"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ehmfi")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_4wr4o")

@@ -5,7 +5,7 @@ class_name SegmentSnake
 @onready var tracking
 
 
-func eatturn(rotate):
+func eatturn():
 	play("Eat-turn")
 	
 func turn():

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dllvgv1rftyo"]
+
+[ext_resource type="PackedScene" uid="uid://cl0j0kdwhmoii" path="res://Scenes/Levels/Snake-Level/Fruit/FruitTemp.tscn" id="1_yuxow"]
+[ext_resource type="Texture2D" uid="uid://nhyrxdnmnuwo" path="res://Assets/Sprites/Portraits/Fruit_Naranjai.png" id="2_366h3"]
+
+[node name="Frutiña" groups=["Naranja"] instance=ExtResource("1_yuxow")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_366h3")
+
+[node name="LuzFalsa" parent="." index="2"]
+modulate = Color(0.94, 0.55084, 0.2914, 0.196078)

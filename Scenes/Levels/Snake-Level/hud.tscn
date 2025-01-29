@@ -10,6 +10,7 @@ offset_bottom = 40.0
 script = ExtResource("1_7s0cr")
 
 [node name="Score" type="RichTextLabel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 32.0
 offset_top = 64.0

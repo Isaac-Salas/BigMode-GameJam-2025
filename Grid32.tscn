@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhvw22svggwec"]
+
+[ext_resource type="Texture2D" uid="uid://bmmi8ievkpqat" path="res://Assets/puyo/bg-exportx16.png" id="1_rx4rn"]
+[ext_resource type="PackedScene" uid="uid://i02rf07aas0h" path="res://Scenes/Levels/Snake-Level/wall.tscn" id="2_8el6l"]
+[ext_resource type="Texture2D" uid="uid://qvq1x5vi4xib" path="res://Assets/Sprites/SnakeLevel/Rock.png" id="3_juspr"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4vxtv"]
+texture = ExtResource("1_rx4rn")
+0:0/animation_columns = 13
+0:0/animation_speed = 9.0
+0:0/animation_mode = 1
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
+0:0/animation_frame_8/duration = 1.0
+0:0/animation_frame_9/duration = 1.0
+0:0/animation_frame_10/duration = 1.0
+0:0/animation_frame_11/duration = 1.0
+0:0/animation_frame_12/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o83dp"]
+texture = ExtResource("3_juspr")
+0:0/0 = 0
+0:0/0/custom_data_0 = ExtResource("2_8el6l")
+
+[sub_resource type="TileSet" id="TileSet_etjmn"]
+custom_data_layer_0/name = ""
+custom_data_layer_0/type = 24
+sources/0 = SubResource("TileSetAtlasSource_4vxtv")
+sources/1 = SubResource("TileSetAtlasSource_o83dp")
+
+[node name="TileMapLayer" type="TileMapLayer"]
+tile_set = SubResource("TileSet_etjmn")

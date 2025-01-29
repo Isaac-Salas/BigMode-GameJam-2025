@@ -18,7 +18,7 @@ class_name FullSnake
 @onready var score : int
 #@onready var shake_component = $ShakeComponent
 @onready var scale_component = $ScaleComponent
-@onready var particles = $Head/GPUParticles2D
+@onready var particles : GPUParticles2D = $Head/CrumbsFruit
 @onready var allthefruit : Array[RigidBody2D]
 @export var fruitvel : int = 50
 @export var spawner : Marker2D
@@ -53,7 +53,7 @@ func _process(delta):
 
 
 func _unhandled_input(event):
-	print(allthefruit)
+	#print(allthefruit)
 	
 	
 	
@@ -100,7 +100,7 @@ func _unhandled_input(event):
 func _on_timer_timeout():
 	comparison = head.position - previoushead
 	segments = pieces[selectedpiece]
-	print(head.position, previoushead)
+	#print(head.position, previoushead)
 	#print(comparison,currentdir) 
 	#print(segments)
 	#print(starturning)
@@ -227,7 +227,7 @@ func _on_area_2d_body_entered(body):
 	elif body is Fruit:
 		particles.restart()
 		particles.emitting = true
-		body.burbuji_as.emitting = true
+		#body.burbuji_as.emitting = true
 		portrait.choose_emotion(portrait.CARA_FELIZ)
 		scale_component.tween_scale()
 		add_segment(segment,body.value)

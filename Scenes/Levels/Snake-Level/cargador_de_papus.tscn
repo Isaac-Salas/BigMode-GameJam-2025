@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6utagotp08sd"]
+
+[ext_resource type="Script" path="res://cargador_de_papus.gd" id="1_4q1rf"]
+[ext_resource type="PackedScene" uid="uid://ccsbdas7eqi25" path="res://Scenes/Levels/Snake-Level/Fruit/manzana.tscn" id="2_c148x"]
+[ext_resource type="PackedScene" uid="uid://dllvgv1rftyo" path="res://Scenes/Levels/Snake-Level/Fruit/Naranja.tscn" id="3_gw8oy"]
+[ext_resource type="PackedScene" uid="uid://b2qtqejcaw661" path="res://Scenes/Levels/Snake-Level/Fruit/Kiwi.tscn" id="4_wsspy"]
+[ext_resource type="PackedScene" uid="uid://rtx5yg0m0c30" path="res://Scenes/Levels/Snake-Level/Fruit/AliensSmol.tscn" id="5_s6t2h"]
+[ext_resource type="PackedScene" uid="uid://i02rf07aas0h" path="res://Scenes/Levels/Snake-Level/wall.tscn" id="6_c01hu"]
+
+[node name="Cargador de Papus" type="Node2D"]
+script = ExtResource("1_4q1rf")
+
+[node name="Manzana" parent="." instance=ExtResource("2_c148x")]
+
+[node name="Frutiña" parent="." instance=ExtResource("3_gw8oy")]
+
+[node name="Kiwi" parent="." instance=ExtResource("4_wsspy")]
+
+[node name="Aliens" parent="." instance=ExtResource("5_s6t2h")]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Wall" parent="." instance=ExtResource("6_c01hu")]
+position = Vector2(8, -8)
+
+[node name="Wall2" parent="." instance=ExtResource("6_c01hu")]
+position = Vector2(8, -8)
+
+[node name="Wall3" parent="." instance=ExtResource("6_c01hu")]
+position = Vector2(8, -8)
+
+[node name="Wall4" parent="." instance=ExtResource("6_c01hu")]
+position = Vector2(8, -8)

@@ -30,19 +30,6 @@ material = SubResource("CanvasItemMaterial_l4ga5")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_vu5ks")
 
-[node name="GPUParticles2D" type="CPUParticles2D" parent="."]
-emitting = false
-amount = 10
-speed_scale = 3.0
-explosiveness = 1.0
-fixed_fps = 60
-draw_order = 1
-emission_shape = 1
-emission_sphere_radius = 10.0
-gravity = Vector2(0, -9.8)
-radial_accel_min = 86.02
-radial_accel_max = 86.02
-
 [node name="Burbujiñas" type="GPUParticles2D" parent="."]
 material = SubResource("ShaderMaterial_be754")
 emitting = false

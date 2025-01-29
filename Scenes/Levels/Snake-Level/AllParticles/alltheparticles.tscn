@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bis4ftboxb06d"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/Snake-Level/AllParticles/alltheparticles.gd" id="1_xv8ly"]
+
+[node name="Alltheparticles" type="Node2D"]
+script = ExtResource("1_xv8ly")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = 10
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0.129412, 0.0352941, 0.145098, 1)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

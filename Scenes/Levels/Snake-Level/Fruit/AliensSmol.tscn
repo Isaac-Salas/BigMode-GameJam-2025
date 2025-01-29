@@ -131,7 +131,6 @@ texture = ExtResource("2_n0gw8")
 script = ExtResource("4_eh2sj")
 
 [node name="RunTimer" type="Timer" parent="."]
-wait_time = 0.1
 
 [node name="SpawnerTime" type="Timer" parent="."]
 
@@ -156,8 +155,8 @@ process_material = ExtResource("4_h6q4b")
 texture = ExtResource("6_amdvj")
 lifetime = 2.0
 
-[connection signal="timeout" from="RunTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]
+[connection signal="timeout" from="RunTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="SpawnerTime" to="." method="_on_spawner_time_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

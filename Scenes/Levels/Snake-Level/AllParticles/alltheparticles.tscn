@@ -95,11 +95,12 @@ randomness = 1.0
 fixed_fps = 60
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.2
 one_shot = true
 autostart = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 z_index = 10
 offset_right = 640.0
 offset_bottom = 480.0

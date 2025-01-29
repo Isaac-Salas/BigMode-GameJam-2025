@@ -12,8 +12,8 @@ const NARANJA = preload("res://Scenes/Levels/Snake-Level/Fruit/Naranja.tscn")
 @onready var spawner_time = $SpawnerTime
 @onready var dirlist : Array = ["X", "Y"]
 @onready var selected : String
-@onready var blood = $Blood
-@onready var bones = $Bones
+
+
 @export var value = 1
 @onready var gore = $Gore
 @onready var run_timer = $RunTimer
@@ -36,18 +36,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	
-	match alive:
-		true:
-			if directionx != null and directiony != null:
-				match selected:
-					"X":
-						global_position.x += directionx
-					"Y":
-						global_position.y += directiony
-		false:
-			pass
+
 
 	
 	
@@ -72,7 +61,7 @@ func scare():
 
 func run():
 	monitos.play("Run")
-	run_timer.start(0.1)
+	run_timer.start(0.2)
 	
 
 func _on_run_timer_timeout():
@@ -80,6 +69,17 @@ func _on_run_timer_timeout():
 	selected = dirlist[randi_range(0,1)]
 	directionx = randi_range(-1,1)
 	directiony = randi_range(-1,1)
+	
+	match alive:
+		true:
+			if directionx != null and directiony != null:
+				match selected:
+					"X":
+						global_position.x += directionx*16
+					"Y":
+						global_position.y += directiony*16
+		false:
+			pass
 	
 	
 

@@ -227,7 +227,7 @@ func _on_area_2d_body_entered(body):
 	elif body is Fruit:
 		particles.restart()
 		particles.emitting = true
-		body.burbuji_as.emitting = true
+		#body.burbuji_as.emitting = true
 		portrait.choose_emotion(portrait.CARA_FELIZ)
 		scale_component.tween_scale()
 		add_segment(segment,body.value)

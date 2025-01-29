@@ -17,6 +17,7 @@ shader = ExtResource("3_4d5d4")
 [node name="Frutiña" type="RigidBody2D" groups=["Fruit"]]
 can_sleep = false
 script = ExtResource("1_gae4y")
+value = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 

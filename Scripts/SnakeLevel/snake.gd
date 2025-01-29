@@ -23,6 +23,10 @@ class_name FullSnake
 @export var fruitvel : int = 50
 @export var spawner : Marker2D
 @export var portrait : Portrait_Snake
+@onready var bones : GPUParticles2D= $Head/Bones
+@onready var blood : GPUParticles2D= $Head/Blood
+
+
 const SEGMENT = preload("res://Scenes/Levels/Snake-Level/Segment/segment.tscn")
 const KIWI = preload("res://Assets/Sprites/Portraits/Fruit_Kiwi.png")
 const MANZANAI = preload("res://Assets/Sprites/Portraits/Fruit_Manzanai.png")
@@ -51,9 +55,7 @@ func _process(delta):
 func _unhandled_input(event):
 	print(allthefruit)
 	
-	if allthefruit != null:
-				for i in allthefruit:
-					i.linear_velocity -= (currentdir*fruitvel)
+	
 	
 	if Input.is_action_just_pressed("ui_left"):
 		if currentdir != Vector2(1,0) and currentdir != Vector2(-1,0):
@@ -61,22 +63,38 @@ func _unhandled_input(event):
 			starturning = true
 			head.rotation_degrees = 0
 			head.rotation_degrees = -180
+		if allthefruit != null:
+				for i in allthefruit:
+					if i != null:
+						i.linear_velocity -= (currentdir*fruitvel)
 	
 	if Input.is_action_just_pressed("ui_right") and currentdir != Vector2(1,0):
 		if currentdir != Vector2(-1,0):
 			currentdir =  Vector2(1,0)
 			starturning = true
 			head.rotation_degrees = 0
+		if allthefruit != null:
+				for i in allthefruit:
+					if i != null:
+						i.linear_velocity -= (currentdir*fruitvel)
 	if Input.is_action_just_pressed("ui_up") and currentdir != Vector2(0,-1):
 		if currentdir != Vector2(0,1):
 			currentdir =  Vector2(0,-1)
 			starturning = true
 			head.rotation_degrees = -90
+		if allthefruit != null:
+				for i in allthefruit:
+					if i != null:
+						i.linear_velocity -= (currentdir*fruitvel)
 	if Input.is_action_just_pressed("ui_down")and currentdir != Vector2(0,1):
 		if currentdir != Vector2(0,-1):
 			currentdir =  Vector2(0,1)
 			starturning = true
 			head.rotation_degrees = 90
+		if allthefruit != null:
+				for i in allthefruit:
+					if i != null:
+						i.linear_velocity -= (currentdir*fruitvel)
 		
 
 func _on_timer_timeout():
@@ -207,10 +225,20 @@ func _on_area_2d_body_entered(body):
 	if body.is_in_group("Segment"):
 		die()
 	elif body is Fruit:
+		particles.restart()
 		particles.emitting = true
 		body.burbuji_as.emitting = true
 		portrait.choose_emotion(portrait.CARA_FELIZ)
-				
+		scale_component.tween_scale()
+		add_segment(segment,body.value)
+		eat(body,spawner)
+	elif body is Alien:
+		blood.restart()
+		bones.restart()
+		blood.emitting = true
+		bones.emitting = true
+		body.die()
+		portrait.choose_emotion(portrait.CARA_ENOJADA)
 		scale_component.tween_scale()
 		add_segment(segment,body.value)
 		eat(body,spawner)

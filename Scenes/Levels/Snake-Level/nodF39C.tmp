@@ -163,7 +163,7 @@ position = Vector2(72, 248)
 modulate = Color(0.4, 0.4, 0.4, 1)
 z_index = 5
 material = SubResource("CanvasItemMaterial_3ttsw")
-position = Vector2(72, 367)
+position = Vector2(72, 366)
 sprite_frames = SubResource("SpriteFrames_88guj")
 frame_progress = 0.491443
 script = ExtResource("10_lrvun")
@@ -235,30 +235,3 @@ position = Vector2(392, 288)
 
 [node name="Aliens3" parent="." instance=ExtResource("13_mmon5")]
 position = Vector2(456, 288)
-
-[node name="Aliens4" parent="." instance=ExtResource("13_mmon5")]
-position = Vector2(456, 136)
-
-[node name="Aliens5" parent="." instance=ExtResource("13_mmon5")]
-position = Vector2(248, 120)
-
-[node name="Aliens6" parent="." instance=ExtResource("13_mmon5")]
-position = Vector2(216, 408)
-
-[node name="Aliens7" parent="." instance=ExtResource("13_mmon5")]
-position = Vector2(256, 424)
-
-[node name="Aliens8" parent="." instance=ExtResource("13_mmon5")]
-position = Vector2(232, 360)
-
-[node name="Aliens9" parent="." instance=ExtResource("13_mmon5")]
-position = Vector2(584, 416)
-
-[node name="Aliens10" parent="." instance=ExtResource("13_mmon5")]
-position = Vector2(576, 336)
-
-[node name="Aliens11" parent="." instance=ExtResource("13_mmon5")]
-position = Vector2(480, 408)
-
-[node name="Aliens12" parent="." instance=ExtResource("13_mmon5")]
-position = Vector2(480, 408)

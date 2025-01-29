@@ -1,0 +1,11 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://b1mhek0l60woi"]
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector3(0, 98, 0)
+linear_accel_min = -100.0
+linear_accel_max = -2.23517e-06
+radial_accel_min = 50.0
+radial_accel_max = 100.0

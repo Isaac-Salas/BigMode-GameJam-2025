@@ -1,10 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://btrdct8207ogu"]
+[gd_scene load_steps=21 format=3 uid="uid://btrdct8207ogu"]
 
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/snake.gd" id="1_tnx25"]
 [ext_resource type="Texture2D" uid="uid://bgskelccql7ub" path="res://Assets/Sprites/SnakeLevel/SuperHyperMegaNewSnake.png" id="2_88c27"]
 [ext_resource type="PackedScene" uid="uid://bujmgm1kjflx1" path="res://Scenes/Levels/Snake-Level/Segment/segment.tscn" id="2_ud2qt"]
 [ext_resource type="Texture2D" uid="uid://bw80rjmsuoqsj" path="res://Assets/Lights/Lamparacolgosa.png" id="3_xf4h4"]
+[ext_resource type="Shader" path="res://Scenes/Levels/Snake-Level/Fruit/FruitTemp.gdshader" id="4_5776j"]
 [ext_resource type="Script" path="res://Components/scale_component.gd" id="5_13v0w"]
+[ext_resource type="Material" uid="uid://d87mtbnelghl" path="res://Scenes/Levels/Snake-Level/Fruit/Gore.tres" id="5_w65dq"]
+[ext_resource type="Texture2D" uid="uid://dsehvomctn2qb" path="res://Assets/Sprites/SnakeLevel/Blood.png" id="6_imxxq"]
+[ext_resource type="Material" uid="uid://b1mhek0l60woi" path="res://Scenes/Levels/Snake-Level/Fruit/Bones.tres" id="7_nj64i"]
+[ext_resource type="Texture2D" uid="uid://8xvr56m0cmyb" path="res://Assets/Sprites/SnakeLevel/Bone.png" id="8_3x0nd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5jww"]
 atlas = ExtResource("2_88c27")
@@ -33,6 +38,12 @@ size = Vector2(8, 8)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mlhbv"]
 blend_mode = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ar82x"]
+shader = ExtResource("4_5776j")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mx8a5"]
+shader = ExtResource("4_5776j")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wy0kr"]
 atlas = ExtResource("2_88c27")
@@ -65,7 +76,7 @@ position = Vector2(16, 0)
 sprite_frames = SubResource("SpriteFrames_gjbdb")
 frame_progress = 0.0189376
 
-[node name="Area2D" type="Area2D" parent="Head"]
+[node name="Area2D" type="Area2D" parent="Head" groups=["SnakeArea"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head/Area2D"]
 shape = SubResource("RectangleShape2D_mijaa")
@@ -101,6 +112,32 @@ emission_sphere_radius = 10.0
 gravity = Vector2(0, -9.8)
 radial_accel_min = 86.02
 radial_accel_max = 86.02
+
+[node name="Blood" type="GPUParticles2D" parent="Head"]
+z_index = 5
+material = SubResource("ShaderMaterial_ar82x")
+emitting = false
+amount = 100
+process_material = ExtResource("5_w65dq")
+texture = ExtResource("6_imxxq")
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+fixed_fps = 60
+
+[node name="Bones" type="GPUParticles2D" parent="Head"]
+z_index = 5
+material = SubResource("ShaderMaterial_mx8a5")
+emitting = false
+amount = 5
+process_material = ExtResource("7_nj64i")
+texture = ExtResource("8_3x0nd")
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+fixed_fps = 60
 
 [node name="Segment" parent="." instance=ExtResource("2_ud2qt")]
 

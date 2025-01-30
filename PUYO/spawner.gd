@@ -3,6 +3,7 @@ extends Node2D
 @onready var fall: Timer = $fall
 @onready var puyo_blueprint: PackedScene = preload("res://PUYO/puyo.tscn")
 @onready var popping_puyos = []
+@onready var scale_component: ScaleComponent = $"../ScaleComponent"
 
 var total_score = 0
 var current_mult = 1
@@ -49,13 +50,13 @@ func spawn_puyos():
 	add_child(puyo_main)
 	if !puyo_main.isBomb:
 		connect("free_puyo", puyo_main._on_puyo_free)
+	if !puyo_rotate.isBomb:
+		connect("free_puyo", puyo_rotate._on_puyo_free)
+
 func display_board():
 	print("row: ", 0, 1, 2 ,3 ,4, 5)
 	for row in range (12):
 		print(row, " : ",cells[row][0],cells[row][1],cells[row][2],cells[row][3],cells[row][4],cells[row][5])
-		
-
-
 
 func _ready():
 	spawn_puyos()
@@ -196,7 +197,7 @@ func update_cells(target_puyos: Array, score) -> bool:
 	var chain_occurred = false
 	
 	if explode_puyo != -1:
-		update_cells(await clear_all(explode_puyo), score)
+		await update_cells(await clear_all(explode_puyo), score)
 		chain_occurred = true
 	for puyo in target_puyos:
 		if puyo == null:
@@ -209,6 +210,8 @@ func update_cells(target_puyos: Array, score) -> bool:
 				
 	if chain_occurred:
 		current_mult += 1
+		scale_component.scale_amount= Vector2(current_mult, 1 )
+		scale_component.tween_scale()
 		emit_signal("puyo_multiplied", current_mult)
 		popping_puyos.clear()
 		for pos in all_popped_positions.keys():
@@ -391,6 +394,7 @@ func _on_fall_timeout():
 		current_mult = 1
 		emit_signal("score_updated", total_score)
 		shit_happening = false
+		
 		free_puyo.emit()
 		puyo_main = null
 		puyo_rotate = null

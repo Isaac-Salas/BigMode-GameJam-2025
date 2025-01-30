@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var mult: Label = $Scoreboard/Mult
-@onready var base: Label = $Scoreboard/Base
-@onready var total: Label = $Scoreboard/Total
+@onready var mult: Label = $mult/Mult
+@onready var total: Label = $total/Total
+@onready var base: Label = $base/Base
 
 var cum_mult = 0
 var cum_base = 0

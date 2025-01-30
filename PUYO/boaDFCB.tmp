@@ -48,8 +48,7 @@ z_index = 2
 position = Vector2(133, 229)
 
 [node name="piggy" parent="." instance=ExtResource("11_uqcxp")]
-position = Vector2(526, 61)
-offset = Vector2(-1, 3)
+position = Vector2(525, 64)
 
 [node name="Scoreboard" type="Control" parent="."]
 layout_mode = 3
@@ -59,18 +58,14 @@ offset_top = 210.0
 offset_right = 402.0
 offset_bottom = 395.0
 
-[node name="mult" type="Sprite2D" parent="."]
-position = Vector2(327, 302)
-
-[node name="Mult" type="Label" parent="mult"]
+[node name="Mult" type="Label" parent="Scoreboard"]
+layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -37.0
-offset_top = -13.0
-offset_right = 41.0
-offset_bottom = 10.0
+offset_top = -11.5
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("9_sksyy")
@@ -79,16 +74,13 @@ theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/font_size = 32
 text = "mult = 0"
 
-[node name="total" type="Node2D" parent="."]
-position = Vector2(290, 372)
-
-[node name="Total" type="Label" parent="total"]
+[node name="Total" type="Label" parent="Scoreboard"]
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 88.0
-offset_bottom = 23.0
+offset_top = -23.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("9_sksyy")
@@ -97,15 +89,14 @@ theme_override_fonts/font = ExtResource("9_txpel")
 theme_override_font_sizes/font_size = 32
 text = "Total = 0"
 
-[node name="base" type="Node2D" parent="."]
-position = Vector2(290, 0)
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(290, 210)
 
-[node name="Base" type="Label" parent="base"]
+[node name="Base" type="Label" parent="Node2D"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 210.0
 offset_right = 62.0
-offset_bottom = 233.0
+offset_bottom = 23.0
 grow_horizontal = 2
 theme = ExtResource("9_sksyy")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -114,7 +105,7 @@ text = "base: 0"
 
 [node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("12_n5m0j")
-sprite = NodePath("")
+sprite = NodePath("../Node2D")
 scale_duration = 0.1
 
 [connection signal="puyo_multiplied" from="Spawner" to="." method="_on_spawner_puyo_multiplied"]

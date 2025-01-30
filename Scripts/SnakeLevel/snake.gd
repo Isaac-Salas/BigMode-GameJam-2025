@@ -17,7 +17,9 @@ class_name FullSnake
 @onready var segments
 @onready var score : int
 #@onready var shake_component = $ShakeComponent
-@onready var scale_component = $ScaleComponent
+@onready var scale_component : ScaleComponent = $"../HUD/ScaleComponent"
+@onready var ownscale = $ScaleComponent
+
 @onready var particles : GPUParticles2D = $Head/CrumbsFruit
 @onready var allthefruit : Array[RigidBody2D]
 @export var fruitvel : int = 50
@@ -25,12 +27,20 @@ class_name FullSnake
 @export var portrait : Portrait_Snake
 @onready var bones : GPUParticles2D= $Head/Bones
 @onready var blood : GPUParticles2D= $Head/Blood
+@onready var borde = $"../HUD/Borde"
+@onready var piedrotas = $Head/Piedrotas
+@onready var label = $Label
+@export var wincammarker : Marker2D 
+
 
 
 const SEGMENT = preload("res://Scenes/Levels/Snake-Level/Segment/segment.tscn")
 const KIWI = preload("res://Assets/Sprites/Portraits/Fruit_Kiwi.png")
 const MANZANAI = preload("res://Assets/Sprites/Portraits/Fruit_Manzanai.png")
 const NARANJAI = preload("res://Assets/Sprites/Portraits/Fruit_Naranjai.png")
+@onready var movingcooldown = $Movingcooldown
+
+@export var camera : Camera2D 
 
 
 # Called when the node enters the scene tree for the first time.
@@ -42,21 +52,18 @@ func _ready():
 	currentdir =  Vector2(1,0)
 	snakesize = pieces.size()
 	segments = pieces[selectedpiece]
-	score = snakesize - 4
+	score = snakesize - 6
 	comparison = head.position - previoushead
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	label.text = str(score)
 
 
 
 func _unhandled_input(event):
 	#print(allthefruit)
-	
-	
-	
 	if Input.is_action_just_pressed("ui_left"):
 		if currentdir != Vector2(1,0) and currentdir != Vector2(-1,0):
 			currentdir =  Vector2(-1,0)
@@ -100,6 +107,7 @@ func _unhandled_input(event):
 func _on_timer_timeout():
 	comparison = head.position - previoushead
 	segments = pieces[selectedpiece]
+	await movingcooldown.timeout
 	#print(head.position, previoushead)
 	#print(comparison,currentdir) 
 	#print(segments)
@@ -192,6 +200,7 @@ func add_segment(sibling : Node2D, num_pieces : int) :
 
 	snakesize = pieces.size()
 	segments = pieces[selectedpiece]
+	timer.wait_time -= 0.0008
 	
 	
 func remove_segment(num_pieces : int , body : Node2D ) :
@@ -208,10 +217,20 @@ func remove_segment(num_pieces : int , body : Node2D ) :
 		pieces.append(i)
 	snakesize = pieces.size()
 	segments = pieces[selectedpiece]
+	timer.wait_time += 0.0008
+	
+
+func win():
+	timer.stop()
+	ownscale.scale_amount = Vector2(0,0)
+	ownscale.tween_scale()
 	
 
 func die():
-	queue_free()
+	timer.stop()
+	ownscale.scale_amount = Vector2(0,0)
+	ownscale.tween_scale()
+	#camera.zoom = 3
 
 func eat(body : RigidBody2D, spawner : Marker2D):
 	body.position = spawner.position
@@ -224,14 +243,17 @@ func eat(body : RigidBody2D, spawner : Marker2D):
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Segment"):
 		die()
-	elif body is Fruit:
+	elif body is Fruit and body != null:
 		particles.restart()
 		particles.emitting = true
-		#body.burbuji_as.emitting = true
+		body.burbujotas.emitting = true
 		portrait.choose_emotion(portrait.CARA_FELIZ)
+		ownscale.tween_scale()
 		scale_component.tween_scale()
 		add_segment(segment,body.value)
 		eat(body,spawner)
+		if score >= 65:
+			win()
 	elif body is Alien:
 		blood.restart()
 		bones.restart()
@@ -239,12 +261,20 @@ func _on_area_2d_body_entered(body):
 		bones.emitting = true
 		body.die()
 		portrait.choose_emotion(portrait.CARA_ENOJADA)
+		ownscale.tween_scale()
 		scale_component.tween_scale()
 		add_segment(segment,body.value)
 		eat(body,spawner)
 	elif body.is_in_group("Wall"):
 		if score != 1:
+			ownscale.tween_scale()
+			piedrotas.restart()
+			piedrotas.emitting = true
 			remove_segment(1, body)
+			
 		else:
 			die()
 		
+
+
+	

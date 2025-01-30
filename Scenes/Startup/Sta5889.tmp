@@ -10,9 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://by85tjhpjvr56" path="res://Assets/Sprites/Background/FondoMenu.png" id="7_l2rfb"]
 [ext_resource type="Script" path="res://Scenes/Startup/sprite_2d.gd" id="8_htdvb"]
 [ext_resource type="Texture2D" uid="uid://cil62o363ukj8" path="res://Assets/Sprites/SnakeLevel/Solologo.png" id="9_cnuhs"]
+[ext_resource type="Shader" path="res://Scenes/Startup/FilmGrain.gdshader" id="10_j3rg0"]
 [ext_resource type="Texture2D" uid="uid://b6m6dyqb1airs" path="res://Assets/Sprites/Background/PlayLong.png" id="11_ivfti"]
 [ext_resource type="Texture2D" uid="uid://blpgd5yl0tkt0" path="res://Assets/Sprites/Background/Quit.png" id="13_e5rrj"]
-[ext_resource type="PackedScene" uid="uid://yn5cyp08chec" path="res://Scenes/Shaders/Shader-Grain.tscn" id="13_j45bg"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_863sj"]
 light_mode = 1
@@ -31,23 +31,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-110, 372), Vector2(320, 390)]
-}
-
-[sub_resource type="Animation" id="Animation_i0ien"]
-resource_name = "Go_out"
-length = 2.0
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Piggy:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.95),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(320, 390), Vector2(700, 390)]
 }
 
 [sub_resource type="Animation" id="Animation_6rbvi"]
@@ -83,6 +66,23 @@ tracks/0/keys = {
 "values": [Vector2(0, 370)]
 }
 
+[sub_resource type="Animation" id="Animation_i0ien"]
+resource_name = "Go_out"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Piggy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.95),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 390), Vector2(700, 390)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qrbhy"]
 _data = {
 "Come_in": SubResource("Animation_4v5od"),
@@ -91,8 +91,10 @@ _data = {
 "RESET": SubResource("Animation_gnex8")
 }
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_18e02"]
-light_mode = 1
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cmi83"]
+shader = ExtResource("10_j3rg0")
+shader_parameter/grain_amount = 0.02
+shader_parameter/grain_size = 0.5
 
 [node name="Startup" type="Control"]
 layout_mode = 3
@@ -125,7 +127,6 @@ texture = ExtResource("1_2ty5c")
 centered = false
 
 [node name="Piggy" type="AnimatedSprite2D" parent="."]
-visible = false
 z_index = 5
 material = SubResource("CanvasItemMaterial_863sj")
 position = Vector2(0, 370)
@@ -135,7 +136,6 @@ script = ExtResource("4_1nvp4")
 
 [node name="PointLight2D" type="PointLight2D" parent="Piggy"]
 color = Color(0.87451, 0.690196, 0.752941, 1)
-energy = 0.7
 texture = ExtResource("5_k1147")
 texture_scale = 2.0
 
@@ -145,7 +145,6 @@ libraries = {
 }
 
 [node name="DialogBox" parent="." instance=ExtResource("4_6gcan")]
-material = SubResource("CanvasItemMaterial_18e02")
 layout_mode = 1
 anchors_preset = 15
 anchor_left = 0.0
@@ -171,14 +170,15 @@ centered = false
 script = ExtResource("8_htdvb")
 
 [node name="Logo" type="Sprite2D" parent="."]
-position = Vector2(320, 208)
 texture = ExtResource("9_cnuhs")
+offset = Vector2(320, 208)
 
-[node name="PointLight2D" type="PointLight2D" parent="Logo"]
-color = Color(0.6873, 0.87, 0.830415, 1)
-energy = 0.6
-texture = ExtResource("5_k1147")
-texture_scale = 2.0
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 20
+material = SubResource("ShaderMaterial_cmi83")
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
 
 [node name="Playbutton" type="TextureButton" parent="."]
 layout_mode = 1
@@ -211,15 +211,7 @@ grow_vertical = 2
 texture_normal = ExtResource("13_e5rrj")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.9, 0.9, 0.9, 1)
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.6873, 0.87, 0.830415, 1)
-energy = 0.6
-texture = ExtResource("5_k1147")
-
-[node name="ColorRect" parent="." instance=ExtResource("13_j45bg")]
-layout_mode = 0
+color = Color(0.8, 0.8, 0.8, 1)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="Done" from="DialogBox" to="." method="_on_dialog_box_done"]

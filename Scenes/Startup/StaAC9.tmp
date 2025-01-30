@@ -1,0 +1,113 @@
+[gd_scene load_steps=11 format=3 uid="uid://dtci72hu3oiax"]
+
+[ext_resource type="Texture2D" uid="uid://cujnb8ibemt3k" path="res://Assets/Sprites/Background/Estrellitas.png" id="1_2ty5c"]
+[ext_resource type="Script" path="res://Scenes/Startup/InitialAnimScript.gd" id="1_bk8ni"]
+[ext_resource type="SpriteFrames" uid="uid://dpixnst4n47ur" path="res://Scenes/Startup/Piggy.tres" id="3_oapps"]
+[ext_resource type="Script" path="res://Scenes/Startup/piggy.gd" id="4_1nvp4"]
+[ext_resource type="PackedScene" uid="uid://127niqtxnogh" path="res://Components/dialog_box.tscn" id="4_6gcan"]
+[ext_resource type="AudioStream" uid="uid://bs2virm3fjw78" path="res://Assets/Music/1.wav" id="6_hv35h"]
+
+[sub_resource type="Animation" id="Animation_4v5od"]
+resource_name = "Come_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Piggy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-110, 372), Vector2(320, 390)]
+}
+
+[sub_resource type="Animation" id="Animation_6rbvi"]
+resource_name = "Hover"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Piggy:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(320, 390), Vector2(320, 386), Vector2(320, 390)]
+}
+
+[sub_resource type="Animation" id="Animation_gnex8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Piggy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 370)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qrbhy"]
+_data = {
+"Come_in": SubResource("Animation_4v5od"),
+"Hover": SubResource("Animation_6rbvi"),
+"RESET": SubResource("Animation_gnex8")
+}
+
+[node name="Startup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bk8ni")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-50, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+texture = ExtResource("1_2ty5c")
+centered = false
+
+[node name="Piggy" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 370)
+sprite_frames = ExtResource("3_oapps")
+frame_progress = 0.609329
+script = ExtResource("4_1nvp4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qrbhy")
+}
+
+[node name="DialogBox" parent="." instance=ExtResource("4_6gcan")]
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+Timerstart = false
+Dialog = PackedStringArray("You are this little guy.", "You were forced out of your home planet by the wrath of an evil alien...", "ODGO", "You have to find a way to defeat him,  but it wont be easy", "Find other planets and make their people join you and get more POWER", "Make them help the easy way...", "Or the hard way...", "Its your choice after all", "Good luck.")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hv35h")
+bus = &"Music"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

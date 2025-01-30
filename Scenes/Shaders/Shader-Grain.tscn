@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://yn5cyp08chec"]
+
+[ext_resource type="Shader" path="res://Scenes/Startup/FilmGrain.gdshader" id="1_jq2f1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cmi83"]
+shader = ExtResource("1_jq2f1")
+shader_parameter/grain_amount = 0.005
+shader_parameter/grain_size = 1.0
+
+[node name="ColorRect" type="ColorRect"]
+z_index = 20
+material = SubResource("ShaderMaterial_cmi83")
+offset_right = 640.0
+offset_bottom = 480.0

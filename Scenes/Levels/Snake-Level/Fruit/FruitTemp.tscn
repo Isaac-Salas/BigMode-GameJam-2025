@@ -20,6 +20,7 @@ shader = ExtResource("3_4d5d4")
 
 [node name="Frutiña" type="RigidBody2D" groups=["Fruit"]]
 can_sleep = false
+freeze = true
 script = ExtResource("1_gae4y")
 value = 1
 

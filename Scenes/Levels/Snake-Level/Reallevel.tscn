@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://c1rna4op34asr"]
+[gd_scene load_steps=47 format=4 uid="uid://c1rna4op34asr"]
 
 [ext_resource type="Texture2D" uid="uid://bi5ndfd7sdbdf" path="res://Assets/Sprites/Background/Elpurofondo.png" id="1_5ffc7"]
 [ext_resource type="Script" path="res://Scenes/Levels/Snake-Level/reallevel.gd" id="1_6cnhb"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bhvw22svggwec" path="res://Grid32.tscn" id="16_c4hnq"]
 [ext_resource type="Script" path="res://Scenes/Levels/Snake-Level/flechita.gd" id="16_vsofx"]
 [ext_resource type="PackedScene" uid="uid://i02rf07aas0h" path="res://Scenes/Levels/Snake-Level/wall.tscn" id="17_ehdr0"]
+[ext_resource type="PackedScene" uid="uid://h4302js3t2gs" path="res://Scenes/Stuff/barrera.tscn" id="18_eugx0"]
 [ext_resource type="Texture2D" uid="uid://cujnb8ibemt3k" path="res://Assets/Sprites/Background/Estrellitas.png" id="18_xd3x5"]
 [ext_resource type="PackedScene" uid="uid://yn5cyp08chec" path="res://Scenes/Shaders/Shader-Grain.tscn" id="20_wh2sk"]
 
@@ -182,12 +183,6 @@ _data = {
 "Flechita": SubResource("Animation_v4y1g"),
 "RESET": SubResource("Animation_75261")
 }
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gad3"]
-size = Vector2(112, 4)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pc4ii"]
-size = Vector2(4.125, 219.702)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xinu1"]
 blend_mode = 2
@@ -353,23 +348,7 @@ visible = false
 position = Vector2(544, 234)
 texture = ExtResource("14_kyn87")
 
-[node name="Barrera" type="StaticBody2D" parent="."]
-position = Vector2(80, 454)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrera"]
-visible = false
-position = Vector2(-8, -8)
-shape = SubResource("RectangleShape2D_3gad3")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Barrera"]
-visible = false
-position = Vector2(-61.9375, -120.149)
-shape = SubResource("RectangleShape2D_pc4ii")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Barrera"]
-visible = false
-position = Vector2(46, -118)
-shape = SubResource("RectangleShape2D_pc4ii")
+[node name="Barrera" parent="." instance=ExtResource("18_eugx0")]
 
 [node name="TileMapLayer" parent="." instance=ExtResource("16_c4hnq")]
 modulate = Color(1, 1, 1, 0.0784314)
@@ -408,255 +387,339 @@ color = Color(1, 1, 1, 0.392157)
 
 [node name="Kiwi" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(360, 248)
+freeze = false
 
 [node name="Kiwi2" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(376, 248)
+freeze = false
 
 [node name="Kiwi3" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(392, 248)
+freeze = false
 
 [node name="Kiwi4" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(408, 248)
+freeze = false
 
 [node name="Kiwi5" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(424, 248)
+freeze = false
 
 [node name="Kiwi6" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(440, 248)
+freeze = false
 
 [node name="Kiwi7" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(456, 248)
+freeze = false
 
 [node name="Kiwi8" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(456, 232)
+freeze = false
 
 [node name="Kiwi9" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(440, 232)
+freeze = false
 
 [node name="Kiwi10" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(424, 232)
+freeze = false
 
 [node name="Kiwi11" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(408, 232)
+freeze = false
 
 [node name="Kiwi13" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(392, 232)
+freeze = false
 
 [node name="Kiwi14" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(392, 216)
+freeze = false
 
 [node name="Kiwi15" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(408, 216)
+freeze = false
 
 [node name="Kiwi16" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(424, 216)
+freeze = false
 
 [node name="Kiwi17" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(440, 216)
+freeze = false
 
 [node name="Kiwi18" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(456, 216)
+freeze = false
 
 [node name="Kiwi19" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(472, 216)
+freeze = false
 
 [node name="Kiwi20" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(472, 232)
+freeze = false
 
 [node name="Kiwi21" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(472, 248)
+freeze = false
 
 [node name="Kiwi22" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(488, 248)
+freeze = false
 
 [node name="Kiwi23" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(488, 232)
+freeze = false
 
 [node name="Kiwi24" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(488, 216)
+freeze = false
 
 [node name="Kiwi25" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(504, 216)
+freeze = false
 
 [node name="Kiwi26" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(504, 232)
+freeze = false
 
 [node name="Kiwi27" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(504, 232)
+freeze = false
 
 [node name="Kiwi12" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(376, 264)
+freeze = false
 
 [node name="Kiwi29" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(392, 264)
+freeze = false
 
 [node name="Kiwi30" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(408, 264)
+freeze = false
 
 [node name="Kiwi31" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(424, 264)
+freeze = false
 
 [node name="Kiwi32" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(440, 264)
+freeze = false
 
 [node name="Kiwi33" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(456, 264)
+freeze = false
 
 [node name="Kiwi34" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(472, 264)
+freeze = false
 
 [node name="Kiwi35" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(488, 264)
+freeze = false
 
 [node name="Kiwi36" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(504, 264)
+freeze = false
 
 [node name="Kiwi37" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(504, 248)
+freeze = false
 
 [node name="Kiwi38" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(520, 248)
+freeze = false
 
 [node name="Kiwi39" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(520, 248)
+freeze = false
 
 [node name="Kiwi28" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(376, 232)
+freeze = false
 
 [node name="Kiwi40" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(360, 232)
+freeze = false
 
 [node name="Kiwi41" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(360, 216)
+freeze = false
 
 [node name="Kiwi42" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(376, 216)
+freeze = false
 
 [node name="Kiwi43" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(376, 200)
+freeze = false
 
 [node name="Kiwi44" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(392, 200)
+freeze = false
 
 [node name="Kiwi45" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(408, 200)
+freeze = false
 
 [node name="Kiwi46" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(424, 200)
+freeze = false
 
 [node name="Kiwi47" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(440, 200)
+freeze = false
 
 [node name="Kiwi48" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(456, 200)
+freeze = false
 
 [node name="Kiwi49" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(472, 200)
+freeze = false
 
 [node name="Kiwi50" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(488, 200)
+freeze = false
 
 [node name="Kiwi51" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(504, 200)
+freeze = false
 
 [node name="Kiwi52" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(520, 200)
+freeze = false
 
 [node name="Kiwi53" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(520, 216)
+freeze = false
 
 [node name="Kiwi54" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(520, 232)
+freeze = false
 
 [node name="Kiwi55" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(520, 264)
+freeze = false
 
 [node name="Kiwi56" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(536, 264)
+freeze = false
 
 [node name="Kiwi57" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(536, 248)
+freeze = false
 
 [node name="Kiwi58" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(536, 232)
+freeze = false
 
 [node name="Kiwi59" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(536, 216)
+freeze = false
 
 [node name="Kiwi60" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(536, 200)
+freeze = false
 
 [node name="Kiwi61" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(552, 200)
+freeze = false
 
 [node name="Kiwi62" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(552, 216)
+freeze = false
 
 [node name="Kiwi63" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(552, 232)
+freeze = false
 
 [node name="Kiwi64" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(552, 248)
+freeze = false
 
 [node name="Kiwi65" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(552, 264)
+freeze = false
 
 [node name="Kiwi66" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(568, 264)
+freeze = false
 
 [node name="Kiwi67" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(568, 248)
+freeze = false
 
 [node name="Kiwi68" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(568, 232)
+freeze = false
 
 [node name="Kiwi69" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(568, 216)
+freeze = false
 
 [node name="Kiwi70" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(568, 200)
+freeze = false
 
 [node name="Kiwi71" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(376, 184)
+freeze = false
 
 [node name="Kiwi72" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(392, 184)
+freeze = false
 
 [node name="Kiwi73" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(408, 184)
+freeze = false
 
 [node name="Kiwi74" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(424, 184)
+freeze = false
 
 [node name="Kiwi75" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(440, 184)
+freeze = false
 
 [node name="Kiwi76" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(456, 184)
+freeze = false
 
 [node name="Kiwi77" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(472, 184)
+freeze = false
 
 [node name="Kiwi78" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(488, 184)
+freeze = false
 
 [node name="Kiwi79" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(504, 184)
+freeze = false
 
 [node name="Kiwi80" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(520, 184)
+freeze = false
 
 [node name="Kiwi81" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(536, 184)
+freeze = false
 
 [node name="Kiwi82" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(544, 184)
+freeze = false
 
 [node name="Kiwi83" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(560, 184)
+freeze = false
 
 [node name="Kiwi84" parent="." instance=ExtResource("15_idpwr")]
 position = Vector2(560, 184)
+freeze = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(320, 240)

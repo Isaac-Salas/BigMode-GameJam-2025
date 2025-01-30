@@ -13,8 +13,10 @@ script = ExtResource("1_4q1rf")
 [node name="Manzana" parent="." instance=ExtResource("2_c148x")]
 
 [node name="Frutiña" parent="." instance=ExtResource("3_gw8oy")]
+freeze = false
 
 [node name="Kiwi" parent="." instance=ExtResource("4_wsspy")]
+freeze = false
 
 [node name="Aliens" parent="." instance=ExtResource("5_s6t2h")]
 

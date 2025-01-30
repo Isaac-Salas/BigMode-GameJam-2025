@@ -2,8 +2,8 @@ extends RigidBody2D
 class_name Fruit
 @export var value = 0
 @onready var ogpos : Vector2
+@onready var burbujes = $Burbujas
 
-@onready var burbujotas : GPUParticles2D = $"Burbujiñas"
 
 func _ready():
 	ogpos = position

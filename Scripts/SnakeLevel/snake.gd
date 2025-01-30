@@ -245,8 +245,8 @@ func _on_area_2d_body_entered(body):
 		die()
 	elif body is Fruit and body != null:
 		particles.restart()
+		body.burbujes.emitting = true
 		particles.emitting = true
-		body.burbujotas.emitting = true
 		portrait.choose_emotion(portrait.CARA_FELIZ)
 		ownscale.tween_scale()
 		scale_component.tween_scale()

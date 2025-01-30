@@ -1,0 +1,201 @@
+[gd_scene load_steps=11 format=3 uid="uid://cuyslfgdk7lmf"]
+
+[ext_resource type="Texture2D" uid="uid://b4u47qou1wejd" path="res://Assets/Menu/Titulo.png" id="2_lfx1d"]
+[ext_resource type="FontFile" uid="uid://xqyel50d34il" path="res://Fonts/ka1.ttf" id="3_aeixg"]
+[ext_resource type="LabelSettings" uid="uid://cm8e5dkxqble0" path="res://Scenes/Menu/Menu.tres" id="3_q41b3"]
+
+[sub_resource type="GDScript" id="GDScript_0f2tb"]
+script/source = "extends Control
+class_name MenuRigid
+@onready var arribafuera = false
+@onready var abajoafuera = false
+
+signal acabado()
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	if abajoafuera == true and arribafuera == true:
+		acabado.emit()
+		print(\"Acabado\")
+		self.get_parent().queue_free()
+		#self.queue_free()
+
+func _on_aeeiba_screen_exited():
+	arribafuera = true
+
+
+func _on_abajo_screen_exited():
+	abajoafuera = true
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukk2b"]
+size = Vector2(207, 77)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yw3bm"]
+line_spacing = 6.73
+font = ExtResource("3_aeixg")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_32wml"]
+radius = 59.0
+height = 328.0
+
+[sub_resource type="Animation" id="Animation_8puu5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y24fn"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lm1lw"]
+_data = {
+"RESET": SubResource("Animation_8puu5"),
+"new_animation": SubResource("Animation_y24fn")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_0f2tb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -373.335
+offset_top = -114.5
+offset_right = -18.335
+offset_bottom = 145.5
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "
+
+
+
+"
+label_settings = ExtResource("3_q41b3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Arriba" type="RigidBody2D" parent="CenterContainer/VBoxContainer/Label"]
+collision_layer = 512
+collision_mask = 512
+angular_velocity = 1.74533
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer/VBoxContainer/Label/Arriba"]
+position = Vector2(50, -14)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_lfx1d")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterContainer/VBoxContainer/Label/Arriba"]
+position = Vector2(169.835, 47)
+shape = SubResource("RectangleShape2D_ukk2b")
+
+[node name="Aeeiba" type="VisibleOnScreenNotifier2D" parent="CenterContainer/VBoxContainer/Label/Arriba"]
+position = Vector2(170.335, 47.5)
+scale = Vector2(10.4, 3.9)
+
+[node name="Abajo" type="RigidBody2D" parent="CenterContainer/VBoxContainer"]
+position = Vector2(0, 98)
+collision_layer = 512
+collision_mask = 512
+angular_velocity = -1.74533
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/Abajo"]
+offset_top = 0.05
+offset_right = 337.0
+offset_bottom = 119.05
+text = "press \"Shoot\" to play
+Press \"Punch\" to quit
+Press \"Eat\" for credits
+
+Made for Pixel Game Jam 2024"
+label_settings = SubResource("LabelSettings_yw3bm")
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterContainer/VBoxContainer/Abajo"]
+position = Vector2(171.335, 61.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_32wml")
+
+[node name="Abajo" type="VisibleOnScreenNotifier2D" parent="CenterContainer/VBoxContainer/Abajo"]
+position = Vector2(169.335, 61)
+scale = Vector2(12.8, 5.75)
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "press \"Shoot\" to play
+Press \"Punch\" to quit
+Press \"Eat\" for credits
+
+Made for Pixel Game Jam 2024"
+label_settings = ExtResource("3_q41b3")
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_lm1lw")
+}
+
+[connection signal="screen_exited" from="CenterContainer/VBoxContainer/Label/Arriba/Aeeiba" to="." method="_on_aeeiba_screen_exited"]
+[connection signal="screen_exited" from="CenterContainer/VBoxContainer/Abajo/Abajo" to="." method="_on_abajo_screen_exited"]

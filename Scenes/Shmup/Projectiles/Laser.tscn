@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhca0fljclygd"]
+
+[ext_resource type="Script" path="res://Scenes/Shmup/Projectiles/Laser.gd" id="1_q4nja"]
+[ext_resource type="PackedScene" uid="uid://dx7ji7kkxuest" path="res://Scenes/Shmup/Projectiles/Laserpiece.tscn" id="3_kdc76"]
+[ext_resource type="Script" path="res://Components/scale_component.gd" id="4_6q14c"]
+
+[node name="Shot" type="Node2D"]
+script = ExtResource("1_q4nja")
+offset = 16
+
+[node name="ScaleComponent" type="Node" parent="."]
+script = ExtResource("4_6q14c")
+scale_amount = Vector2(3, 3)
+scale_duration = 1.0
+
+[node name="Orb1" parent="." instance=ExtResource("3_kdc76")]
+
+[node name="Orb2" parent="." instance=ExtResource("3_kdc76")]
+
+[node name="Orb3" parent="." instance=ExtResource("3_kdc76")]
+
+[node name="Orb4" parent="." instance=ExtResource("3_kdc76")]
+
+[node name="Orb5" parent="." instance=ExtResource("3_kdc76")]
+
+[node name="Orb6" parent="." instance=ExtResource("3_kdc76")]
+
+[node name="Orb7" parent="." instance=ExtResource("3_kdc76")]
+
+[node name="Orb8" parent="." instance=ExtResource("3_kdc76")]
+
+[node name="Orb9" parent="." instance=ExtResource("3_kdc76")]
+
+[node name="Orb10" parent="." instance=ExtResource("3_kdc76")]
+animation = &"Mitad"

@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://kbl5vm53q020"]
+
+[ext_resource type="Script" path="res://Scenes/Shmup/Enemies/placeholders/Enemy1.gd" id="1_w7xu1"]
+[ext_resource type="Script" path="res://Scenes/Shmup/Enemies/placeholders/Enemy_component_test.gd" id="2_u4k3r"]
+[ext_resource type="Script" path="res://Components/stats_component.gd" id="4_jqne5"]
+[ext_resource type="Script" path="res://Components/move_component.gd" id="5_acjof"]
+[ext_resource type="Script" path="res://Components/scale_component.gd" id="6_rnruc"]
+[ext_resource type="Script" path="res://Components/shake_component.gd" id="7_5rh81"]
+[ext_resource type="Script" path="res://Components/hurtbox_component.gd" id="7_75l6v"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="8_th8mv"]
+[ext_resource type="Script" path="res://Components/hurt_component.gd" id="9_djjv2"]
+[ext_resource type="Script" path="res://Components/spawner_component.gd" id="10_oyj3s"]
+[ext_resource type="PackedScene" uid="uid://cy2fhiil4ujuw" path="res://Assets/Shmup/effects/explosion_effect.tscn" id="11_ptvmc"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_w7xu1")
+
+[node name="EnemyTest" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+freeze = true
+linear_velocity = Vector2(-100, 0)
+constant_force = Vector2(100, 0)
+script = ExtResource("2_u4k3r")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="EnemyTest"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyTest"]
+autoplay = "default"
+
+[node name="StatsComponent" type="Node" parent="EnemyTest"]
+unique_name_in_owner = true
+script = ExtResource("4_jqne5")
+
+[node name="MoveComponent" type="Node" parent="EnemyTest" node_paths=PackedStringArray("actor")]
+script = ExtResource("5_acjof")
+actor = NodePath("../..")
+active = false
+
+[node name="ScaleComponent" type="Node" parent="EnemyTest" node_paths=PackedStringArray("sprite")]
+script = ExtResource("6_rnruc")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="ShakeComponent" type="Node" parent="EnemyTest" node_paths=PackedStringArray("node")]
+script = ExtResource("7_5rh81")
+node = NodePath("../AnimatedSprite2D")
+
+[node name="Hitable" type="Node" parent="EnemyTest"]
+
+[node name="HurtboxComponent" type="Area2D" parent="EnemyTest"]
+script = ExtResource("7_75l6v")
+
+[node name="HitboxComponent" type="Area2D" parent="EnemyTest"]
+script = ExtResource("8_th8mv")
+
+[node name="HurtComponent" type="Node" parent="EnemyTest" node_paths=PackedStringArray("stats_component", "hurtbox_component")]
+script = ExtResource("9_djjv2")
+stats_component = NodePath("../StatsComponent")
+hurtbox_component = NodePath("../HurtboxComponent")
+
+[node name="Shooter" type="Marker2D" parent="EnemyTest"]
+position = Vector2(-13, 0)
+
+[node name="ShootSpawn" type="Node2D" parent="EnemyTest/Shooter"]
+position = Vector2(13, 0)
+script = ExtResource("10_oyj3s")
+
+[node name="Timer" type="Timer" parent="EnemyTest/Shooter"]
+
+[node name="SpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("10_oyj3s")
+scene = ExtResource("11_ptvmc")

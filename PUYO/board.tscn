@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://PUYO/board.gd" id="1_5iwgv"]
 [ext_resource type="PackedScene" uid="uid://brac12iovg0jy" path="res://background_tiles.tscn" id="2_2kfxe"]
 [ext_resource type="PackedScene" uid="uid://qvi3jqqm0ej8" path="res://PUYO/spawner.tscn" id="2_wpv5b"]
-[ext_resource type="PackedScene" path="res://PUYO/portrait.tscn" id="4_fg0h2"]
-[ext_resource type="PackedScene" path="res://PUYO/puyo_frame.tscn" id="5_2rc2o"]
-[ext_resource type="PackedScene" path="res://PUYO/puyo_large_portrait.tscn" id="6_h5kko"]
-[ext_resource type="Texture2D" uid="uid://ckag7lk120y7h" path="res://Assets/puyo/puyoscoreboard.png" id="7_hhc4m"]
-[ext_resource type="Texture2D" uid="uid://fvb33am4uyrd" path="res://Assets/puyo/background_gradient.png" id="8_rw7xr"]
+[ext_resource type="PackedScene" uid="uid://pqvr0nmuev2o" path="res://PUYO/portrait.tscn" id="4_fg0h2"]
+[ext_resource type="PackedScene" uid="uid://crqm7yqxvx50a" path="res://PUYO/puyo_frame.tscn" id="5_2rc2o"]
+[ext_resource type="PackedScene" uid="uid://b4m1fvrdh7hnm" path="res://PUYO/puyo_large_portrait.tscn" id="6_h5kko"]
+[ext_resource type="Texture2D" uid="uid://df1iajtco6smu" path="res://Assets/puyo/puyoscoreboard.png" id="7_hhc4m"]
+[ext_resource type="Texture2D" uid="uid://ddchwu52qklwl" path="res://Assets/puyo/background_gradient.png" id="8_rw7xr"]
 [ext_resource type="Theme" uid="uid://cd6d31tdgl3h8" path="res://Assets/Fonts/text_theme.tres" id="9_sksyy"]
-[ext_resource type="FontFile" uid="uid://buooo20alheiv" path="res://Assets/Fonts/number.ttf" id="9_txpel"]
+[ext_resource type="FontFile" uid="uid://mppvf1821xxn" path="res://Assets/Fonts/number.ttf" id="9_txpel"]
 [ext_resource type="PackedScene" uid="uid://b6627n6vwkqpe" path="res://PUYO/piggy.tscn" id="11_uqcxp"]
 [ext_resource type="Script" path="res://Components/scale_component.gd" id="12_n5m0j"]
 
@@ -112,8 +112,9 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "base: 0"
 
-[node name="ScaleComponent" type="Node" parent="."]
+[node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("12_n5m0j")
+sprite = NodePath("")
 scale_duration = 0.1
 
 [connection signal="puyo_multiplied" from="Spawner" to="." method="_on_spawner_puyo_multiplied"]

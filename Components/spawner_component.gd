@@ -1,6 +1,7 @@
 # Give the component a class name so it can be instanced as a custom node
-extends Node2D
 class_name SpawnerComponent
+extends Node2D
+
 # Export the dependencies for this component
 # The scene we want to spawn
 @export var scene: PackedScene

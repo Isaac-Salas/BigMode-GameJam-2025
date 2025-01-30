@@ -1,10 +1,10 @@
 [gd_scene load_steps=147 format=3 uid="uid://bapqb1gvotcod"]
 
 [ext_resource type="Script" path="res://PUYO/puyo.gd" id="1_yhwdu"]
-[ext_resource type="Texture2D" uid="uid://br0ungpm2pl4c" path="res://Assets/Sprites/Portraits/BlueSlave_.png" id="2_nqbo8"]
-[ext_resource type="Texture2D" uid="uid://cxqebyheacfls" path="res://Assets/Sprites/Portraits/GreenSlave_.png" id="3_pdayo"]
-[ext_resource type="Texture2D" uid="uid://c8dbtm1hp1jk" path="res://Assets/Sprites/Portraits/YellowSlave_.png" id="4_oiqw4"]
-[ext_resource type="Texture2D" uid="uid://cmlakdul1kmnr" path="res://Assets/Sprites/Portraits/RedSlave_.png" id="4_ydqnh"]
+[ext_resource type="Texture2D" uid="uid://wec1yrtsc6pq" path="res://Assets/Sprites/Portraits/BlueSlave_.png" id="2_nqbo8"]
+[ext_resource type="Texture2D" uid="uid://d2d8lqwunumh4" path="res://Assets/Sprites/Portraits/GreenSlave_.png" id="3_pdayo"]
+[ext_resource type="Texture2D" uid="uid://cdxjfyevxriik" path="res://Assets/Sprites/Portraits/YellowSlave_.png" id="4_oiqw4"]
+[ext_resource type="Texture2D" uid="uid://0xu8mok7jupb" path="res://Assets/Sprites/Portraits/RedSlave_.png" id="4_ydqnh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtw33"]
 atlas = ExtResource("2_nqbo8")

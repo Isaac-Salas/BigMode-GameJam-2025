@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bquae6sggpetq"]
+
+[ext_resource type="Script" path="res://scenes/enemyGen/greenbunch.gd" id="1_31bp8"]
+[ext_resource type="PackedScene" uid="uid://1db6npbnb4mr" path="res://enemies/Enemy1.tscn" id="2_8tflb"]
+
+[node name="Enemies" type="Node2D"]
+script = ExtResource("1_31bp8")
+
+[node name="Enemy" parent="." instance=ExtResource("2_8tflb")]
+position = Vector2(10, 112)

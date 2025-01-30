@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://clgsd3xheh1rg"]
+
+[ext_resource type="Texture2D" uid="uid://dctafaxb0qkco" path="res://assets/BurbujaGDE.png" id="1_j40pe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o0rmo"]
+radius = 26.0192
+
+[node name="BurbujaGDE" type="RigidBody2D"]
+modulate = Color(1, 1, 1, 0.784314)
+gravity_scale = -0.1
+linear_velocity = Vector2(0, 200)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_j40pe")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o0rmo")
+metadata/_edit_lock_ = true

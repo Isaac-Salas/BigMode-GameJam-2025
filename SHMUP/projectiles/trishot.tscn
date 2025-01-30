@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://bh0prxv2qup75"]
+
+[ext_resource type="Script" path="res://projectiles/center_shot.gd" id="1_8yemf"]
+[ext_resource type="Texture2D" uid="uid://bf0qfafs7n2n7" path="res://assets/Projectile/Burbujita.png" id="2_j3lfv"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="3_bf1qf"]
+[ext_resource type="Script" path="res://components/scale_component.gd" id="4_ia7kc"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="5_vetav"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ix8ot"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0rj30"]
+radius = 7.5
+
+[node name="Shot" type="Node2D"]
+script = ExtResource("1_8yemf")
+collidable = false
+
+[node name="CenterShot" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+mass = 0.1
+gravity_scale = -0.5
+can_sleep = false
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterShot"]
+shape = SubResource("CircleShape2D_ix8ot")
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterShot"]
+z_index = -1
+texture = ExtResource("2_j3lfv")
+
+[node name="Timer" type="Timer" parent="CenterShot"]
+
+[node name="HitboxComponent" type="Area2D" parent="CenterShot"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_bf1qf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterShot/HitboxComponent"]
+rotation = -1.5708
+shape = SubResource("CircleShape2D_0rj30")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="CenterShot"]
+scale = Vector2(2, 2)
+
+[node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("4_ia7kc")
+sprite = NodePath("../CenterShot/Sprite2D")
+scale_amount = Vector2(3, 3)
+scale_duration = 0.2
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("5_vetav")
+actor = NodePath("..")
+velocity = Vector2(450, 0)
+rotation = 30
+
+[connection signal="body_entered" from="CenterShot/HitboxComponent" to="." method="_on_hitbox_component_body_entered"]
+[connection signal="screen_exited" from="CenterShot/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

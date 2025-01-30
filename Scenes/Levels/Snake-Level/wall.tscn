@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://i02rf07aas0h"]
 
-[ext_resource type="Texture2D" uid="uid://qvq1x5vi4xib" path="res://Assets/Sprites/SnakeLevel/Rock.png" id="1_ehmfi"]
-[ext_resource type="Texture2D" uid="uid://bw80rjmsuoqsj" path="res://Assets/Lights/Lamparacolgosa.png" id="2_pgw37"]
+[ext_resource type="Texture2D" uid="uid://dqax35hp778b1" path="res://Assets/Sprites/SnakeLevel/Rock.png" id="1_ehmfi"]
+[ext_resource type="Texture2D" uid="uid://dm2o2mk002xf2" path="res://Assets/Lights/Lamparacolgosa.png" id="2_pgw37"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wr4o"]
 size = Vector2(16, 16)

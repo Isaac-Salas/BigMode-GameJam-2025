@@ -1,0 +1,147 @@
+[gd_scene load_steps=21 format=3 uid="uid://dx7ji7kkxuest"]
+
+[ext_resource type="Texture2D" uid="uid://dlebplxanjh3t" path="res://assets/Projectile/LaserFin.png" id="1_e1fp4"]
+[ext_resource type="Texture2D" uid="uid://dlctanbn8dqk8" path="res://assets/Projectile/LaserIn.png" id="2_h7k1p"]
+[ext_resource type="Script" path="res://components/hitbox_component.gd" id="2_ikolu"]
+[ext_resource type="Texture2D" uid="uid://n7civfxfgaol" path="res://assets/Projectile/LaserMid.png" id="3_2wof1"]
+[ext_resource type="Script" path="res://components/scale_component.gd" id="3_m3dlo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cbph"]
+atlas = ExtResource("1_e1fp4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftae6"]
+atlas = ExtResource("1_e1fp4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fp61"]
+atlas = ExtResource("1_e1fp4")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mahyt"]
+atlas = ExtResource("1_e1fp4")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m322q"]
+atlas = ExtResource("2_h7k1p")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbss7"]
+atlas = ExtResource("2_h7k1p")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsald"]
+atlas = ExtResource("2_h7k1p")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqwyy"]
+atlas = ExtResource("2_h7k1p")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_144ll"]
+atlas = ExtResource("3_2wof1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65364"]
+atlas = ExtResource("3_2wof1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_go7mr"]
+atlas = ExtResource("3_2wof1")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5c80"]
+atlas = ExtResource("3_2wof1")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_askk0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cbph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftae6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fp61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mahyt")
+}],
+"loop": true,
+"name": &"Final",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m322q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbss7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsald")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqwyy")
+}],
+"loop": true,
+"name": &"Inicio",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_144ll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65364")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_go7mr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5c80")
+}],
+"loop": true,
+"name": &"Mitad",
+"speed": 10.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_6vvaq"]
+script/source = "extends AnimatedSprite2D
+@onready var scale_component = $ScaleComponent
+@onready var hitbox_component = $HitboxComponent
+
+
+
+
+func _on_hitbox_component_hit_hurtbox(hurtbox):
+	scale_component.tween_scale()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ogr1"]
+size = Vector2(16, 16)
+
+[node name="Orb1" type="AnimatedSprite2D"]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_askk0")
+animation = &"Inicio"
+script = SubResource("GDScript_6vvaq")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_ikolu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_8ogr1")
+
+[node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("3_m3dlo")
+sprite = NodePath("..")
+scale_amount = Vector2(3, 3)
+scale_duration = 0.5
+
+[connection signal="hit_hurtbox" from="HitboxComponent" to="." method="_on_hitbox_component_hit_hurtbox"]

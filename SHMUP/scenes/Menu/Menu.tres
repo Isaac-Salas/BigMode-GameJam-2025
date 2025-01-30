@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cm8e5dkxqble0"]
+
+[ext_resource type="FontFile" uid="uid://xqyel50d34il" path="res://fonts/ka1.ttf" id="1_023t4"]
+
+[resource]
+line_spacing = 6.73
+font = ExtResource("1_023t4")
+font_color = Color(1, 1, 1, 0)

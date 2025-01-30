@@ -1,17 +1,17 @@
 [gd_scene load_steps=24 format=3 uid="uid://btrdct8207ogu"]
 
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/snake.gd" id="1_tnx25"]
-[ext_resource type="Texture2D" uid="uid://bgskelccql7ub" path="res://Assets/Sprites/SnakeLevel/SuperHyperMegaNewSnake.png" id="2_88c27"]
+[ext_resource type="Texture2D" uid="uid://2buiudcaq5ou" path="res://Assets/Sprites/SnakeLevel/SuperHyperMegaNewSnake.png" id="2_88c27"]
 [ext_resource type="PackedScene" uid="uid://bujmgm1kjflx1" path="res://Scenes/Levels/Snake-Level/Segment/segment.tscn" id="2_ud2qt"]
-[ext_resource type="Texture2D" uid="uid://bw80rjmsuoqsj" path="res://Assets/Lights/Lamparacolgosa.png" id="3_xf4h4"]
+[ext_resource type="Texture2D" uid="uid://dm2o2mk002xf2" path="res://Assets/Lights/Lamparacolgosa.png" id="3_xf4h4"]
 [ext_resource type="Shader" path="res://Scenes/Levels/Snake-Level/Fruit/FruitTemp.gdshader" id="4_5776j"]
 [ext_resource type="Script" path="res://Components/scale_component.gd" id="5_13v0w"]
 [ext_resource type="Material" uid="uid://d87mtbnelghl" path="res://Scenes/Levels/Snake-Level/Fruit/Gore.tres" id="5_w65dq"]
-[ext_resource type="Texture2D" uid="uid://dsehvomctn2qb" path="res://Assets/Sprites/SnakeLevel/Blood.png" id="6_imxxq"]
+[ext_resource type="Texture2D" uid="uid://btlxeuyb31t0v" path="res://Assets/Sprites/SnakeLevel/Blood.png" id="6_imxxq"]
 [ext_resource type="Material" uid="uid://b1mhek0l60woi" path="res://Scenes/Levels/Snake-Level/Fruit/Bones.tres" id="7_nj64i"]
-[ext_resource type="Texture2D" uid="uid://8xvr56m0cmyb" path="res://Assets/Sprites/SnakeLevel/Bone.png" id="8_3x0nd"]
+[ext_resource type="Texture2D" uid="uid://ce4ojjo5joocc" path="res://Assets/Sprites/SnakeLevel/Bone.png" id="8_3x0nd"]
 [ext_resource type="Material" uid="uid://b5dmndo0lo1k1" path="res://Scenes/Levels/Snake-Level/AllParticles/wall.tres" id="9_ujokb"]
-[ext_resource type="Texture2D" uid="uid://qvq1x5vi4xib" path="res://Assets/Sprites/SnakeLevel/Rock.png" id="10_t6tyq"]
+[ext_resource type="Texture2D" uid="uid://dqax35hp778b1" path="res://Assets/Sprites/SnakeLevel/Rock.png" id="10_t6tyq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5jww"]
 atlas = ExtResource("2_88c27")

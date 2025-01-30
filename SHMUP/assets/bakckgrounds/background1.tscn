@@ -1,0 +1,186 @@
+[gd_scene load_steps=20 format=3 uid="uid://cj3yvsqywbuq2"]
+
+[ext_resource type="Texture2D" uid="uid://7jq31ms0evby" path="res://assets/bakckgrounds/Backgground.png" id="1_10i6i"]
+[ext_resource type="Texture2D" uid="uid://cp35bd0nmtlk" path="res://assets/bakckgrounds/Sky.png" id="2_3reua"]
+[ext_resource type="Texture2D" uid="uid://begqxu7fvp2ua" path="res://assets/bakckgrounds/Pisomarino.png" id="3_lq2y7"]
+[ext_resource type="Texture2D" uid="uid://c3r1ttqiexheu" path="res://assets/bakckgrounds/Burbujitas.png" id="4_60bes"]
+
+[sub_resource type="GDScript" id="GDScript_yyf65"]
+script/source = "extends ParallaxBackground
+@onready var sea = $Sea
+@onready var seafloor = $Seafloor
+@onready var frontbubbles = $Frontbubbles
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	seafloor.motion_offset.x -= 300*delta
+	frontbubbles.motion_offset.x -= 100*delta
+	pass
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjxrt"]
+atlas = ExtResource("1_10i6i")
+region = Rect2(0, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nk5d"]
+atlas = ExtResource("1_10i6i")
+region = Rect2(480, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp256"]
+atlas = ExtResource("1_10i6i")
+region = Rect2(960, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fb2d"]
+atlas = ExtResource("1_10i6i")
+region = Rect2(1440, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2n52"]
+atlas = ExtResource("1_10i6i")
+region = Rect2(1920, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krvex"]
+atlas = ExtResource("1_10i6i")
+region = Rect2(2400, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drlbr"]
+atlas = ExtResource("1_10i6i")
+region = Rect2(2880, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rhne"]
+atlas = ExtResource("1_10i6i")
+region = Rect2(3360, 0, 480, 270)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i185y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjxrt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nk5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp256")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fb2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2n52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krvex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drlbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rhne")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gubbs"]
+atlas = ExtResource("2_3reua")
+region = Rect2(0, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anlu6"]
+atlas = ExtResource("2_3reua")
+region = Rect2(480, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yof81"]
+atlas = ExtResource("2_3reua")
+region = Rect2(960, 0, 480, 270)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei6iy"]
+atlas = ExtResource("2_3reua")
+region = Rect2(1440, 0, 480, 270)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3t6ye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gubbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anlu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yof81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ei6iy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Background" type="ParallaxBackground"]
+script = SubResource("GDScript_yyf65")
+
+[node name="Sea" type="ParallaxLayer" parent="."]
+z_index = 2
+motion_mirroring = Vector2(480, 0)
+
+[node name="TextureRect" type="TextureRect" parent="Sea"]
+offset_right = 480.0
+offset_bottom = 270.0
+stretch_mode = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sea/TextureRect"]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_i185y")
+autoplay = "default"
+frame_progress = 0.0933159
+centered = false
+
+[node name="TextureRect2" type="TextureRect" parent="Sea"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sea/TextureRect2"]
+sprite_frames = SubResource("SpriteFrames_3t6ye")
+frame = 2
+frame_progress = 0.0446088
+centered = false
+
+[node name="Spinny" type="ParallaxLayer" parent="."]
+show_behind_parent = true
+
+[node name="TextureRect" type="TextureRect" parent="Spinny"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Seafloor" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(480, 0)
+
+[node name="TextureRect" type="TextureRect" parent="Seafloor"]
+offset_right = 40.0
+offset_bottom = 40.0
+stretch_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Seafloor/TextureRect"]
+texture = ExtResource("3_lq2y7")
+centered = false
+
+[node name="Frontbubbles" type="ParallaxLayer" parent="."]
+light_mask = 2
+visibility_layer = 2
+z_index = 1
+motion_mirroring = Vector2(480, 0)
+
+[node name="TextureRect" type="TextureRect" parent="Frontbubbles"]
+offset_right = 40.0
+offset_bottom = 40.0
+stretch_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Frontbubbles/TextureRect"]
+texture = ExtResource("4_60bes")
+centered = false
+
+[node name="Sky" type="ParallaxLayer" parent="."]

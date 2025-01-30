@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds30ohehc67w4"]
+
+[ext_resource type="Texture2D" uid="uid://chxnjqvxx7ig6" path="res://assets/player/Die.png" id="1_3uato"]
+
+[sub_resource type="GDScript" id="GDScript_j33fs"]
+script/source = "extends RigidBody2D
+
+
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jn1ym"]
+
+[node name="PlayerDead" type="RigidBody2D"]
+angular_velocity = 1.74533
+script = SubResource("GDScript_j33fs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jn1ym")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("1_3uato")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://depw2krs5w0lx"]
+
+[ext_resource type="Texture2D" uid="uid://dkbhys1nn4gg0" path="res://assets/effects/Crumb.png" id="1_gcyuy"]
+
+[sub_resource type="GDScript" id="GDScript_gc4ly"]
+script/source = "extends Node2D
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
+
+
+func _on_animated_sprite_2d_animation_finished():
+	self.queue_free()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fahm"]
+atlas = ExtResource("1_gcyuy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_empj0"]
+atlas = ExtResource("1_gcyuy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ha0x"]
+atlas = ExtResource("1_gcyuy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnrw5"]
+atlas = ExtResource("1_gcyuy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq17q"]
+atlas = ExtResource("1_gcyuy")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6gwd"]
+atlas = ExtResource("1_gcyuy")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg5rt"]
+atlas = ExtResource("1_gcyuy")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1umtd"]
+atlas = ExtResource("1_gcyuy")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oq1xo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fahm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_empj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ha0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnrw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wq17q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6gwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg5rt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1umtd")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="Crumbs" type="Node2D"]
+script = SubResource("GDScript_gc4ly")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oq1xo")
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -1,6 +1,6 @@
 # Give the component a class name so it can be instanced as a custom node
-class_name ScaleComponent
 extends Node
+class_name ScaleComponent
 
 # Export the sprite that this component will be scaling
 @export var sprite: Node2D

@@ -1,7 +1,7 @@
 # Give the component a class name so it can be instanced as a custom node
-class_name ShakeComponent
-extends Node
 
+extends Node
+class_name ShakeComponent
 # You should shake the sprite and not the root node or you'll get unexpected behavior
 # since we are manipulating the position of the node and moving it to 0,0
 

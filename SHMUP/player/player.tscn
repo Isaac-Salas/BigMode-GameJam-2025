@@ -1,17 +1,17 @@
 [gd_scene load_steps=40 format=3 uid="uid://jryehanqehmw"]
 
 [ext_resource type="Script" path="res://SHMUP/player/player.gd" id="1_3bpno"]
-[ext_resource type="Texture2D" uid="uid://c63qct7t4aopf" path="res://SHMUP/assets/player/Playerswim.png" id="1_8gb71"]
+[ext_resource type="Texture2D" uid="uid://b5o3t2vum0bl8" path="res://SHMUP/assets/player/Playerswim.png" id="1_8gb71"]
 [ext_resource type="Script" path="res://Components/move_component.gd" id="2_pn1mw"]
-[ext_resource type="Texture2D" uid="uid://bmnqwnrym1oly" path="res://SHMUP/assets/player/Die.png" id="3_jjdpj"]
+[ext_resource type="Texture2D" uid="uid://ddac850lq1tk8" path="res://SHMUP/assets/player/Die.png" id="3_jjdpj"]
 [ext_resource type="Script" path="res://Components/move_input_componet.gd" id="3_p5ddr"]
-[ext_resource type="Texture2D" uid="uid://bhf5tqopyvcdc" path="res://SHMUP/assets/player/Playereat.png" id="4_h5y1b"]
-[ext_resource type="Texture2D" uid="uid://nw8uecqaerm2" path="res://SHMUP/assets/player/Playerpunch.png" id="5_nanp4"]
+[ext_resource type="Texture2D" uid="uid://dcx0i631horc1" path="res://SHMUP/assets/player/Playereat.png" id="4_h5y1b"]
+[ext_resource type="Texture2D" uid="uid://djp4ceq20yvrt" path="res://SHMUP/assets/player/Playerpunch.png" id="5_nanp4"]
 [ext_resource type="Script" path="res://Components/position_clamp_component.gd" id="5_p2h6a"]
-[ext_resource type="Script" path="res://components/spawner_component.gd" id="7_qmm00"]
 [ext_resource type="Script" path="res://Components/move_stats.gd" id="8_tcu2k"]
-[ext_resource type="Script" path="res://components/scale_component.gd" id="9_1nybb"]
 [ext_resource type="Script" path="res://Components/spawner_component.gd" id="10_u8yh0"]
+[ext_resource type="PackedScene" uid="uid://ebjh0ecljxba" path="res://SHMUP/projectiles/center_shot.tscn" id="11_wknv2"]
+[ext_resource type="Script" path="res://Components/scale_component.gd" id="12_f7ayl"]
 [ext_resource type="Script" path="res://Components/stats_component.gd" id="12_jo3wc"]
 [ext_resource type="Script" path="res://Components/hurt_component.gd" id="13_qe4hk"]
 [ext_resource type="Script" path="res://Components/destroyed_component.gd" id="14_j5h4m"]
@@ -224,19 +224,11 @@ position = Vector2(18, 7)
 
 [node name="SpawnerComponent" type="Node2D" parent="."]
 script = ExtResource("10_u8yh0")
-
-[node name="SpawnerComponent" type="Node2D" parent="SpawnerComponent"]
-script = ExtResource("10_u8yh0")
+scene = ExtResource("11_wknv2")
 
 [node name="FireRateTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
-
-[node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
-script = ExtResource("9_1nybb")
-sprite = NodePath("../AnimatedSprite2D")
-scale_amount = Vector2(1.2, 1.2)
-scale_duration = 0.2
 
 [node name="HurtComponent" type="Node" parent="." node_paths=PackedStringArray("stats_component", "hurtbox_component")]
 script = ExtResource("13_qe4hk")
@@ -262,13 +254,13 @@ stats_component = NodePath("../StatsComponent")
 destroy_effect_spawner_component = NodePath("../Deadplayer")
 
 [node name="Deadplayer" type="Node2D" parent="."]
-script = ExtResource("7_qmm00")
+script = ExtResource("10_u8yh0")
 scene = ExtResource("15_hvfv1")
 
 [node name="ShakeComponent" type="Node" parent="." node_paths=PackedStringArray("node")]
 script = ExtResource("16_di1e1")
-shake_amount = 10.0
 node = NodePath("../AnimatedSprite2D")
+shake_amount = 10.0
 
 [node name="Hitable" type="Node" parent="."]
 
@@ -293,6 +285,9 @@ wait_time = 0.25
 
 [node name="O2Sum" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="ScaleComponent" type="Node" parent="."]
+script = ExtResource("12_f7ayl")
 
 [connection signal="area_entered" from="Eat" to="." method="_on_eat_area_entered"]
 [connection signal="area_entered" from="Air" to="." method="_on_air_area_entered"]

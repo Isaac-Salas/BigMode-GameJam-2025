@@ -12,7 +12,7 @@ light_mode = 1
 
 [node name="Tablero" type="Node2D"]
 script = ExtResource("1_fiaf3")
-ScenePath = "res://Scenes/Levels/Snake-Level/Reallevel.tscn"
+ScenePath = "res://PUYO/board.tscn"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

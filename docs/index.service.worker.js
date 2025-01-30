@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1738207439|1051019751';
+const CACHE_VERSION = '1738208179|368814140';
 /** @type {string} */
 const CACHE_PREFIX = 'BigMode2025-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;

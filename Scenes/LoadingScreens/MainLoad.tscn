@@ -17,6 +17,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
 z_index = 21
 offset_left = 128.0
 offset_top = 272.0
@@ -26,8 +27,10 @@ theme = ExtResource("4_ljkrf")
 
 [node name="Loading" type="Sprite2D" parent="."]
 z_index = 21
+position = Vector2(328, 240)
 texture = ExtResource("2_lc6wg")
 centered = false
+offset = Vector2(-327, -162)
 
 [node name="Si tienes particulas, cargalas aqui" type="Node" parent="."]
 

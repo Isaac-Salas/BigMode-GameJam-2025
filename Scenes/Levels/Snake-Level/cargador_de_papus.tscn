@@ -13,12 +13,16 @@ script = ExtResource("1_4q1rf")
 [node name="Manzana" parent="." instance=ExtResource("2_c148x")]
 
 [node name="Frutiña" parent="." instance=ExtResource("3_gw8oy")]
+freeze = false
 
 [node name="Kiwi" parent="." instance=ExtResource("4_wsspy")]
+freeze = false
 
 [node name="Aliens" parent="." instance=ExtResource("5_s6t2h")]
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
 
 [node name="Wall" parent="." instance=ExtResource("6_c01hu")]
 position = Vector2(8, -8)

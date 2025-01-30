@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://rtx5yg0m0c30"]
+[gd_scene load_steps=25 format=3 uid="uid://rtx5yg0m0c30"]
 
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/aliens_smol.gd" id="1_vbhkg"]
 [ext_resource type="Texture2D" uid="uid://c8wchc5y7smi4" path="res://Assets/Sprites/SnakeLevel/Small-Big-Alien.png" id="2_5k518"]
@@ -9,6 +9,9 @@
 [ext_resource type="Material" uid="uid://dijhh5ykoi23p" path="res://Scenes/Levels/Snake-Level/Fruit/FruitTemp.tres" id="4_h6q4b"]
 [ext_resource type="Texture2D" uid="uid://dsehvomctn2qb" path="res://Assets/Sprites/SnakeLevel/Blood.png" id="6_amdvj"]
 [ext_resource type="Texture2D" uid="uid://dqiwhthx6jd3d" path="res://Assets/Sprites/SnakeLevel/CorpseGore.png" id="6_rbjla"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_44gcx"]
+light_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xt7jw"]
 atlas = ExtResource("2_j4bm1")
@@ -101,6 +104,7 @@ radius = 8.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l4ga5"]
 blend_mode = 1
+light_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y53i"]
 size = Vector2(176, 176)
@@ -115,6 +119,7 @@ script = ExtResource("1_vbhkg")
 
 [node name="Monitos" type="AnimatedSprite2D" parent="."]
 z_index = 1
+material = SubResource("CanvasItemMaterial_44gcx")
 sprite_frames = SubResource("SpriteFrames_or2t5")
 animation = &"Die"
 
@@ -155,8 +160,8 @@ process_material = ExtResource("4_h6q4b")
 texture = ExtResource("6_amdvj")
 lifetime = 2.0
 
-[connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]
 [connection signal="timeout" from="RunTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]
 [connection signal="timeout" from="SpawnerTime" to="." method="_on_spawner_time_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://h4302js3t2gs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gad3"]
+size = Vector2(112, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pc4ii"]
+size = Vector2(4.125, 219.702)
+
+[node name="Barrera" type="StaticBody2D"]
+visible = false
+position = Vector2(80, 454)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-8, -8)
+shape = SubResource("RectangleShape2D_3gad3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-61.9375, -120.149)
+shape = SubResource("RectangleShape2D_pc4ii")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(46, -118)
+shape = SubResource("RectangleShape2D_pc4ii")

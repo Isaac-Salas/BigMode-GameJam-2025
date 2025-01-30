@@ -1,0 +1,97 @@
+[gd_scene load_steps=11 format=3 uid="uid://u85s4lo3myge"]
+
+[ext_resource type="Script" path="res://PUYO/board.gd" id="1_5iwgv"]
+[ext_resource type="PackedScene" uid="uid://brac12iovg0jy" path="res://background_tiles.tscn" id="2_2kfxe"]
+[ext_resource type="PackedScene" uid="uid://qvi3jqqm0ej8" path="res://PUYO/spawner.tscn" id="2_wpv5b"]
+[ext_resource type="PackedScene" uid="uid://pqvr0nmuev2o" path="res://PUYO/portrait.tscn" id="4_fg0h2"]
+[ext_resource type="PackedScene" uid="uid://crqm7yqxvx50a" path="res://PUYO/puyo_frame.tscn" id="5_2rc2o"]
+[ext_resource type="PackedScene" uid="uid://b4m1fvrdh7hnm" path="res://PUYO/puyo_large_portrait.tscn" id="6_h5kko"]
+[ext_resource type="Texture2D" uid="uid://df1iajtco6smu" path="res://Assets/puyo/puyoscoreboard.png" id="7_hhc4m"]
+[ext_resource type="Texture2D" uid="uid://ddchwu52qklwl" path="res://Assets/puyo/background_gradient.png" id="8_rw7xr"]
+[ext_resource type="Theme" uid="uid://b2ciyx82s0tao" path="res://Assets/Fonts/text_theme.tres" id="9_sksyy"]
+[ext_resource type="FontFile" uid="uid://mppvf1821xxn" path="res://Assets/Fonts/number.ttf" id="9_txpel"]
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_5iwgv")
+
+[node name="BackgroundGradient" type="Sprite2D" parent="."]
+texture = ExtResource("8_rw7xr")
+centered = false
+
+[node name="background" parent="." instance=ExtResource("2_2kfxe")]
+position = Vector2(24, 26)
+
+[node name="Spawner" parent="." instance=ExtResource("2_wpv5b")]
+position = Vector2(114, 44)
+
+[node name="mini_portrait" parent="." instance=ExtResource("4_fg0h2")]
+position = Vector2(338, 72)
+
+[node name="Puyo-frame" parent="." instance=ExtResource("5_2rc2o")]
+position = Vector2(134, 240)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = -100
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0.0784314, 0.0627451, 0.113725, 1)
+
+[node name="Puyoscoreboard" type="Sprite2D" parent="."]
+position = Vector2(338, 240)
+texture = ExtResource("7_hhc4m")
+
+[node name="Puyo-frameBg" parent="." instance=ExtResource("6_h5kko")]
+z_index = 2
+position = Vector2(133, 229)
+
+[node name="Scoreboard" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 290.0
+offset_top = 210.0
+offset_right = 402.0
+offset_bottom = 395.0
+
+[node name="Base" type="Label" parent="Scoreboard"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme = ExtResource("9_sksyy")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "base: 0"
+
+[node name="Mult" type="Label" parent="Scoreboard"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_sksyy")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 2
+text = "mult = 0"
+
+[node name="Total" type="Label" parent="Scoreboard"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("9_sksyy")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_txpel")
+text = "Total = 0"
+
+[connection signal="puyo_multiplied" from="Spawner" to="." method="_on_spawner_puyo_multiplied"]
+[connection signal="score_base" from="Spawner" to="." method="_on_spawner_score_base"]
+[connection signal="score_updated" from="Spawner" to="." method="_on_spawner_score_updated"]

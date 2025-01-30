@@ -1,6 +1,98 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtci72hu3oiax"]
+[gd_scene load_steps=21 format=3 uid="uid://dtci72hu3oiax"]
 
 [ext_resource type="Texture2D" uid="uid://cujnb8ibemt3k" path="res://Assets/Sprites/Background/Estrellitas.png" id="1_2ty5c"]
+[ext_resource type="Script" path="res://Scenes/Startup/InitialAnimScript.gd" id="1_bk8ni"]
+[ext_resource type="SpriteFrames" uid="uid://dpixnst4n47ur" path="res://Scenes/Startup/Piggy.tres" id="3_oapps"]
+[ext_resource type="Script" path="res://Scenes/Startup/piggy.gd" id="4_1nvp4"]
+[ext_resource type="PackedScene" uid="uid://127niqtxnogh" path="res://Components/dialog_box.tscn" id="4_6gcan"]
+[ext_resource type="Texture2D" uid="uid://bw80rjmsuoqsj" path="res://Assets/Lights/Lamparacolgosa.png" id="5_k1147"]
+[ext_resource type="AudioStream" uid="uid://bs2virm3fjw78" path="res://Assets/Music/1.wav" id="6_hv35h"]
+[ext_resource type="Texture2D" uid="uid://by85tjhpjvr56" path="res://Assets/Sprites/Background/FondoMenu.png" id="7_l2rfb"]
+[ext_resource type="Script" path="res://Scenes/Startup/sprite_2d.gd" id="8_htdvb"]
+[ext_resource type="Texture2D" uid="uid://cil62o363ukj8" path="res://Assets/Sprites/SnakeLevel/Solologo.png" id="9_cnuhs"]
+[ext_resource type="Texture2D" uid="uid://b6m6dyqb1airs" path="res://Assets/Sprites/Background/PlayLong.png" id="11_ivfti"]
+[ext_resource type="Texture2D" uid="uid://blpgd5yl0tkt0" path="res://Assets/Sprites/Background/Quit.png" id="13_e5rrj"]
+[ext_resource type="PackedScene" uid="uid://yn5cyp08chec" path="res://Scenes/Shaders/Shader-Grain.tscn" id="13_j45bg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_863sj"]
+light_mode = 1
+
+[sub_resource type="Animation" id="Animation_4v5od"]
+resource_name = "Come_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Piggy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-110, 372), Vector2(320, 390)]
+}
+
+[sub_resource type="Animation" id="Animation_i0ien"]
+resource_name = "Go_out"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Piggy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.95),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 390), Vector2(700, 390)]
+}
+
+[sub_resource type="Animation" id="Animation_6rbvi"]
+resource_name = "Hover"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Piggy:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(320, 390), Vector2(320, 386), Vector2(320, 390)]
+}
+
+[sub_resource type="Animation" id="Animation_gnex8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Piggy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 370)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qrbhy"]
+_data = {
+"Come_in": SubResource("Animation_4v5od"),
+"Go_out": SubResource("Animation_i0ien"),
+"Hover": SubResource("Animation_6rbvi"),
+"RESET": SubResource("Animation_gnex8")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_18e02"]
+light_mode = 1
 
 [node name="Startup" type="Control"]
 layout_mode = 3
@@ -9,11 +101,127 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_bk8ni")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 repeat_size = Vector2(640, 0)
 autoscroll = Vector2(-50, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+z_index = 1
 texture = ExtResource("1_2ty5c")
 centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+modulate = Color(1, 1, 1, 0.235294)
+z_index = -2
+scroll_offset = Vector2(-150, 240)
+repeat_size = Vector2(640, 480)
+autoscroll = Vector2(-200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
+z_index = -2
+texture = ExtResource("1_2ty5c")
+centered = false
+
+[node name="Piggy" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 5
+material = SubResource("CanvasItemMaterial_863sj")
+position = Vector2(0, 370)
+sprite_frames = ExtResource("3_oapps")
+frame_progress = 0.609329
+script = ExtResource("4_1nvp4")
+
+[node name="PointLight2D" type="PointLight2D" parent="Piggy"]
+color = Color(0.87451, 0.690196, 0.752941, 1)
+energy = 0.7
+texture = ExtResource("5_k1147")
+texture_scale = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qrbhy")
+}
+
+[node name="DialogBox" parent="." instance=ExtResource("4_6gcan")]
+material = SubResource("CanvasItemMaterial_18e02")
+layout_mode = 1
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+linecount = -1
+Dialog = PackedStringArray("You are this little guy.", "You were forced out of your home planet by the wrath of an evil alien...", "ODGO", "You have to find a way to defeat him,  but it wont be easy", "Find other planets and make their people join you and get more POWER", "Make them help the easy way...", "Or the hard way...", "Its your choice after all", "Good luck.", "")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hv35h")
+bus = &"Music"
+
+[node name="Planetas" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("7_l2rfb")
+centered = false
+script = ExtResource("8_htdvb")
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(320, 208)
+texture = ExtResource("9_cnuhs")
+
+[node name="PointLight2D" type="PointLight2D" parent="Logo"]
+color = Color(0.6873, 0.87, 0.830415, 1)
+energy = 0.6
+texture = ExtResource("5_k1147")
+texture_scale = 2.0
+
+[node name="Playbutton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 92.0
+offset_right = 40.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("11_ivfti")
+
+[node name="Playbutton2" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 140.0
+offset_right = 40.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("13_e5rrj")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.9, 0.9, 0.9, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.6873, 0.87, 0.830415, 1)
+energy = 0.6
+texture = ExtResource("5_k1147")
+
+[node name="ColorRect" parent="." instance=ExtResource("13_j45bg")]
+layout_mode = 0
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="Done" from="DialogBox" to="." method="_on_dialog_box_done"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="pressed" from="Playbutton" to="." method="_on_playbutton_pressed"]

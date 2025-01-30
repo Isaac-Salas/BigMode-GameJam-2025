@@ -19,6 +19,7 @@ class_name FullSnake
 #@onready var shake_component = $ShakeComponent
 @onready var scale_component : ScaleComponent = $"../HUD/ScaleComponent"
 @onready var ownscale = $ScaleComponent
+@onready var eaten_stuff = $"../HUD/EatenStuff"
 
 @onready var particles : GPUParticles2D = $Head/CrumbsFruit
 @onready var allthefruit : Array[RigidBody2D]
@@ -201,6 +202,7 @@ func add_segment(sibling : Node2D, num_pieces : int) :
 	snakesize = pieces.size()
 	segments = pieces[selectedpiece]
 	timer.wait_time -= 0.0008
+	movingcooldown.wait_time -= 0.0008
 	
 	
 func remove_segment(num_pieces : int , body : Node2D ) :
@@ -218,6 +220,7 @@ func remove_segment(num_pieces : int , body : Node2D ) :
 	snakesize = pieces.size()
 	segments = pieces[selectedpiece]
 	timer.wait_time += 0.0008
+	movingcooldown.wait_time += 0.0008
 	
 
 func win():
@@ -234,7 +237,7 @@ func die():
 
 func eat(body : RigidBody2D, spawner : Marker2D):
 	body.position = spawner.position
-	#body.call_deferred("reparent",spawner,true)
+	body.reparent(eaten_stuff)
 	body.set_deferred("freeze", false)
 	body.add_constant_force(Vector2(randi_range(-20,20),0))
 	allthefruit.append(body)

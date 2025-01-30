@@ -19,6 +19,7 @@ const NARANJA = preload("res://Scenes/Levels/Snake-Level/Fruit/Naranja.tscn")
 @onready var run_timer = $RunTimer
 @onready var alive : bool = true
 @onready var area_2d = $Area2D
+@onready var idle_timer = $IdleTimer
 
 @onready var burbuji_as = $"Burbujiñas"
 
@@ -31,15 +32,15 @@ func _ready():
 	monitos.modulate = NEWcolor
 	monitos.play("Idle")
 	spawner_component.scene = fruits[randi_range(0,2)]
-	
+	idle_timer.start(randi_range(1,3))
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 
-	
-	
+
+
 
 func die():
 	monitos.stop()
@@ -96,3 +97,22 @@ func _on_area_2d_area_entered(area):
 		area_2d.queue_free()
 		scare()
 		
+
+
+func _on_idle_timer_timeout():
+	
+	print("move")
+	selected = dirlist[randi_range(0,1)]
+	directionx = randi_range(-1,1)
+	directiony = randi_range(-1,1)
+	
+	match alive:
+		true:
+			if directionx != null and directiony != null:
+				match selected:
+					"X":
+						global_position.x += directionx*16
+					"Y":
+						global_position.y += directiony*16
+		false:
+			pass

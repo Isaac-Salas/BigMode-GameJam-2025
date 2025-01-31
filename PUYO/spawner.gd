@@ -3,7 +3,10 @@ extends Node2D
 @onready var fall: Timer = $fall
 @onready var puyo_blueprint: PackedScene = preload("res://PUYO/puyo.tscn")
 @onready var popping_puyos = []
-@onready var scale_component: ScaleComponent = $"../ScaleComponent"
+
+@onready var base_scale: ScaleComponent = $"../baseScale"
+@onready var mult_scale: ScaleComponent = $"../multScale"
+@onready var update_score: ScaleComponent = $"../updateScore"
 
 var total_score = 0
 var current_mult = 1
@@ -34,6 +37,7 @@ var cells = [
 	[0, 0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0, 0],
 ]
+signal puyo_removed(cause : String)
 
 func spawn_puyos():
 	puyorotation = 0
@@ -181,6 +185,8 @@ func clear_all(color):
 				cells[row][col] = 0
 				var puyo = get_puyo_at_position(Vector2i(col,row))
 				puyo.explode()
+				puyo_removed.emit("killed")
+				
 	explode_puyo = -1
 	await get_tree().create_timer(0.6).timeout
 	await drop_puyos()
@@ -210,8 +216,8 @@ func update_cells(target_puyos: Array, score) -> bool:
 				
 	if chain_occurred:
 		current_mult += 1
-		scale_component.scale_amount= Vector2(current_mult, 1 )
-		scale_component.tween_scale()
+		mult_scale.scale_amount = Vector2(current_mult, current_mult)
+		mult_scale.tween_scale()
 		emit_signal("puyo_multiplied", current_mult)
 		popping_puyos.clear()
 		for pos in all_popped_positions.keys():
@@ -223,13 +229,17 @@ func update_cells(target_puyos: Array, score) -> bool:
 					explode_puyo = puyo_to_pop.color
 					popping_puyos.append(puyo_to_pop)
 					await get_tree().create_timer(1).timeout
+					puyo_removed.emit("killed")
 					await update_cells([], score)
 					break
 				elif not puyo_to_pop.is_connected("pop_finished", _on_puyo_popped):
 					puyo_to_pop.connect("pop_finished", _on_puyo_popped)
 				popping_puyos.append(puyo_to_pop)
 				puyo_to_pop.pop()
+				puyo_removed.emit("free")
 				score += 200
+				base_scale.scale_amount = Vector2(score/100, score/100)
+				base_scale.tween_scale()
 				emit_signal("score_base", 200)
 		
 		while popping_puyos.size() > 0:
@@ -237,8 +247,7 @@ func update_cells(target_puyos: Array, score) -> bool:
 		await get_tree().create_timer(0.2).timeout
 		
 		var dropped_puyos = await drop_puyos()
-		if !dropped_puyos.is_empty():
-			await update_cells(dropped_puyos, score)
+		await update_cells(dropped_puyos, score)
 		return true
 	return false
 
@@ -274,6 +283,8 @@ func find_fall():
 				await get_tree().create_timer(0.05).timeout
 			add_puyo(puyo_main)
 			score += 100
+			base_scale.scale_amount = Vector2(score/100, score/100)
+			base_scale.tween_scale()
 			emit_signal("score_base", 100)
 			while is_clear(puyo_rotate.grid_pos + Vector2i(0, 1)):
 				puyo_rotate.position += Vector2(0, 36)
@@ -281,6 +292,8 @@ func find_fall():
 				await get_tree().create_timer(0.05).timeout
 			add_puyo(puyo_rotate)
 			score += 100
+			base_scale.scale_amount = Vector2(score/100, score/100)
+			base_scale.tween_scale()
 			emit_signal("score_base", 100)
 			#await get_tree().create_timer(0.3).timeout
 			free_puyo.emit()
@@ -292,6 +305,8 @@ func find_fall():
 				await get_tree().create_timer(0.05).timeout
 			add_puyo(puyo_rotate)
 			score += 100
+			base_scale.scale_amount = Vector2(score/100, score/100)
+			base_scale.tween_scale()
 			emit_signal("score_base", 100)
 			while is_clear(puyo_main.grid_pos + Vector2i(0, 1)):
 				puyo_main.position += Vector2(0, 36)
@@ -299,6 +314,8 @@ func find_fall():
 				await get_tree().create_timer(0.05).timeout
 			add_puyo(puyo_main)
 			score += 100
+			base_scale.scale_amount = Vector2(score/100, score/100)
+			base_scale.tween_scale()
 			emit_signal("score_base", 100)
 			free_puyo.emit()
 			await update_cells([puyo_rotate, puyo_main], score)
@@ -390,7 +407,10 @@ func _on_fall_timeout():
 		fall.start(0.5)
 	elif !shit_happening:
 		shit_happening = true
-		total_score += current_mult * await find_fall()
+		var score_pog = current_mult * await find_fall()
+		total_score += score_pog
+		update_score.scale_amount = Vector2(total_score/1000, total_score/1000)
+		update_score.tween_scale()
 		current_mult = 1
 		emit_signal("score_updated", total_score)
 		shit_happening = false

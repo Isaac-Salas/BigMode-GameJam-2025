@@ -28,5 +28,9 @@ func _on_spawner_score_updated(score: Variant) -> void:
 	cum_mult = 0
 	grand_total += score
 	mult.text = "x 1"
-	total.text =  str(grand_total)
+	total.text = str(grand_total)
 	
+
+
+func _on_counter_game_finished() -> void:
+	print("game finish")

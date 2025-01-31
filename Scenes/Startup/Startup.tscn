@@ -1,18 +1,17 @@
-[gd_scene load_steps=21 format=3 uid="uid://dtci72hu3oiax"]
+[gd_scene load_steps=22 format=3 uid="uid://dtci72hu3oiax"]
 
-[ext_resource type="Texture2D" uid="uid://cujnb8ibemt3k" path="res://Assets/Sprites/Background/Estrellitas.png" id="1_2ty5c"]
+[ext_resource type="Texture2D" uid="uid://hb8s7depup4j" path="res://Assets/Sprites/Background/Estrellitas.png" id="1_2ty5c"]
 [ext_resource type="Script" path="res://Scenes/Startup/InitialAnimScript.gd" id="1_bk8ni"]
 [ext_resource type="SpriteFrames" uid="uid://dpixnst4n47ur" path="res://Scenes/Startup/Piggy.tres" id="3_oapps"]
 [ext_resource type="Script" path="res://Scenes/Startup/piggy.gd" id="4_1nvp4"]
 [ext_resource type="PackedScene" uid="uid://127niqtxnogh" path="res://Components/dialog_box.tscn" id="4_6gcan"]
-[ext_resource type="Texture2D" uid="uid://bw80rjmsuoqsj" path="res://Assets/Lights/Lamparacolgosa.png" id="5_k1147"]
-[ext_resource type="AudioStream" uid="uid://bs2virm3fjw78" path="res://Assets/Music/1.wav" id="6_hv35h"]
-[ext_resource type="Texture2D" uid="uid://by85tjhpjvr56" path="res://Assets/Sprites/Background/FondoMenu.png" id="7_l2rfb"]
+[ext_resource type="Texture2D" uid="uid://c3jqq2o5stf2y" path="res://Assets/Lights/Lamparacolgosa.png" id="5_k1147"]
+[ext_resource type="AudioStream" uid="uid://blgep5e1yn2ub" path="res://Assets/Music/1.wav" id="6_hv35h"]
+[ext_resource type="Texture2D" uid="uid://u5h3p5s22opb" path="res://Assets/Sprites/Background/FondoMenu.png" id="7_l2rfb"]
 [ext_resource type="Script" path="res://Scenes/Startup/sprite_2d.gd" id="8_htdvb"]
-[ext_resource type="Texture2D" uid="uid://cil62o363ukj8" path="res://Assets/Sprites/SnakeLevel/Solologo.png" id="9_cnuhs"]
-[ext_resource type="Texture2D" uid="uid://b6m6dyqb1airs" path="res://Assets/Sprites/Background/PlayLong.png" id="11_ivfti"]
-[ext_resource type="Texture2D" uid="uid://blpgd5yl0tkt0" path="res://Assets/Sprites/Background/Quit.png" id="13_e5rrj"]
-[ext_resource type="PackedScene" uid="uid://yn5cyp08chec" path="res://Scenes/Shaders/Shader-Grain.tscn" id="13_j45bg"]
+[ext_resource type="Texture2D" uid="uid://34eycj4wmsyd" path="res://Assets/Sprites/SnakeLevel/Solologo.png" id="9_cnuhs"]
+[ext_resource type="Texture2D" uid="uid://qp5kjj2hjvod" path="res://Assets/Sprites/Background/PlayLong.png" id="11_ivfti"]
+[ext_resource type="Shader" path="res://Scenes/Startup/Startup.gdshader" id="13_2mplh"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_863sj"]
 light_mode = 1
@@ -94,6 +93,14 @@ _data = {
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_18e02"]
 light_mode = 1
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ueyyl"]
+load_path = "res://.godot/imported/Quit.png-06f65d036d8f6b4935aed75d8b642c78.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_11eot"]
+shader = ExtResource("13_2mplh")
+shader_parameter/grain_amount = 0.05
+shader_parameter/grain_size = 0.1
+
 [node name="Startup" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -134,6 +141,7 @@ frame_progress = 0.609329
 script = ExtResource("4_1nvp4")
 
 [node name="PointLight2D" type="PointLight2D" parent="Piggy"]
+visible = false
 color = Color(0.87451, 0.690196, 0.752941, 1)
 energy = 0.7
 texture = ExtResource("5_k1147")
@@ -156,6 +164,7 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
+scale = Vector2(1, 0.6)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 linecount = -1
 Dialog = PackedStringArray("You are this little guy.", "You were forced out of your home planet by the wrath of an evil alien...", "ODGO", "You have to find a way to defeat him,  but it wont be easy", "Find other planets and make their people join you and get more POWER", "Make them help the easy way...", "Or the hard way...", "Its your choice after all", "Good luck.", "")
@@ -176,11 +185,12 @@ texture = ExtResource("9_cnuhs")
 
 [node name="PointLight2D" type="PointLight2D" parent="Logo"]
 color = Color(0.6873, 0.87, 0.830415, 1)
-energy = 0.6
+energy = 0.2
 texture = ExtResource("5_k1147")
 texture_scale = 2.0
 
-[node name="Playbutton" type="TextureButton" parent="."]
+[node name="Play" type="TextureButton" parent="."]
+z_index = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -195,7 +205,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("11_ivfti")
 
-[node name="Playbutton2" type="TextureButton" parent="."]
+[node name="Quit" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -208,20 +218,26 @@ offset_right = 40.0
 offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("13_e5rrj")
+texture_normal = SubResource("CompressedTexture2D_ueyyl")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.9, 0.9, 0.9, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
 color = Color(0.6873, 0.87, 0.830415, 1)
 energy = 0.6
 texture = ExtResource("5_k1147")
 
-[node name="ColorRect" parent="." instance=ExtResource("13_j45bg")]
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 20
+material = SubResource("ShaderMaterial_11eot")
 layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+mouse_filter = 2
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="Done" from="DialogBox" to="." method="_on_dialog_box_done"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
-[connection signal="pressed" from="Playbutton" to="." method="_on_playbutton_pressed"]
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]

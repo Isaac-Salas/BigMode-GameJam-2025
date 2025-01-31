@@ -1,0 +1,139 @@
+[gd_scene load_steps=18 format=3 uid="uid://1db6npbnb4mr"]
+
+[ext_resource type="PackedScene" uid="uid://kbl5vm53q020" path="res://Scenes/Shmup/Enemies/EnemyTemp.tscn" id="1_awjix"]
+[ext_resource type="Texture2D" uid="uid://cbyxoj5rmfb3s" path="res://Assets/Shmup/Enemies/Clownfish.png" id="2_rlv7i"]
+[ext_resource type="PackedScene" uid="uid://buk070ofgsa3y" path="res://Scenes/Shmup/Projectiles/Anti-player/Temp.tscn" id="3_d0287"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvfbo"]
+atlas = ExtResource("2_rlv7i")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoffs"]
+atlas = ExtResource("2_rlv7i")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlpra"]
+atlas = ExtResource("2_rlv7i")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fj3ja"]
+atlas = ExtResource("2_rlv7i")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrtdb"]
+atlas = ExtResource("2_rlv7i")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13p1l"]
+atlas = ExtResource("2_rlv7i")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2got"]
+atlas = ExtResource("2_rlv7i")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hrvc"]
+atlas = ExtResource("2_rlv7i")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d78gy"]
+atlas = ExtResource("2_rlv7i")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgwky"]
+atlas = ExtResource("2_rlv7i")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e7o3s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvfbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoffs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlpra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fj3ja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrtdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13p1l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2got")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hrvc")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d78gy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgwky")
+}],
+"loop": false,
+"name": &"Shoot",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5pi3"]
+size = Vector2(15, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hpc1m"]
+size = Vector2(15.5, 15.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o1ov6"]
+radius = 6.0
+
+[node name="Enemy" instance=ExtResource("1_awjix")]
+
+[node name="EnemyTest" parent="." index="0"]
+collision_mask = 0
+freeze_mode = 1
+
+[node name="AnimatedSprite2D" parent="EnemyTest" index="1"]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_e7o3s")
+animation = &"Shoot"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTest" index="2"]
+shape = SubResource("RectangleShape2D_b5pi3")
+
+[node name="StatsComponent" parent="EnemyTest" index="3"]
+health = 3
+
+[node name="MoveComponent" parent="EnemyTest" index="4"]
+velocity = Vector2(-100, 0)
+active = true
+
+[node name="HurtboxComponent" parent="EnemyTest" index="8"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTest/HurtboxComponent" index="0"]
+shape = SubResource("RectangleShape2D_hpc1m")
+
+[node name="HitboxComponent" parent="EnemyTest" index="9"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTest/HitboxComponent" index="0"]
+shape = SubResource("CircleShape2D_o1ov6")
+debug_color = Color(0.972549, 0, 0, 0.419608)
+
+[node name="ShootSpawn" parent="EnemyTest/Shooter" index="0"]
+scene = ExtResource("3_d0287")
+
+[node name="Timer" parent="EnemyTest/Shooter" index="1"]
+autostart = true

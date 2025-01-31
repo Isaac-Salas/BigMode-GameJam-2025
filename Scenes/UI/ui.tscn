@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcnu8emceioc1"]
+
+[ext_resource type="Script" path="res://Scenes/UI/ui.gd" id="1_vukha"]
+[ext_resource type="FontFile" uid="uid://cvtttqrem23tv" path="res://Fonts/retro_computer_personal_use.ttf" id="2_sn4ds"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vukha")
+
+[node name="Health" type="Label" parent="."]
+layout_mode = 0
+offset_top = 59.0
+offset_right = 75.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0.34902, 0.709804, 0.380392, 1)
+theme_override_fonts/font = ExtResource("2_sn4ds")
+theme_override_font_sizes/font_size = 14
+text = " Hp: 
+"
+
+[node name="O2" type="Label" parent="."]
+layout_mode = 0
+offset_top = 79.0
+offset_right = 75.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(0.529412, 0.729412, 0.792157, 1)
+theme_override_fonts/font = ExtResource("2_sn4ds")
+theme_override_font_sizes/font_size = 14
+text = " O2: 
+"
+
+[node name="Ammo" type="Label" parent="."]
+layout_mode = 0
+offset_top = 101.0
+offset_right = 75.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.847059, 0.596078, 0.47451, 1)
+theme_override_fonts/font = ExtResource("2_sn4ds")
+theme_override_font_sizes/font_size = 14
+text = " Am:
+"
+
+[node name="Gun" type="Label" parent="."]
+layout_mode = 0
+offset_top = 126.0
+offset_right = 75.0
+offset_bottom = 149.0
+theme_override_colors/font_color = Color(0.211765, 0.156863, 0.27451, 1)
+theme_override_fonts/font = ExtResource("2_sn4ds")
+theme_override_font_sizes/font_size = 14
+text = " Gun:
+"

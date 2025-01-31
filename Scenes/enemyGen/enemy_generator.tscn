@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmh3vs1g6u0wp"]
+
+[ext_resource type="Script" path="res://Scenes/enemyGen/EnemyGenerator.gd" id="1_yr5qq"]
+[ext_resource type="PackedScene" uid="uid://62kymog0rxgs" path="res://Scenes/enemyGen/greenbunch.tscn" id="2_62dup"]
+[ext_resource type="Script" path="res://Components/spawner_component.gd" id="2_bpowj"]
+[ext_resource type="PackedScene" uid="uid://bquae6sggpetq" path="res://Scenes/enemyGen/Wave2.tscn" id="3_v6jgg"]
+
+[node name="EnemyGenerator" type="Node2D"]
+script = ExtResource("1_yr5qq")
+Waves = [ExtResource("2_62dup"), ExtResource("3_v6jgg")]
+
+[node name="SpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("2_bpowj")
+
+[node name="GreenEnemyTimer" type="Timer" parent="."]
+one_shot = true

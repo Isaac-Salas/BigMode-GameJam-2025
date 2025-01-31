@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://ebjh0ecljxba"]
+
+[ext_resource type="Script" path="res://Scenes/Shmup/Projectiles/center_shot.gd" id="1_t10eu"]
+[ext_resource type="Script" path="res://Components/move_component.gd" id="1_yr02y"]
+[ext_resource type="Texture2D" uid="uid://4j65rtyg20if" path="res://Assets/Shmup/Projectile/Fishbone.png" id="2_15xqq"]
+[ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_hbs71"]
+[ext_resource type="Script" path="res://Components/scale_component.gd" id="4_ttpa6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dj580"]
+size = Vector2(8, 5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lyvd5"]
+radius = 1.5
+height = 7.8
+
+[node name="Shot" type="Node2D"]
+script = ExtResource("1_t10eu")
+
+[node name="CenterShot" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+mass = 0.1
+can_sleep = false
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterShot"]
+shape = SubResource("RectangleShape2D_dj580")
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterShot"]
+z_index = -1
+texture = ExtResource("2_15xqq")
+
+[node name="Timer" type="Timer" parent="CenterShot"]
+
+[node name="HitboxComponent" type="Area2D" parent="CenterShot"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_hbs71")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterShot/HitboxComponent"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_lyvd5")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="CenterShot"]
+
+[node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("4_ttpa6")
+sprite = NodePath("../CenterShot/Sprite2D")
+scale_amount = Vector2(3, 3)
+scale_duration = 0.2
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("1_yr02y")
+actor = NodePath("..")
+velocity = Vector2(450, 0)
+rotation = 30
+
+[connection signal="body_entered" from="CenterShot/HitboxComponent" to="." method="_on_hitbox_component_body_entered"]
+[connection signal="screen_exited" from="CenterShot/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

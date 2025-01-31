@@ -7,7 +7,12 @@ const _2 = preload("res://Assets/Music/2.wav")
 const _3 = preload("res://Assets/Music/3.wav")
 const _4 = preload("res://Assets/Music/4.wav")
 const _5 = preload("res://Assets/Music/5.wav")
-@onready var texture_button = $TextureButton
+const PUYO_LOAD = preload("res://Scenes/LoadingScreens/PuyoLoad.tscn")
+@onready var play = $Play
+@onready var quit = $Quit
+
+
+
 @onready var audio_stream_player= $AudioStreamPlayer2D
 @onready var planetas = $Planetas
 @onready var logo = $Logo
@@ -103,6 +108,7 @@ func _on_dialog_box_done():
 				
 
 
-func _on_playbutton_pressed():
-	#get_tree().change_scene_to_packed()
-	pass
+
+
+func _on_play_pressed():
+	get_tree().change_scene_to_packed(PUYO_LOAD)

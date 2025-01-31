@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BigMode2025"
-run/main_scene="res://Scenes/LoadingScreens/MainLoad.tscn"
+run/main_scene="res://Scenes/Startup/Startup.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0.129412, 0.0352941, 0.145098, 1)
 boot_splash/image="res://Assets/Sprites/Placeholders/DOG.png"
@@ -27,6 +27,7 @@ window/size/viewport_width=640
 window/size/viewport_height=480
 window/size/mode=2
 window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [editor]
 

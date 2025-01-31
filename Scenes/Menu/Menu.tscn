@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scenes/Menu/Menu.gd" id="1_plr72"]
 [ext_resource type="LabelSettings" uid="uid://cm8e5dkxqble0" path="res://Scenes/Menu/Menu.tres" id="3_hbhao"]
-[ext_resource type="Texture2D" uid="uid://b4u47qou1wejd" path="res://Assets/Menu/Titulo.png" id="3_jerba"]
-[ext_resource type="FontFile" uid="uid://xqyel50d34il" path="res://Fonts/ka1.ttf" id="4_1gleh"]
+[ext_resource type="Texture2D" uid="uid://cadw1y736ua5s" path="res://Assets/Shmup/Menu/Titulo.png" id="3_jerba"]
+[ext_resource type="FontFile" uid="uid://b51ubte8xc1vv" path="res://Fonts/ka1.ttf" id="4_1gleh"]
 [ext_resource type="Script" path="res://Components/spawner_component.gd" id="4_vjngk"]
 [ext_resource type="PackedScene" uid="uid://cuyslfgdk7lmf" path="res://Scenes/Menu/MenuRigid.tscn" id="5_qx26e"]
 

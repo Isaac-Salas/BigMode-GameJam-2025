@@ -2,7 +2,7 @@ class_name MoveInputComponent
 extends Node
 
 @export var move_stats : MoveStats
-@export var move_component : MoveComponent
+@export var move_component : MoveGridComponent
 @export var active = true
 
 func _input(_event):

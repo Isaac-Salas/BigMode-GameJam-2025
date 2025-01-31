@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_qswac")
-speed = 150
+speed = 16

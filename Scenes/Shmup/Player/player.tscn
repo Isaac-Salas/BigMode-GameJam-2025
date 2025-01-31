@@ -1,15 +1,16 @@
-[gd_scene load_steps=39 format=3 uid="uid://jryehanqehmw"]
+[gd_scene load_steps=36 format=3 uid="uid://jryehanqehmw"]
 
 [ext_resource type="Script" path="res://Scenes/Shmup/Player/player.gd" id="1_3bpno"]
 [ext_resource type="Texture2D" uid="uid://bmowifukp82vv" path="res://Assets/Shmup/player/Playerswim.png" id="1_8gb71"]
-[ext_resource type="Script" path="res://Components/move_component.gd" id="2_pn1mw"]
+[ext_resource type="Texture2D" uid="uid://cdnybrignewg5" path="res://Assets/Sprites/Portraits 2/Piggly Humanoid with fish.png" id="2_uhboh"]
 [ext_resource type="Texture2D" uid="uid://qntvyga748f6" path="res://Assets/Shmup/player/Die.png" id="3_jjdpj"]
 [ext_resource type="Script" path="res://Components/move_input_componet.gd" id="3_p5ddr"]
 [ext_resource type="Texture2D" uid="uid://b5vi7uijuym56" path="res://Assets/Shmup/player/Playereat.png" id="4_h5y1b"]
-[ext_resource type="Resource" uid="uid://dl5lvl8t423pb" path="res://Scenes/Shmup/Player/Player_move_stats.tres" id="4_hx36n"]
 [ext_resource type="Texture2D" uid="uid://0hkimyhbe1mv" path="res://Assets/Shmup/player/Playerpunch.png" id="5_nanp4"]
 [ext_resource type="Script" path="res://Components/position_clamp_component.gd" id="5_p2h6a"]
+[ext_resource type="Script" path="res://Components/move_grid_component.gd" id="6_7cisf"]
 [ext_resource type="Script" path="res://Components/spawner_component.gd" id="7_qmm00"]
+[ext_resource type="Script" path="res://Components/move_stats.gd" id="8_v1yuq"]
 [ext_resource type="PackedScene" uid="uid://ebjh0ecljxba" path="res://Scenes/Shmup/Projectiles/center_shot.tscn" id="8_x50b0"]
 [ext_resource type="Script" path="res://Components/scale_component.gd" id="9_1nybb"]
 [ext_resource type="Script" path="res://Components/hurt_component.gd" id="11_xkfeb"]
@@ -18,38 +19,15 @@
 [ext_resource type="Script" path="res://Components/destroyed_component.gd" id="14_j5h4m"]
 [ext_resource type="PackedScene" uid="uid://ds30ohehc67w4" path="res://Scenes/Shmup/Player/PlayerDEAD.tscn" id="15_hvfv1"]
 [ext_resource type="Script" path="res://Components/shake_component.gd" id="16_di1e1"]
+[ext_resource type="Texture2D" uid="uid://c3jqq2o5stf2y" path="res://Assets/Lights/Lamparacolgosa.png" id="19_7ek7g"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mhoj5"]
-atlas = ExtResource("1_8gb71")
+[sub_resource type="AtlasTexture" id="AtlasTexture_768ge"]
+atlas = ExtResource("2_uhboh")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lal1r"]
-atlas = ExtResource("1_8gb71")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j20q"]
+atlas = ExtResource("2_uhboh")
 region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sutbq"]
-atlas = ExtResource("1_8gb71")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5x3ds"]
-atlas = ExtResource("1_8gb71")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mm7mn"]
-atlas = ExtResource("1_8gb71")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3x32k"]
-atlas = ExtResource("1_8gb71")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aey1f"]
-atlas = ExtResource("1_8gb71")
-region = Rect2(192, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e1vef"]
-atlas = ExtResource("1_8gb71")
-region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bvkcd"]
 atlas = ExtResource("4_h5y1b")
@@ -83,32 +61,14 @@ region = Rect2(288, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mhoj5")
+"texture": SubResource("AtlasTexture_768ge")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lal1r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sutbq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5x3ds")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mm7mn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3x32k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aey1f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e1vef")
+"texture": SubResource("AtlasTexture_2j20q")
 }],
 "loop": true,
 "name": &"Center",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -165,6 +125,10 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Resource" id="Resource_xjs1y"]
+script = ExtResource("8_v1yuq")
+speed = 16
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0s0cm"]
 size = Vector2(32, 32)
 
@@ -188,17 +152,23 @@ script = ExtResource("1_3bpno")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1
 sprite_frames = SubResource("SpriteFrames_mndd0")
-animation = &"Up_Down"
+animation = &"Center"
 autoplay = "Center"
+frame_progress = 0.283161
 
-[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
-script = ExtResource("2_pn1mw")
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "timer")]
+script = ExtResource("6_7cisf")
 actor = NodePath("..")
+timer = NodePath("../MoveInputComponent/Timer")
 
 [node name="MoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("move_component")]
 script = ExtResource("3_p5ddr")
-move_stats = ExtResource("4_hx36n")
+move_stats = SubResource("Resource_xjs1y")
 move_component = NodePath("../MoveComponent")
+
+[node name="Timer" type="Timer" parent="MoveInputComponent"]
+wait_time = 0.1
+autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0s0cm")
@@ -275,6 +245,7 @@ shape = SubResource("CircleShape2D_h2eib")
 debug_color = Color(0, 0.643137, 0.337255, 0.0823529)
 
 [node name="Air" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 32
 
@@ -288,6 +259,13 @@ wait_time = 0.25
 [node name="O2Sum" type="Timer" parent="."]
 wait_time = 0.1
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.427451, 0.47451, 1)
+energy = 0.5
+shadow_enabled = true
+texture = ExtResource("19_7ek7g")
+
+[connection signal="timeout" from="MoveInputComponent/Timer" to="MoveComponent" method="_on_timer_timeout"]
 [connection signal="area_entered" from="Eat" to="." method="_on_eat_area_entered"]
 [connection signal="area_entered" from="Air" to="." method="_on_air_area_entered"]
 [connection signal="area_exited" from="Air" to="." method="_on_air_area_exited"]

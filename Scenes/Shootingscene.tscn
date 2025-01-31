@@ -1,17 +1,19 @@
-[gd_scene load_steps=39 format=3 uid="uid://ddgejwefayyfo"]
+[gd_scene load_steps=36 format=3 uid="uid://ddgejwefayyfo"]
 
-[ext_resource type="Script" path="res://Scenes/world.gd" id="1_oj22e"]
-[ext_resource type="PackedScene" uid="uid://cj3yvsqywbuq2" path="res://Assets/Shmup/bakckgrounds/background1.tscn" id="2_e33pf"]
-[ext_resource type="PackedScene" uid="uid://cxdohwfvqd131" path="res://Scenes/Limits.tscn" id="3_15ft6"]
 [ext_resource type="Texture2D" uid="uid://bom7ot7wqa6k0" path="res://Assets/Shmup/bakckgrounds/Backggroundfilter.png" id="4_kw2qw"]
 [ext_resource type="PackedScene" uid="uid://jryehanqehmw" path="res://Scenes/Shmup/Player/player.tscn" id="5_35kna"]
 [ext_resource type="PackedScene" uid="uid://cmh3vs1g6u0wp" path="res://Scenes/enemyGen/enemy_generator.tscn" id="6_62foh"]
 [ext_resource type="Texture2D" uid="uid://dppr1pfkjd1mp" path="res://Assets/Shmup/barquito.png" id="7_0nk70"]
-[ext_resource type="PackedScene" uid="uid://c1bp32chdhsm7" path="res://Scenes/Menu/Menu.tscn" id="8_cbeoe"]
+[ext_resource type="Texture2D" uid="uid://bpurbm30gie6f" path="res://Assets/Sprites/Shooter/Seafilter.png" id="8_on4m7"]
+[ext_resource type="Texture2D" uid="uid://be0atp0c03xv3" path="res://Assets/Sprites/Shooter/Seaback1.png" id="9_4fnua"]
 [ext_resource type="PackedScene" uid="uid://bcnu8emceioc1" path="res://Scenes/UI/ui.tscn" id="9_wgvsv"]
+[ext_resource type="Texture2D" uid="uid://brpb5yp0ri6hu" path="res://Assets/Sprites/Shooter/Seaback2.png" id="10_1rdw5"]
 [ext_resource type="Script" path="res://Components/spawner_component.gd" id="10_4ho2l"]
+[ext_resource type="Texture2D" uid="uid://bd5pkvmix5e0s" path="res://Assets/Sprites/Background/BorderMask.png" id="10_d36e4"]
 [ext_resource type="PackedScene" uid="uid://62kymog0rxgs" path="res://Scenes/enemyGen/greenbunch.tscn" id="11_06sxq"]
-[ext_resource type="Texture2D" uid="uid://0bsmnf5nj2m6" path="res://Assets/Sprites/IntroScreen/Jellytext.png" id="12_724r0"]
+[ext_resource type="Texture2D" uid="uid://kdnpyh54eot1" path="res://Assets/Sprites/Shooter/sea_back_n.png" id="12_knahg"]
+[ext_resource type="Texture2D" uid="uid://i3cojmk5npfa" path="res://Assets/Sprites/Shooter/sea_back.png" id="12_mfv2f"]
+[ext_resource type="Texture2D" uid="uid://des6oww77mcp" path="res://Assets/Sprites/Shooter/Seafrontlayer.png" id="12_o7dxm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dsmr5"]
 atlas = ExtResource("4_kw2qw")
@@ -141,124 +143,20 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="Animation" id="Animation_wmtii"]
-resource_name = "Fadein"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-
-[sub_resource type="Animation" id="Animation_lg4xm"]
-resource_name = "Fadeout"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -80, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 1)
-}
-
-[sub_resource type="Animation" id="Animation_3phn4"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(-80, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_l5fax"]
-_data = {
-"Fadein": SubResource("Animation_wmtii"),
-"Fadeout": SubResource("Animation_lg4xm"),
-"RESET": SubResource("Animation_3phn4")
-}
-
-[sub_resource type="Animation" id="Animation_bwqc5"]
-resource_name = "Credits"
-length = 35.0
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Creditos:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(60, -0.25, 0, 0.25, 0, 60, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 30)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Creditos:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(280, -0.25, 0, 0.25, 0, -120, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 30)
-}
-
-[sub_resource type="Animation" id="Animation_g4fle"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Creditos:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(60, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Creditos:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(280, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_yi5lf"]
-_data = {
-"Credits": SubResource("Animation_bwqc5"),
-"RESET": SubResource("Animation_g4fle")
-}
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1enq"]
 size = Vector2(560, 53)
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("EnemyGen")]
-script = ExtResource("1_oj22e")
-EnemyGen = NodePath("EnemyGenerator")
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kimfn"]
+light_mode = 1
 
-[node name="Background" parent="." instance=ExtResource("2_e33pf")]
+[sub_resource type="CanvasTexture" id="CanvasTexture_6iwn1"]
+diffuse_texture = ExtResource("12_mfv2f")
+normal_texture = ExtResource("12_knahg")
 
-[node name="Limits" parent="." instance=ExtResource("3_15ft6")]
+[node name="World" type="Node2D"]
 
 [node name="Filtro" type="AnimatedSprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.784314)
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_vld3a")
@@ -266,7 +164,7 @@ autoplay = "default"
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("5_35kna")]
-position = Vector2(64, 135)
+position = Vector2(168, 160)
 
 [node name="EnemyGenerator" parent="." instance=ExtResource("6_62foh")]
 
@@ -276,50 +174,14 @@ position = Vector2(69, -8)
 sprite_frames = SubResource("SpriteFrames_avxo8")
 autoplay = "default"
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 480.0
-offset_bottom = 270.0
-
-[node name="Control" parent="Control" node_paths=PackedStringArray("Player", "world") instance=ExtResource("8_cbeoe")]
-layout_mode = 1
-Player = NodePath("../../Player")
-world = NodePath("../..")
-
 [node name="StartTimer" type="Timer" parent="."]
 
 [node name="UI" parent="." node_paths=PackedStringArray("Player") instance=ExtResource("9_wgvsv")]
-visible = false
 Player = NodePath("../Player")
 
 [node name="SpawnerComponent" type="Node2D" parent="."]
 script = ExtResource("10_4ho2l")
 scene = ExtResource("11_06sxq")
-
-[node name="IntroSongs" type="AudioStreamPlayer2D" parent="."]
-volume_db = -80.0
-
-[node name="Fader" type="AnimationPlayer" parent="IntroSongs"]
-libraries = {
-"": SubResource("AnimationLibrary_l5fax")
-}
-
-[node name="Ingame" type="AudioStreamPlayer" parent="."]
-
-[node name="Secondfader" type="AnimationPlayer" parent="Ingame"]
-
-[node name="Creditos" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(60, 280)
-texture = ExtResource("12_724r0")
-centered = false
-
-[node name="Creditrigger" type="AnimationPlayer" parent="Creditos"]
-root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_yi5lf")
-}
 
 [node name="AirFill" type="Area2D" parent="."]
 position = Vector2(240, 0)
@@ -329,3 +191,59 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AirFill"]
 position = Vector2(0, 10.5)
 shape = SubResource("RectangleShape2D_a1enq")
+
+[node name="FrontFilter" type="Parallax2D" parent="."]
+z_index = -4
+repeat_size = Vector2(480, 0)
+autoscroll = Vector2(-300, 0)
+
+[node name="FrenteFiltro" type="Sprite2D" parent="FrontFilter"]
+modulate = Color(1, 1, 1, 0.705882)
+material = SubResource("CanvasItemMaterial_kimfn")
+position = Vector2(144, 20)
+texture = ExtResource("8_on4m7")
+centered = false
+
+[node name="BackHills1" type="Parallax2D" parent="."]
+z_index = -4
+repeat_size = Vector2(480, 0)
+autoscroll = Vector2(25, 0)
+
+[node name="Backhills1" type="Sprite2D" parent="BackHills1"]
+position = Vector2(144, 16)
+texture = ExtResource("9_4fnua")
+centered = false
+
+[node name="BackHills2" type="Parallax2D" parent="."]
+z_index = -4
+repeat_size = Vector2(480, 0)
+autoscroll = Vector2(-50, 0)
+
+[node name="Backhills2" type="Sprite2D" parent="BackHills2"]
+position = Vector2(144, 16)
+texture = ExtResource("10_1rdw5")
+centered = false
+flip_h = true
+
+[node name="Fondo" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(144, 16)
+texture = SubResource("CanvasTexture_6iwn1")
+centered = false
+
+[node name="BorderMask" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("10_d36e4")
+centered = false
+
+[node name="Cool corals" type="Parallax2D" parent="."]
+repeat_size = Vector2(480, 0)
+autoscroll = Vector2(-600, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cool corals"]
+position = Vector2(144, 72)
+texture = ExtResource("12_o7dxm")
+centered = false
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.9, 0.9, 0.9, 1)

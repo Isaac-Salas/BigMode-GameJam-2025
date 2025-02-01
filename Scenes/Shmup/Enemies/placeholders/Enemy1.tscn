@@ -1,0 +1,85 @@
+[gd_scene load_steps=14 format=3 uid="uid://cegtj4xrj1cpp"]
+
+[ext_resource type="Script" path="res://Scenes/Shmup/Enemies/placeholders/Enemy_component_test.gd" id="1_7pqdp"]
+[ext_resource type="Script" path="res://Scenes/Shmup/Enemies/placeholders/Enemy1.gd" id="1_h6ehg"]
+[ext_resource type="Texture2D" uid="uid://r0fgnowjj5wc" path="res://Assets/Shmup/green_enemy.png" id="1_xse4f"]
+[ext_resource type="Script" path="res://Components/stats_component.gd" id="2_wba58"]
+[ext_resource type="Script" path="res://Components/move_component.gd" id="5_oaug6"]
+[ext_resource type="Script" path="res://Components/scale_component.gd" id="6_dq2o5"]
+[ext_resource type="Script" path="res://Components/shake_component.gd" id="7_3q773"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_scbgg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3qsm"]
+atlas = ExtResource("1_xse4f")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28dcl"]
+atlas = ExtResource("1_xse4f")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hdvx"]
+atlas = ExtResource("1_xse4f")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4py5n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3qsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28dcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hdvx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84guy"]
+size = Vector2(21.42, 13.135)
+
+[node name="EnemyTesting" type="Node2D"]
+script = ExtResource("1_h6ehg")
+
+[node name="EnemyTest" type="RigidBody2D" parent="."]
+freeze = true
+script = ExtResource("1_7pqdp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTest"]
+shape = SubResource("CircleShape2D_scbgg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EnemyTest"]
+sprite_frames = SubResource("SpriteFrames_4py5n")
+autoplay = "default"
+
+[node name="EnemyHit" type="Area2D" parent="EnemyTest"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyTest/EnemyHit"]
+position = Vector2(0, -0.25)
+shape = SubResource("RectangleShape2D_84guy")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="EnemyTest"]
+
+[node name="StatsComponent" type="Node" parent="EnemyTest"]
+script = ExtResource("2_wba58")
+health = 3
+
+[node name="MoveComponent" type="Node" parent="EnemyTest" node_paths=PackedStringArray("actor")]
+script = ExtResource("5_oaug6")
+actor = NodePath("../..")
+velocity = Vector2(1, 1)
+active = false
+
+[node name="ScaleComponent" type="Node" parent="EnemyTest" node_paths=PackedStringArray("sprite")]
+script = ExtResource("6_dq2o5")
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="ShakeComponent" type="Node" parent="EnemyTest" node_paths=PackedStringArray("node")]
+script = ExtResource("7_3q773")
+node = NodePath("../AnimatedSprite2D")
+
+[connection signal="area_entered" from="EnemyTest/EnemyHit" to="EnemyTest" method="_on_area_2d_area_entered"]

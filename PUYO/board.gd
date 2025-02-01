@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var mult: Label = $Scoreboard/Mult
-@onready var base: Label = $Scoreboard/Base
-@onready var total: Label = $Scoreboard/Total
+@onready var mult: Label = $mult/Mult
+@onready var total: Label = $total/Total
+@onready var base: Label = $base/Base
 
 var cum_mult = 0
 var cum_base = 0
@@ -28,5 +28,9 @@ func _on_spawner_score_updated(score: Variant) -> void:
 	cum_mult = 0
 	grand_total += score
 	mult.text = "x 1"
-	total.text =  str(grand_total)
+	total.text = str(grand_total)
 	
+
+
+func _on_counter_game_finished() -> void:
+	print("game finish")

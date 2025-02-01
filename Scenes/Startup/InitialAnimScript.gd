@@ -18,16 +18,12 @@ const PUYO_LOAD = preload("res://Scenes/LoadingScreens/PuyoLoad.tscn")
 @onready var logo = $Logo
 @onready var point_light_2d = $PointLight2D
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	audio_stream_player.stream = _1
 	audio_stream_player.play()
 	piggy.play("default")
 	animation_player.play("Come_in")
-	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var mouse = get_global_mouse_position()
 	point_light_2d.global_position = mouse
@@ -55,14 +51,8 @@ func _on_animation_player_animation_finished(anim_name):
 			dialog_box.InputEnable = true
 			dialog_box.InputSTOP = false
 			dialog_box.timer.start()
-			
 		"Hover":
 			pass
-
-
-
-	
-
 
 func _on_audio_stream_player_2d_finished():
 	print(audio_stream_player.stream)

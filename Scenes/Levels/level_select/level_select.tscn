@@ -1,0 +1,180 @@
+[gd_scene load_steps=34 format=3 uid="uid://3sujfd07uetg"]
+
+[ext_resource type="Texture2D" uid="uid://dex2sn420yes2" path="res://Assets/Sprites/Portraits/enemigote_planeta.png" id="1_518ad"]
+[ext_resource type="Texture2D" uid="uid://cdjnkyfquwwnj" path="res://Assets/Sprites/Portraits/square_planet_outline.png" id="1_qitui"]
+[ext_resource type="Texture2D" uid="uid://bd7n1gxo4x6fb" path="res://Assets/Sprites/Portraits/leaf_planet_outline.png" id="2_rfwer"]
+[ext_resource type="Texture2D" uid="uid://cmonbxs1ifwpd" path="res://Assets/Sprites/Portraits/Enemiguito_planeta.png" id="2_xb54k"]
+[ext_resource type="Texture2D" uid="uid://cy7rwd3y3feyy" path="res://Assets/Sprites/Portraits/SwampBass_Planet.png" id="3_w3c3s"]
+[ext_resource type="Texture2D" uid="uid://bx8tv6nyqenos" path="res://Assets/Sprites/Portraits/Enemigoto_planeta.png" id="4_6dyuc"]
+[ext_resource type="Texture2D" uid="uid://dwnr20slr6jyr" path="res://Assets/Sprites/Portraits/oval_planet_outline.png" id="4_btad5"]
+[ext_resource type="Texture2D" uid="uid://w1tgjdhxyqh6" path="res://Assets/Sprites/Portraits/egg_planet_outline.png" id="7_t4v7n"]
+
+[sub_resource type="Theme" id="Theme_fwnmr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_for2s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ek0nd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h0edt"]
+texture = ExtResource("1_qitui")
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7wpsd"]
+texture = ExtResource("1_518ad")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0cemb"]
+texture = ExtResource("1_qitui")
+
+[sub_resource type="Theme" id="Theme_ha1if"]
+Button/styles/disabled = SubResource("StyleBoxTexture_for2s")
+Button/styles/focus = SubResource("StyleBoxEmpty_ek0nd")
+Button/styles/hover = SubResource("StyleBoxTexture_h0edt")
+Button/styles/normal = SubResource("StyleBoxTexture_7wpsd")
+Button/styles/pressed = SubResource("StyleBoxTexture_0cemb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3q54p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kvv3x"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_akma4"]
+texture = ExtResource("2_rfwer")
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ijlky"]
+texture = ExtResource("2_xb54k")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mlv11"]
+texture = ExtResource("2_rfwer")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="Theme" id="Theme_e7q33"]
+Button/styles/disabled = SubResource("StyleBoxTexture_3q54p")
+Button/styles/focus = SubResource("StyleBoxEmpty_kvv3x")
+Button/styles/hover = SubResource("StyleBoxTexture_akma4")
+Button/styles/normal = SubResource("StyleBoxTexture_ijlky")
+Button/styles/pressed = SubResource("StyleBoxTexture_mlv11")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lnvx0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_61dh2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ffop"]
+content_margin_bottom = 10.0
+texture = ExtResource("4_btad5")
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7kx30"]
+texture = ExtResource("3_w3c3s")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ogt4"]
+texture = ExtResource("4_btad5")
+
+[sub_resource type="Theme" id="Theme_m0nit"]
+Button/styles/disabled = SubResource("StyleBoxTexture_lnvx0")
+Button/styles/focus = SubResource("StyleBoxEmpty_61dh2")
+Button/styles/hover = SubResource("StyleBoxTexture_6ffop")
+Button/styles/normal = SubResource("StyleBoxTexture_7kx30")
+Button/styles/pressed = SubResource("StyleBoxTexture_5ogt4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gb7xu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_redvx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ue6cx"]
+texture = ExtResource("7_t4v7n")
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iblb5"]
+texture = ExtResource("4_6dyuc")
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0njmd"]
+texture = ExtResource("7_t4v7n")
+
+[sub_resource type="Theme" id="Theme_0lxue"]
+Button/styles/disabled = SubResource("StyleBoxTexture_gb7xu")
+Button/styles/focus = SubResource("StyleBoxEmpty_redvx")
+Button/styles/hover = SubResource("StyleBoxTexture_ue6cx")
+Button/styles/normal = SubResource("StyleBoxTexture_iblb5")
+Button/styles/pressed = SubResource("StyleBoxTexture_0njmd")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 480.0
+theme = SubResource("Theme_fwnmr")
+
+[node name="prism_planet" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -150.0
+offset_right = 50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_ha1if")
+theme_type_variation = &"sqare"
+
+[node name="leaf_planet" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 50.0
+offset_right = 50.0
+offset_bottom = 150.0
+grow_horizontal = 2
+theme = SubResource("Theme_e7q33")
+theme_type_variation = &"leaf"
+
+[node name="swambass_planet" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -50.0
+offset_right = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_m0nit")
+theme_type_variation = &"egg"
+
+[node name="egg_planet" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -50.0
+offset_right = 150.0
+offset_bottom = 50.0
+grow_vertical = 2
+theme = SubResource("Theme_0lxue")
+theme_type_variation = &"egg_cloud"
+text = "  "

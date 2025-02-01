@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://ccsbdas7eqi25"]
 
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/Fruit.gd" id="1_ge83r"]
-[ext_resource type="Texture2D" uid="uid://wxf0srhapkgy" path="res://Assets/Sprites/Portraits/Fruit_Manzanai.png" id="2_o4enp"]
-[ext_resource type="Texture2D" uid="uid://bw80rjmsuoqsj" path="res://Assets/Lights/Lamparacolgosa.png" id="3_k745b"]
+[ext_resource type="Texture2D" uid="uid://nsskdk56k4ib" path="res://Assets/Sprites/Portraits/Fruit_Manzanai.png" id="2_o4enp"]
+[ext_resource type="Texture2D" uid="uid://c3jqq2o5stf2y" path="res://Assets/Lights/Lamparacolgosa.png" id="3_k745b"]
 [ext_resource type="Material" uid="uid://kdttekih34l2" path="res://Scenes/Levels/Snake-Level/Fruit/manzanaparticles.tres" id="4_wpr35"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_31jgf"]
@@ -14,7 +14,6 @@ blend_mode = 1
 [node name="Manzana" type="RigidBody2D" groups=["Fruit"]]
 can_sleep = false
 script = ExtResource("1_ge83r")
-value = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_o4enp")

@@ -23,6 +23,13 @@ const NARANJA = preload("res://Scenes/Levels/Snake-Level/Fruit/Naranja.tscn")
 
 @onready var burbuji_as = $"Burbujiñas"
 
+func _process(delta):
+	match alive:
+		true:
+			global_position.x = clamp(global_position.x, 160, 608)
+			global_position.y = clamp(global_position.y, 32, 448)
+		false:
+			pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -66,7 +73,7 @@ func run():
 	
 
 func _on_run_timer_timeout():
-	print("move")
+	#print("move")
 	selected = dirlist[randi_range(0,1)]
 	directionx = randi_range(-1,1)
 	directiony = randi_range(-1,1)
@@ -101,7 +108,7 @@ func _on_area_2d_area_entered(area):
 
 func _on_idle_timer_timeout():
 	
-	print("move")
+	#print("move")
 	selected = dirlist[randi_range(0,1)]
 	directionx = randi_range(-1,1)
 	directiony = randi_range(-1,1)

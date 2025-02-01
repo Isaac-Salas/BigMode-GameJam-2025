@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://c1rna4op34asr"]
+[gd_scene load_steps=51 format=4 uid="uid://c1rna4op34asr"]
 
 [ext_resource type="Texture2D" uid="uid://6qx5c7gnj0v7" path="res://Assets/Sprites/Background/Elpurofondo.png" id="1_5ffc7"]
 [ext_resource type="Script" path="res://Scenes/Levels/Snake-Level/reallevel.gd" id="1_6cnhb"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://dllvgv1rftyo" path="res://Scenes/Levels/Snake-Level/Fruit/Naranja.tscn" id="24_nt6hc"]
 [ext_resource type="PackedScene" uid="uid://crxvneikqj06u" path="res://Scenes/Levels/Snake-Level/Fruit/ManzanaReal.tscn" id="25_qxjio"]
 [ext_resource type="PackedScene" uid="uid://b5mqjq6q7vuov" path="res://Scenes/Levels/Snake-Level/Slavehut.tscn" id="26_v8ed0"]
+[ext_resource type="PackedScene" uid="uid://btanekdvij824" path="res://Scenes/Levels/Snake-Level/tapador.tscn" id="27_5vur2"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qac7u"]
 diffuse_texture = ExtResource("1_5ffc7")
@@ -201,7 +202,7 @@ region_rect = Rect2(152, 0, 625.44, 480)
 metadata/_edit_lock_ = true
 
 [node name="Snake" parent="." node_paths=PackedStringArray("spawner", "portrait", "wincammarker", "camera") instance=ExtResource("3_r0f1w")]
-position = Vector2(456, 424)
+position = Vector2(440, 424)
 spawner = NodePath("../HUD/EatenStuff")
 portrait = NodePath("../HUD/Borde/Portrait")
 wincammarker = NodePath("../HUD/Wincam")
@@ -379,6 +380,96 @@ position = Vector2(560, 256)
 [node name="Wall6" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(544, 256)
 
+[node name="Wall142" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(480, 176)
+
+[node name="Wall143" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(552, 176)
+
+[node name="Wall144" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(552, 160)
+
+[node name="Wall145" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(552, 144)
+
+[node name="Wall146" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(432, 144)
+
+[node name="Wall147" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(432, 128)
+
+[node name="Wall148" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(464, 72)
+
+[node name="Wall157" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(464, 56)
+
+[node name="Wall178" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(480, 56)
+
+[node name="Wall179" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(560, 56)
+
+[node name="Wall180" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(216, 112)
+
+[node name="Wall181" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(296, 112)
+
+[node name="Wall182" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(280, 112)
+
+[node name="Wall214" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(264, 112)
+
+[node name="Wall215" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(248, 112)
+
+[node name="Wall216" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(232, 112)
+
+[node name="Wall217" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(184, 152)
+
+[node name="Wall218" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(184, 168)
+
+[node name="Wall219" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(288, 272)
+
+[node name="Wall220" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(192, 272)
+
+[node name="Wall221" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(304, 272)
+
+[node name="Wall222" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(320, 272)
+
+[node name="Wall223" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(320, 352)
+
+[node name="Wall224" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(320, 368)
+
+[node name="Wall225" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(480, 224)
+
+[node name="Wall226" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(480, 208)
+
+[node name="Wall227" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(448, 240)
+
+[node name="Wall228" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(192, 432)
+
+[node name="Wall229" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(192, 416)
+
+[node name="Wall230" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(192, 416)
+
 [node name="Wall7" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(528, 256)
 
@@ -496,21 +587,6 @@ position = Vector2(352, 416)
 [node name="Wall177" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(352, 432)
 
-[node name="Wall178" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(352, 208)
-
-[node name="Wall179" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(336, 208)
-
-[node name="Wall180" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(336, 224)
-
-[node name="Wall181" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(336, 240)
-
-[node name="Wall182" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(336, 256)
-
 [node name="Wall184" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(416, 296)
 
@@ -534,9 +610,6 @@ position = Vector2(512, 352)
 
 [node name="Wall192" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(512, 352)
-
-[node name="Wall157" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(368, 208)
 
 [node name="Wall158" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(368, 256)
@@ -952,6 +1025,33 @@ position = Vector2(216, 32)
 [node name="Wall152" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(384, 32)
 
+[node name="Wall194" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(384, 192)
+
+[node name="Wall195" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(384, 176)
+
+[node name="Wall207" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(336, 384)
+
+[node name="Wall208" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(320, 384)
+
+[node name="Wall209" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(304, 384)
+
+[node name="Wall210" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(288, 384)
+
+[node name="Wall211" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(288, 400)
+
+[node name="Wall212" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(288, 416)
+
+[node name="Wall213" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(288, 432)
+
 [node name="Parallax2D" type="Parallax2D" parent="."]
 repeat_size = Vector2(640, 0)
 autoscroll = Vector2(-50, 0)
@@ -975,33 +1075,144 @@ centered = false
 
 [node name="ColorRect" parent="." instance=ExtResource("20_wh2sk")]
 visible = false
-color = Color(1, 1, 1, 0.392157)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(320, 240)
+position = Vector2(320, 240)
 
 [node name="Fruit" type="Node" parent="."]
 
 [node name="Kiwi" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
 position = Vector2(488, 392)
+value = 2
 
 [node name="Kiwi2" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
 position = Vector2(552, 392)
 
+[node name="Kiwi10" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
+position = Vector2(328, 408)
+value = 1
+
+[node name="Kiwi9" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
+position = Vector2(344, 424)
+value = 1
+
+[node name="Kiwi8" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
+position = Vector2(312, 440)
+value = 1
+
+[node name="Kiwi6" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
+position = Vector2(536, 72)
+value = 1
+
+[node name="Kiwi7" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
+position = Vector2(440, 184)
+value = 1
+
 [node name="Frutiña" parent="Fruit" instance=ExtResource("24_nt6hc")]
+z_index = -3
+position = Vector2(488, 344)
+value = 1
+
+[node name="Frutiña7" parent="Fruit" instance=ExtResource("24_nt6hc")]
+z_index = -3
 position = Vector2(488, 344)
 
+[node name="Frutiña10" parent="Fruit" instance=ExtResource("24_nt6hc")]
+z_index = -3
+position = Vector2(312, 408)
+value = 1
+
+[node name="Frutiña9" parent="Fruit" instance=ExtResource("24_nt6hc")]
+z_index = -3
+position = Vector2(344, 440)
+value = 1
+
+[node name="Frutiña8" parent="Fruit" instance=ExtResource("24_nt6hc")]
+z_index = -3
+position = Vector2(328, 424)
+value = 1
+
+[node name="Frutiña6" parent="Fruit" instance=ExtResource("24_nt6hc")]
+z_index = -3
+position = Vector2(424, 72)
+value = 1
+
 [node name="Frutiña2" parent="Fruit" instance=ExtResource("24_nt6hc")]
+z_index = -3
 position = Vector2(488, 296)
 
+[node name="Frutiña5" parent="Fruit" instance=ExtResource("24_nt6hc")]
+z_index = -3
+position = Vector2(560, 216)
+value = 1
+
 [node name="Manzana" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
 position = Vector2(536, 344)
 
+[node name="Manzana13" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
+position = Vector2(344, 408)
+value = 1
+
 [node name="Manzana2" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
 position = Vector2(424, 376)
 
+[node name="Manzana11" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
+position = Vector2(328, 440)
+value = 1
+
+[node name="Manzana12" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
+position = Vector2(312, 424)
+value = 1
+
+[node name="Manzana10" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
+position = Vector2(264, 280)
+value = 1
+
 [node name="Slavehut" parent="Fruit" instance=ExtResource("26_v8ed0")]
-position = Vector2(360, 248)
+position = Vector2(344, 216)
+
+[node name="Slavehut4" parent="Fruit" instance=ExtResource("26_v8ed0")]
+position = Vector2(200, 200)
+
+[node name="Slavehut5" parent="Fruit" instance=ExtResource("26_v8ed0")]
+position = Vector2(264, 144)
+
+[node name="Slavehut6" parent="Fruit" instance=ExtResource("26_v8ed0")]
+position = Vector2(312, 176)
+
+[node name="Slavehut7" parent="Fruit" instance=ExtResource("26_v8ed0")]
+position = Vector2(200, 344)
+
+[node name="Slavehut8" parent="Fruit" instance=ExtResource("26_v8ed0")]
+position = Vector2(232, 344)
+
+[node name="Slavehut9" parent="Fruit" instance=ExtResource("26_v8ed0")]
+position = Vector2(264, 344)
+
+[node name="Slavehut10" parent="Fruit" instance=ExtResource("26_v8ed0")]
+position = Vector2(504, 136)
+
+[node name="Slavehut11" parent="Fruit" instance=ExtResource("26_v8ed0")]
+position = Vector2(536, 136)
+
+[node name="Slavehut12" parent="Fruit" instance=ExtResource("26_v8ed0")]
+position = Vector2(504, 80)
+
+[node name="Slavehut13" parent="Fruit" instance=ExtResource("26_v8ed0")]
+position = Vector2(568, 112)
 
 [node name="Slavehut2" parent="Fruit" instance=ExtResource("26_v8ed0")]
 position = Vector2(264, 248)
@@ -1010,37 +1221,82 @@ position = Vector2(264, 248)
 position = Vector2(472, 184)
 
 [node name="Manzana3" parent="Fruit" instance=ExtResource("25_qxjio")]
-position = Vector2(472, 248)
+z_index = -3
+position = Vector2(488, 248)
+value = 1
 
 [node name="Manzana4" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
 position = Vector2(472, 248)
+value = 1
 
 [node name="Manzana5" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
 position = Vector2(472, 232)
+value = 1
 
 [node name="Manzana6" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
 position = Vector2(472, 216)
+value = 1
 
 [node name="Manzana7" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
 position = Vector2(472, 200)
+value = 1
 
 [node name="Kiwi3" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
 position = Vector2(360, 40)
+value = 1
 
 [node name="Kiwi4" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
 position = Vector2(360, 40)
+value = 1
 
 [node name="Kiwi5" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
 position = Vector2(376, 56)
+value = 1
 
 [node name="Frutiña3" parent="Fruit" instance=ExtResource("24_nt6hc")]
+z_index = -3
 position = Vector2(360, 56)
+value = 1
 
 [node name="Frutiña4" parent="Fruit" instance=ExtResource("24_nt6hc")]
+z_index = -3
 position = Vector2(376, 72)
+value = 1
 
-[node name="Manzana" parent="." instance=ExtResource("25_qxjio")]
+[node name="Manzana8" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
 position = Vector2(376, 40)
+value = 1
 
-[node name="Manzana2" parent="." instance=ExtResource("25_qxjio")]
+[node name="Manzana9" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
 position = Vector2(360, 72)
+value = 1
+
+[node name="Tapador" parent="." instance=ExtResource("27_5vur2")]
+z_index = -2
+position = Vector2(400, 32)
+scale = Vector2(13, 14)
+metadata/_edit_lock_ = true
+
+[node name="Tapador2" parent="." instance=ExtResource("27_5vur2")]
+z_index = -2
+position = Vector2(160, 32)
+scale = Vector2(11, 22)
+
+[node name="Tapador3" parent="." instance=ExtResource("27_5vur2")]
+z_index = -2
+position = Vector2(336, 96)
+scale = Vector2(3, 18)
+
+[node name="Tapador4" parent="." instance=ExtResource("27_5vur2")]
+z_index = -2
+position = Vector2(160, 384)
+scale = Vector2(8, 4)

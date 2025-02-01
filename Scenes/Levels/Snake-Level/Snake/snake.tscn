@@ -164,7 +164,7 @@ position = Vector2(-16, 0)
 sprite_frames = SubResource("SpriteFrames_kh7h1")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.2
 autostart = true
 
 [node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
@@ -174,7 +174,7 @@ scale_amount = Vector2(1.1, 1.1)
 scale_duration = 0.1
 
 [node name="Movingcooldown" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.2
 autostart = true
 
 [connection signal="body_entered" from="Head/Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,17 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://yn5cyp08chec"]
+[gd_scene load_steps=8 format=3 uid="uid://yn5cyp08chec"]
 
+[ext_resource type="Script" path="res://Scenes/Shaders/shader_grain.gd" id="1_b0ofe"]
 [ext_resource type="Shader" path="res://Scenes/Shaders/testing.gdshader" id="1_cw3f6"]
 [ext_resource type="Shader" path="res://Scenes/Startup/Startup.gdshader" id="1_gxqks"]
-[ext_resource type="Texture2D" uid="uid://bjd8rvidsulu0" path="res://Assets/Sprites/SnakeLevel/Banner.png" id="2_0mt26"]
+[ext_resource type="Texture2D" uid="uid://34eycj4wmsyd" path="res://Assets/Sprites/SnakeLevel/Solologo.png" id="4_0kgik"]
+[ext_resource type="Texture2D" uid="uid://u5h3p5s22opb" path="res://Assets/Sprites/Background/FondoMenu.png" id="5_dfnfv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q7ru6"]
 shader = ExtResource("1_cw3f6")
 shader_parameter/resolution = Vector2(320, 180)
-shader_parameter/scan_line_amount = 1.0
+shader_parameter/scan_line_amount = 0.5
 shader_parameter/warp_amount = 0.1
-shader_parameter/noise_amount = 0.03
-shader_parameter/interference_amount = 0.2
-shader_parameter/grille_amount = 0.1
+shader_parameter/noise_amount = 0.02
+shader_parameter/interference_amount = 0.01
+shader_parameter/grille_amount = 0.05
 shader_parameter/grille_size = 1.0
 shader_parameter/vignette_amount = 0.6
 shader_parameter/vignette_intensity = 0.4
@@ -19,7 +21,7 @@ shader_parameter/aberation_amount = 0.5
 shader_parameter/roll_line_amount = 0.0
 shader_parameter/roll_speed = -8.0
 shader_parameter/scan_line_strength = -8.0
-shader_parameter/pixel_strength = -2.0
+shader_parameter/pixel_strength = -4.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_11eot"]
 shader = ExtResource("1_gxqks")
@@ -27,6 +29,7 @@ shader_parameter/grain_amount = 0.05
 shader_parameter/grain_size = 0.1
 
 [node name="Shaders" type="Node2D"]
+script = ExtResource("1_b0ofe")
 
 [node name="CRT" type="ColorRect" parent="."]
 visible = false
@@ -34,15 +37,24 @@ z_index = 20
 material = SubResource("ShaderMaterial_q7ru6")
 offset_right = 640.0
 offset_bottom = 480.0
+mouse_filter = 2
 
 [node name="Noise" type="ColorRect" parent="."]
-visible = false
 z_index = 20
 material = SubResource("ShaderMaterial_11eot")
 offset_right = 640.0
 offset_bottom = 480.0
+mouse_filter = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+z_index = -1
+texture = ExtResource("5_dfnfv")
+centered = false
 
 [node name="Referenbcia" type="Sprite2D" parent="."]
-z_index = -2
-texture = ExtResource("2_0mt26")
+visible = false
+z_index = 1
+position = Vector2(112, 136)
+texture = ExtResource("4_0kgik")
 centered = false

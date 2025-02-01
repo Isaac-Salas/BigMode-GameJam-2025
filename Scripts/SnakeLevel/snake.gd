@@ -60,7 +60,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	label.text = str(score)
-
+	#head.global_position.x = clamp(head.global_position.x,144,640)
+	#head.global_position.y =clamp(head.global_position.y,0,480)
+	#print(head.global_position)
 
 
 func _unhandled_input(event):
@@ -185,6 +187,7 @@ func _on_timer_timeout():
 			#print(tail.position)
 			
 func add_segment(sibling : Node2D, num_pieces : int) :
+	print("adding segment", num_pieces)
 	for num in num_pieces:
 		score += 1
 		var newsegment : SegmentSnake = SEGMENT.instantiate()
@@ -227,6 +230,7 @@ func win():
 	timer.stop()
 	ownscale.scale_amount = Vector2(0,0)
 	ownscale.tween_scale()
+	camera.global_position = wincammarker.global_position
 	
 
 func die():
@@ -237,6 +241,7 @@ func die():
 
 func eat(body : RigidBody2D, spawner : Marker2D):
 	body.position = spawner.position
+	body.z_index = 0
 	body.reparent(eaten_stuff)
 	body.set_deferred("freeze", false)
 	body.add_constant_force(Vector2(randi_range(-20,20),0))

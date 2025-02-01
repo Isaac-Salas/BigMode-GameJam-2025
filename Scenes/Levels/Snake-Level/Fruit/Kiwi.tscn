@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2qtqejcaw661"]
 
 [ext_resource type="PackedScene" uid="uid://cl0j0kdwhmoii" path="res://Scenes/Levels/Snake-Level/Fruit/FruitTemp.tscn" id="1_71i2k"]
-[ext_resource type="Texture2D" uid="uid://bs3joi3evaqtt" path="res://Assets/Sprites/Portraits/Fruit_Kiwi.png" id="2_hkjjm"]
+[ext_resource type="Texture2D" uid="uid://dxv66xhow3rn4" path="res://Assets/Sprites/Portraits/Fruit_Kiwi.png" id="2_hkjjm"]
 
 [node name="Kiwi" groups=["Kiwi"] instance=ExtResource("1_71i2k")]
 

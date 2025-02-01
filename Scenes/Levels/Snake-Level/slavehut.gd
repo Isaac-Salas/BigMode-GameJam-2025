@@ -1,4 +1,5 @@
 extends Sprite2D
+class_name SlaveHut
 @onready var timer = $Timer
 @onready var spawner_component = $SpawnerComponent
 

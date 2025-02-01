@@ -1,3 +1,4 @@
 extends Node
-var currentsong
-var lastplace
+@onready var currentsong
+@onready var lastplace
+@onready var shader : String

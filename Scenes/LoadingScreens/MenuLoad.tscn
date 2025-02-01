@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0k5pj1vqlrt3"]
+
+[ext_resource type="Script" path="res://Scenes/LoadingScreens/main_load.gd" id="1_4fx3o"]
+[ext_resource type="Theme" uid="uid://cd6d31tdgl3h8" path="res://Assets/Fonts/text_theme.tres" id="2_fcih8"]
+[ext_resource type="Texture2D" uid="uid://h6naf0dplpch" path="res://Assets/Sprites/Loading/Loading.png" id="3_cby4c"]
+[ext_resource type="Texture2D" uid="uid://hb8s7depup4j" path="res://Assets/Sprites/Background/Estrellitas.png" id="4_irflv"]
+[ext_resource type="PackedScene" uid="uid://yn5cyp08chec" path="res://Scenes/Shaders/Shader-Grain.tscn" id="5_ww2tm"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5eju6"]
+light_mode = 1
+
+[node name="Tablero" type="Node2D"]
+script = ExtResource("1_4fx3o")
+ScenePath = "res://PUYO/board.tscn"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+z_index = 21
+offset_left = 128.0
+offset_top = 272.0
+offset_right = 512.0
+offset_bottom = 299.0
+theme = ExtResource("2_fcih8")
+
+[node name="Loading" type="Sprite2D" parent="."]
+z_index = 21
+position = Vector2(328, 240)
+texture = ExtResource("3_cby4c")
+centered = false
+offset = Vector2(-327, -162)
+
+[node name="Si tienes particulas, cargalas aqui" type="Node" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Si tienes particulas, cargalas aqui"]
+z_index = 20
+material = SubResource("CanvasItemMaterial_5eju6")
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0.129412, 0.0352941, 0.145098, 1)
+
+[node name="Parallax2D" type="Parallax2D" parent="Si tienes particulas, cargalas aqui/ColorRect"]
+z_index = 10
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(-50, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Si tienes particulas, cargalas aqui/ColorRect/Parallax2D"]
+z_index = -6
+texture = ExtResource("4_irflv")
+centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="Si tienes particulas, cargalas aqui/ColorRect"]
+modulate = Color(1, 1, 1, 0.235294)
+z_index = 10
+scroll_offset = Vector2(-150, 240)
+repeat_size = Vector2(640, 480)
+autoscroll = Vector2(-200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Si tienes particulas, cargalas aqui/ColorRect/Parallax2D2"]
+z_index = -7
+texture = ExtResource("4_irflv")
+centered = false
+
+[node name="Shaders" parent="." instance=ExtResource("5_ww2tm")]
+z_index = 2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

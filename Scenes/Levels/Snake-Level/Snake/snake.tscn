@@ -36,7 +36,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mijaa"]
-size = Vector2(8, 8)
+size = Vector2(1, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mlhbv"]
 blend_mode = 2

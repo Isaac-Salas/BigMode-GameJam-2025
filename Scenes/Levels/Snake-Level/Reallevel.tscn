@@ -399,16 +399,16 @@ position = Vector2(432, 144)
 position = Vector2(432, 128)
 
 [node name="Wall148" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(464, 72)
+position = Vector2(464, 64)
 
 [node name="Wall157" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(464, 56)
+position = Vector2(464, 48)
 
 [node name="Wall178" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(480, 56)
+position = Vector2(480, 48)
 
 [node name="Wall179" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(560, 56)
+position = Vector2(560, 48)
 
 [node name="Wall180" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(216, 112)
@@ -437,11 +437,35 @@ position = Vector2(184, 168)
 [node name="Wall219" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(288, 272)
 
+[node name="Wall231" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(272, 272)
+
+[node name="Wall232" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(240, 272)
+
+[node name="Wall233" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(224, 272)
+
+[node name="Wall234" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(208, 272)
+
+[node name="Wall235" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(176, 272)
+
+[node name="Wall236" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(160, 272)
+
+[node name="Wall237" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(336, 272)
+
 [node name="Wall220" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(192, 272)
 
 [node name="Wall221" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(304, 272)
+
+[node name="Wall238" parent="Walls" instance=ExtResource("17_ehdr0")]
+position = Vector2(256, 272)
 
 [node name="Wall222" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(320, 272)
@@ -588,7 +612,7 @@ position = Vector2(352, 416)
 position = Vector2(352, 432)
 
 [node name="Wall184" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(416, 296)
+position = Vector2(416, 288)
 
 [node name="Wall185" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(416, 432)
@@ -609,7 +633,7 @@ position = Vector2(576, 352)
 position = Vector2(512, 352)
 
 [node name="Wall192" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(512, 352)
+position = Vector2(512, 336)
 
 [node name="Wall158" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(368, 256)
@@ -1084,7 +1108,6 @@ position = Vector2(320, 240)
 [node name="Kiwi" parent="Fruit" instance=ExtResource("15_idpwr")]
 z_index = -3
 position = Vector2(488, 392)
-value = 2
 
 [node name="Kiwi2" parent="Fruit" instance=ExtResource("15_idpwr")]
 z_index = -3
@@ -1093,56 +1116,66 @@ position = Vector2(552, 392)
 [node name="Kiwi10" parent="Fruit" instance=ExtResource("15_idpwr")]
 z_index = -3
 position = Vector2(328, 408)
-value = 1
 
 [node name="Kiwi9" parent="Fruit" instance=ExtResource("15_idpwr")]
 z_index = -3
 position = Vector2(344, 424)
-value = 1
 
 [node name="Kiwi8" parent="Fruit" instance=ExtResource("15_idpwr")]
 z_index = -3
 position = Vector2(312, 440)
-value = 1
 
 [node name="Kiwi6" parent="Fruit" instance=ExtResource("15_idpwr")]
 z_index = -3
 position = Vector2(536, 72)
-value = 1
 
 [node name="Kiwi7" parent="Fruit" instance=ExtResource("15_idpwr")]
 z_index = -3
 position = Vector2(440, 184)
-value = 1
+
+[node name="Kiwi11" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
+position = Vector2(232, 200)
+
+[node name="Kiwi12" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
+position = Vector2(168, 440)
+
+[node name="Kiwi13" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
+position = Vector2(184, 440)
+
+[node name="Kiwi14" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
+position = Vector2(184, 424)
+
+[node name="Kiwi15" parent="Fruit" instance=ExtResource("15_idpwr")]
+z_index = -3
+position = Vector2(168, 424)
 
 [node name="Frutiña" parent="Fruit" instance=ExtResource("24_nt6hc")]
 z_index = -3
 position = Vector2(488, 344)
-value = 1
 
 [node name="Frutiña7" parent="Fruit" instance=ExtResource("24_nt6hc")]
 z_index = -3
-position = Vector2(488, 344)
+position = Vector2(536, 296)
 
 [node name="Frutiña10" parent="Fruit" instance=ExtResource("24_nt6hc")]
 z_index = -3
 position = Vector2(312, 408)
-value = 1
 
 [node name="Frutiña9" parent="Fruit" instance=ExtResource("24_nt6hc")]
 z_index = -3
 position = Vector2(344, 440)
-value = 1
 
 [node name="Frutiña8" parent="Fruit" instance=ExtResource("24_nt6hc")]
 z_index = -3
 position = Vector2(328, 424)
-value = 1
 
 [node name="Frutiña6" parent="Fruit" instance=ExtResource("24_nt6hc")]
 z_index = -3
 position = Vector2(424, 72)
-value = 1
 
 [node name="Frutiña2" parent="Fruit" instance=ExtResource("24_nt6hc")]
 z_index = -3
@@ -1150,8 +1183,15 @@ position = Vector2(488, 296)
 
 [node name="Frutiña5" parent="Fruit" instance=ExtResource("24_nt6hc")]
 z_index = -3
-position = Vector2(560, 216)
-value = 1
+position = Vector2(552, 216)
+
+[node name="Frutiña11" parent="Fruit" instance=ExtResource("24_nt6hc")]
+z_index = -3
+position = Vector2(216, 328)
+
+[node name="Frutiña12" parent="Fruit" instance=ExtResource("24_nt6hc")]
+z_index = -3
+position = Vector2(248, 328)
 
 [node name="Manzana" parent="Fruit" instance=ExtResource("25_qxjio")]
 z_index = -3
@@ -1160,7 +1200,6 @@ position = Vector2(536, 344)
 [node name="Manzana13" parent="Fruit" instance=ExtResource("25_qxjio")]
 z_index = -3
 position = Vector2(344, 408)
-value = 1
 
 [node name="Manzana2" parent="Fruit" instance=ExtResource("25_qxjio")]
 z_index = -3
@@ -1169,17 +1208,38 @@ position = Vector2(424, 376)
 [node name="Manzana11" parent="Fruit" instance=ExtResource("25_qxjio")]
 z_index = -3
 position = Vector2(328, 440)
-value = 1
 
 [node name="Manzana12" parent="Fruit" instance=ExtResource("25_qxjio")]
 z_index = -3
 position = Vector2(312, 424)
-value = 1
 
 [node name="Manzana10" parent="Fruit" instance=ExtResource("25_qxjio")]
 z_index = -3
-position = Vector2(264, 280)
-value = 1
+position = Vector2(264, 264)
+
+[node name="Manzana14" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
+position = Vector2(344, 376)
+
+[node name="Manzana15" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
+position = Vector2(344, 360)
+
+[node name="Manzana16" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
+position = Vector2(344, 344)
+
+[node name="Manzana17" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
+position = Vector2(344, 200)
+
+[node name="Manzana18" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
+position = Vector2(312, 152)
+
+[node name="Manzana19" parent="Fruit" instance=ExtResource("25_qxjio")]
+z_index = -3
+position = Vector2(264, 152)
 
 [node name="Slavehut" parent="Fruit" instance=ExtResource("26_v8ed0")]
 position = Vector2(344, 216)
@@ -1188,10 +1248,10 @@ position = Vector2(344, 216)
 position = Vector2(200, 200)
 
 [node name="Slavehut5" parent="Fruit" instance=ExtResource("26_v8ed0")]
-position = Vector2(264, 144)
+position = Vector2(264, 136)
 
 [node name="Slavehut6" parent="Fruit" instance=ExtResource("26_v8ed0")]
-position = Vector2(312, 176)
+position = Vector2(312, 168)
 
 [node name="Slavehut7" parent="Fruit" instance=ExtResource("26_v8ed0")]
 position = Vector2(200, 344)
@@ -1209,10 +1269,10 @@ position = Vector2(504, 136)
 position = Vector2(536, 136)
 
 [node name="Slavehut12" parent="Fruit" instance=ExtResource("26_v8ed0")]
-position = Vector2(504, 80)
+position = Vector2(504, 72)
 
 [node name="Slavehut13" parent="Fruit" instance=ExtResource("26_v8ed0")]
-position = Vector2(568, 112)
+position = Vector2(568, 104)
 
 [node name="Slavehut2" parent="Fruit" instance=ExtResource("26_v8ed0")]
 position = Vector2(264, 248)
@@ -1223,80 +1283,66 @@ position = Vector2(472, 184)
 [node name="Manzana3" parent="Fruit" instance=ExtResource("25_qxjio")]
 z_index = -3
 position = Vector2(488, 248)
-value = 1
 
 [node name="Manzana4" parent="Fruit" instance=ExtResource("25_qxjio")]
 z_index = -3
 position = Vector2(472, 248)
-value = 1
 
 [node name="Manzana5" parent="Fruit" instance=ExtResource("25_qxjio")]
 z_index = -3
 position = Vector2(472, 232)
-value = 1
 
 [node name="Manzana6" parent="Fruit" instance=ExtResource("25_qxjio")]
 z_index = -3
 position = Vector2(472, 216)
-value = 1
 
 [node name="Manzana7" parent="Fruit" instance=ExtResource("25_qxjio")]
 z_index = -3
 position = Vector2(472, 200)
-value = 1
 
 [node name="Kiwi3" parent="Fruit" instance=ExtResource("15_idpwr")]
 z_index = -3
 position = Vector2(360, 40)
-value = 1
 
 [node name="Kiwi4" parent="Fruit" instance=ExtResource("15_idpwr")]
 z_index = -3
 position = Vector2(360, 40)
-value = 1
 
 [node name="Kiwi5" parent="Fruit" instance=ExtResource("15_idpwr")]
 z_index = -3
 position = Vector2(376, 56)
-value = 1
 
 [node name="Frutiña3" parent="Fruit" instance=ExtResource("24_nt6hc")]
 z_index = -3
 position = Vector2(360, 56)
-value = 1
 
 [node name="Frutiña4" parent="Fruit" instance=ExtResource("24_nt6hc")]
 z_index = -3
 position = Vector2(376, 72)
-value = 1
 
 [node name="Manzana8" parent="Fruit" instance=ExtResource("25_qxjio")]
 z_index = -3
 position = Vector2(376, 40)
-value = 1
 
 [node name="Manzana9" parent="Fruit" instance=ExtResource("25_qxjio")]
 z_index = -3
 position = Vector2(360, 72)
-value = 1
 
-[node name="Tapador" parent="." instance=ExtResource("27_5vur2")]
-z_index = -2
-position = Vector2(400, 32)
-scale = Vector2(13, 14)
-metadata/_edit_lock_ = true
+[node name="Tapadores" type="Node2D" parent="."]
 
-[node name="Tapador2" parent="." instance=ExtResource("27_5vur2")]
+[node name="Tapador" parent="Tapadores" instance=ExtResource("27_5vur2")]
 z_index = -2
-position = Vector2(160, 32)
-scale = Vector2(11, 22)
+position = Vector2(384, 32)
+scale = Vector2(15, 15)
 
-[node name="Tapador3" parent="." instance=ExtResource("27_5vur2")]
+[node name="Tapador2" parent="Tapadores" instance=ExtResource("27_5vur2")]
 z_index = -2
-position = Vector2(336, 96)
-scale = Vector2(3, 18)
+position = Vector2(144, 32)
+scale = Vector2(15, 15)
 
-[node name="Tapador4" parent="." instance=ExtResource("27_5vur2")]
+[node name="Tapador3" parent="Tapadores" instance=ExtResource("27_5vur2")]
 z_index = -2
-position = Vector2(160, 384)
-scale = Vector2(8, 4)
+position = Vector2(144, 272)
+scale = Vector2(15, 12)
+
+[node name="Shaders" parent="." instance=ExtResource("20_wh2sk")]

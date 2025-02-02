@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scenes/Shaders/shader_grain.gd" id="1_b0ofe"]
 [ext_resource type="Shader" path="res://Scenes/Shaders/testing.gdshader" id="1_cw3f6"]
 [ext_resource type="Shader" path="res://Scenes/Startup/Startup.gdshader" id="1_gxqks"]
-[ext_resource type="Texture2D" uid="uid://34eycj4wmsyd" path="res://Assets/Sprites/SnakeLevel/Solologo.png" id="4_0kgik"]
-[ext_resource type="Texture2D" uid="uid://u5h3p5s22opb" path="res://Assets/Sprites/Background/FondoMenu.png" id="5_dfnfv"]
+[ext_resource type="Texture2D" uid="uid://c5enjklyhs05r" path="res://Assets/Sprites/SnakeLevel/Solologo.png" id="4_0kgik"]
+[ext_resource type="Texture2D" uid="uid://cs4em2uubj3au" path="res://Assets/Sprites/Background/FondoMenu.png" id="5_dfnfv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q7ru6"]
 shader = ExtResource("1_cw3f6")
@@ -32,7 +32,6 @@ shader_parameter/grain_size = 0.1
 script = ExtResource("1_b0ofe")
 
 [node name="CRT" type="ColorRect" parent="."]
-visible = false
 z_index = 20
 material = SubResource("ShaderMaterial_q7ru6")
 offset_right = 640.0
@@ -40,6 +39,7 @@ offset_bottom = 480.0
 mouse_filter = 2
 
 [node name="Noise" type="ColorRect" parent="."]
+visible = false
 z_index = 20
 material = SubResource("ShaderMaterial_11eot")
 offset_right = 640.0

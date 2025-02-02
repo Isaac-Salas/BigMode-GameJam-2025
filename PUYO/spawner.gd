@@ -3,6 +3,7 @@ extends Node2D
 @onready var fall: Timer = $fall
 @onready var puyo_blueprint: PackedScene = preload("res://PUYO/puyo.tscn")
 @onready var popping_puyos = []
+@onready var update_fall: Timer = $"../Timer"
 
 @onready var base_scale: ScaleComponent = $"../baseScale"
 @onready var mult_scale: ScaleComponent = $"../multScale"
@@ -18,6 +19,7 @@ signal score_base(base)
 signal puyo_multiplied(puyo_multiplied)
 signal free_puyo()
 var explode_puyo = -1
+var time_drop = 0.5
 
 var shit_happening = false
 var puyo_rotate
@@ -189,8 +191,7 @@ func clear_all(color):
 				
 	explode_puyo = -1
 	await get_tree().create_timer(0.6).timeout
-	await drop_puyos()
-	var actual_puyo = []
+	var actual_puyo = await drop_puyos()
 	for positions in noncolorpuyos:
 		actual_puyo.append(get_puyo_at_position(positions))
 	return actual_puyo
@@ -267,7 +268,6 @@ func drop_puyos() -> Array:
 						dropped.append(puyo)
 						puyo.grid_pos = Vector2i(x, drop_to)
 						animate_fall(puyo, grid_to_world(Vector2i(x, drop_to)))
-						free_puyo.emit()
 				drop_to -= 1
 	await get_tree().create_timer(0.3).timeout
 	return dropped
@@ -404,7 +404,7 @@ func _on_fall_timeout():
 		puyo_rotate.position.y += 36
 		puyo_main.grid_pos.y += 1
 		puyo_rotate.grid_pos.y += 1
-		fall.start(0.5)
+		fall.start(time_drop)
 	elif !shit_happening:
 		shit_happening = true
 		var score_pog = current_mult * await find_fall()
@@ -418,7 +418,15 @@ func _on_fall_timeout():
 		free_puyo.emit()
 		puyo_main = null
 		puyo_rotate = null
-		fall.start(0.5)
+		fall.start(time_drop)
 		spawn_puyos()
 	else:
-		fall.start(0.5)
+		fall.start(time_drop)
+
+
+func _on_timer_timeout() -> void:
+	if time_drop > 0.20:
+		time_drop -= 0.02
+		update_fall.start()
+	
+	

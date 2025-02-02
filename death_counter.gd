@@ -20,16 +20,20 @@ func _process(_delta: float) -> void:
 		add(queue[-1])
 	
 func _on_puyo_despawn(cause : String):
-	match cause:
-		'free':
-			saved =+ 1
-			queue.append(cause)
-		'killed':
-			killed += 1
-			queue.append(cause)
-	if next_position.x == width-1  and next_position.y == height:
+	if (next_position.x == width-1 and next_position.y == height) or next_position.y > height:
 		game_finished.emit()
-	return true
+		counter_tile.clear()
+		next_position = Vector2i(-1,0)
+		return false
+	else:
+		match cause:
+			'free':
+				saved =+ 1
+				queue.append(cause)
+			'killed':
+				killed += 1
+				queue.append(cause)
+		return true
 
 func add(item):
 	adding = true
@@ -38,7 +42,7 @@ func add(item):
 			counter_tile.set_cell(get_next_position(next_position), 0, heart_texture)
 		'killed':
 			counter_tile.set_cell(get_next_position(next_position), 0, skull_texture)
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.4).timeout
 	queue.erase(queue.back())
 	adding = false
 	

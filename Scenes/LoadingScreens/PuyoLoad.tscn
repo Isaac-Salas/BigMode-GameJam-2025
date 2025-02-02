@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scenes/LoadingScreens/main_load.gd" id="1_wmf3l"]
 [ext_resource type="Theme" uid="uid://cd6d31tdgl3h8" path="res://Assets/Fonts/text_theme.tres" id="2_jeb3b"]
-[ext_resource type="Texture2D" uid="uid://h6naf0dplpch" path="res://Assets/Sprites/Loading/Loading.png" id="3_j3e0i"]
-[ext_resource type="Texture2D" uid="uid://hb8s7depup4j" path="res://Assets/Sprites/Background/Estrellitas.png" id="4_m1qnu"]
+[ext_resource type="Texture2D" uid="uid://edaptjofqkfe" path="res://Assets/Sprites/Loading/Loading.png" id="3_j3e0i"]
+[ext_resource type="Texture2D" uid="uid://i0f54pmvw217" path="res://Assets/Sprites/Background/Estrellitas.png" id="4_m1qnu"]
 [ext_resource type="PackedScene" uid="uid://u85s4lo3myge" path="res://PUYO/board.tscn" id="5_kkf75"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5eju6"]

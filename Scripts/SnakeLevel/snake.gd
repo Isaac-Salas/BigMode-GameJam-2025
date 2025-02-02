@@ -36,14 +36,14 @@ class_name FullSnake
 @onready var secondary = $Secondary
 
 @onready var chewing = $Chewing
-
-
+@export var winplayer : AnimationPlayer
+const SNAKE_LOAD = preload("res://Scenes/LoadingScreens/SnakeLoad.tscn")
 const CRUNCH = preload("res://Assets/SFX/Snake/Crunch.wav")
 const EVIL = preload("res://Assets/SFX/Snake/Evil.wav")
 const HAPPY = preload("res://Assets/SFX/Snake/Happy.wav")
 const SCREAM = preload("res://Assets/SFX/Snake/Scream.wav")
 const RICK = preload("res://Assets/SFX/Snake/Rick.wav")
-
+const SNAKE_SCORE = preload("res://Scenes/LoadingScreens/SnakeScore.tscn")
 const SEGMENT = preload("res://Scenes/Levels/Snake-Level/Segment/segment.tscn")
 const KIWI = preload("res://Assets/Sprites/Portraits/Fruit_Kiwi.png")
 const MANZANAI = preload("res://Assets/Sprites/Portraits/Fruit_Manzanai.png")
@@ -67,13 +67,15 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
 func _process(delta):
 	label.text = str(score)
-	head.global_position.x = clamp(head.global_position.x,160,608)
-	head.global_position.y =clamp(head.global_position.y,32,448)
+	head.global_position.x = clamp(head.global_position.x,128,640)
+	head.global_position.y =clamp(head.global_position.y,0,480)
 	#print(head.global_position)
 
 
+@warning_ignore("unused_parameter")
 func _input(event):
 	#print(allthefruit)
 	if Input.is_action_just_pressed("ui_left"):
@@ -241,6 +243,17 @@ func win():
 	ownscale.scale_amount = Vector2(0,0)
 	ownscale.tween_scale()
 	camera.global_position = wincammarker.global_position
+	#Global.alltheshit = allthefruit
+	for i in allthefruit:
+		if i is Fruit:
+			Global.allthefruit += 1
+		if i is Alien:
+			Global.allthealiens += 1 
+	winplayer.play("Megafade")
+	await winplayer.animation_finished
+	get_tree().change_scene_to_packed(SNAKE_SCORE)
+	
+		
 	
 
 func die():
@@ -249,6 +262,7 @@ func die():
 	ownscale.tween_scale()
 	#camera.zoom = 3
 
+@warning_ignore("shadowed_variable")
 func eat(body : RigidBody2D, spawner : Marker2D):
 	body.position = spawner.position
 	body.z_index = 0

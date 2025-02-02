@@ -33,8 +33,16 @@ class_name FullSnake
 @onready var piedrotas = $Head/Piedrotas
 @onready var label = $Label
 @export var wincammarker : Marker2D 
+@onready var secondary = $Secondary
+
+@onready var chewing = $Chewing
 
 
+const CRUNCH = preload("res://Assets/SFX/Snake/Crunch.wav")
+const EVIL = preload("res://Assets/SFX/Snake/Evil.wav")
+const HAPPY = preload("res://Assets/SFX/Snake/Happy.wav")
+const SCREAM = preload("res://Assets/SFX/Snake/Scream.wav")
+const RICK = preload("res://Assets/SFX/Snake/Rick.wav")
 
 const SEGMENT = preload("res://Scenes/Levels/Snake-Level/Segment/segment.tscn")
 const KIWI = preload("res://Assets/Sprites/Portraits/Fruit_Kiwi.png")
@@ -54,15 +62,15 @@ func _ready():
 	currentdir =  Vector2(1,0)
 	snakesize = pieces.size()
 	segments = pieces[selectedpiece]
-	score = snakesize - 6
+	score = snakesize - 8
 	comparison = head.position - previoushead
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	label.text = str(score)
-	head.global_position.x = clamp(head.global_position.x,144,640)
-	head.global_position.y =clamp(head.global_position.y,0,480)
+	head.global_position.x = clamp(head.global_position.x,160,608)
+	head.global_position.y =clamp(head.global_position.y,32,448)
 	#print(head.global_position)
 
 
@@ -256,6 +264,9 @@ func _on_area_2d_body_entered(body):
 	if body.is_in_group("Segment"):
 		die()
 	elif body is Fruit and body != null:
+		chewing.stream = CRUNCH
+		chewing.pitch_scale = randf_range(1,3)
+		chewing.play()
 		particles.restart()
 		body.burbujes.emitting = true
 		particles.emitting = true
@@ -267,6 +278,12 @@ func _on_area_2d_body_entered(body):
 		if score >= 65:
 			win()
 	elif body is Alien:
+		chewing.stream = CRUNCH
+		chewing.pitch_scale = randf_range(1,3)
+		chewing.play()
+		secondary.stream = SCREAM
+		secondary.pitch_scale = randf_range(1,3)
+		secondary.play()
 		blood.restart()
 		bones.restart()
 		blood.emitting = true
@@ -279,6 +296,12 @@ func _on_area_2d_body_entered(body):
 		eat(body,spawner)
 	elif body.is_in_group("Wall"):
 		if score != 1:
+			chewing.stream = CRUNCH
+			chewing.pitch_scale = randf_range(1,3)
+			chewing.play()
+			secondary.stream = RICK
+			secondary.pitch_scale = randf_range(1,3)
+			secondary.play()
 			area_2d.monitoring = false
 			ownscale.tween_scale()
 			area_2d.monitoring = true

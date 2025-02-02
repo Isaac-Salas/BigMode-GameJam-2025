@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://ql55iquv76t6"]
 
 [ext_resource type="Script" path="res://Scenes/LoadingScreens/main_load.gd" id="1_fiaf3"]
-[ext_resource type="Texture2D" uid="uid://h6naf0dplpch" path="res://Assets/Sprites/Loading/Loading.png" id="2_lc6wg"]
-[ext_resource type="Texture2D" uid="uid://hb8s7depup4j" path="res://Assets/Sprites/Background/Estrellitas.png" id="3_1jtkt"]
+[ext_resource type="Texture2D" uid="uid://edaptjofqkfe" path="res://Assets/Sprites/Loading/Loading.png" id="2_lc6wg"]
+[ext_resource type="Texture2D" uid="uid://i0f54pmvw217" path="res://Assets/Sprites/Background/Estrellitas.png" id="3_1jtkt"]
 [ext_resource type="Theme" uid="uid://cd6d31tdgl3h8" path="res://Assets/Fonts/text_theme.tres" id="4_ljkrf"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5eju6"]

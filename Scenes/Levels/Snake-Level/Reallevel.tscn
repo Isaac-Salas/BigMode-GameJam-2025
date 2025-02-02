@@ -1,27 +1,27 @@
 [gd_scene load_steps=51 format=4 uid="uid://c1rna4op34asr"]
 
-[ext_resource type="Texture2D" uid="uid://6qx5c7gnj0v7" path="res://Assets/Sprites/Background/Elpurofondo.png" id="1_5ffc7"]
+[ext_resource type="Texture2D" uid="uid://c0vwpf4ukytxu" path="res://Assets/Sprites/Background/Elpurofondo.png" id="1_5ffc7"]
 [ext_resource type="Script" path="res://Scenes/Levels/Snake-Level/reallevel.gd" id="1_6cnhb"]
-[ext_resource type="Texture2D" uid="uid://ce6sf8mwkx7rn" path="res://Assets/Sprites/Background/Elpurofondo_n.png" id="2_4suai"]
+[ext_resource type="Texture2D" uid="uid://6rstfenu8wxr" path="res://Assets/Sprites/Background/Elpurofondo_n.png" id="2_4suai"]
 [ext_resource type="PackedScene" uid="uid://btrdct8207ogu" path="res://Scenes/Levels/Snake-Level/Snake/snake.tscn" id="3_r0f1w"]
-[ext_resource type="Texture2D" uid="uid://u2geem6i1pah" path="res://Assets/Sprites/Background/BacknoHUD-Revision.png" id="4_couw8"]
+[ext_resource type="Texture2D" uid="uid://t4xbv08cq6fx" path="res://Assets/Sprites/Background/BacknoHUD-Revision.png" id="4_couw8"]
 [ext_resource type="SpriteFrames" uid="uid://dpixnst4n47ur" path="res://Scenes/Startup/Piggy.tres" id="5_3pnwi"]
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/Portraitparticles.gd" id="6_6wdmp"]
 [ext_resource type="Material" uid="uid://do655fufnrire" path="res://Scenes/Levels/Snake-Level/Snake/HappyOrsad.tres" id="7_36mmy"]
-[ext_resource type="Texture2D" uid="uid://cghgk338ow1w4" path="res://Assets/Sprites/SnakeLevel/CaraFeliz.png" id="8_fl3wd"]
+[ext_resource type="Texture2D" uid="uid://cu7vhh1dokwhf" path="res://Assets/Sprites/SnakeLevel/CaraFeliz.png" id="8_fl3wd"]
 [ext_resource type="Script" path="res://Components/scale_component.gd" id="9_c3gjg"]
-[ext_resource type="Texture2D" uid="uid://c3jqq2o5stf2y" path="res://Assets/Lights/Lamparacolgosa.png" id="10_osqxa"]
-[ext_resource type="Texture2D" uid="uid://dmfbug1rktk4k" path="res://Assets/Sprites/Background/AcidLower_.png" id="11_nmjt2"]
+[ext_resource type="Texture2D" uid="uid://b0s1eettowrpo" path="res://Assets/Lights/Lamparacolgosa.png" id="10_osqxa"]
+[ext_resource type="Texture2D" uid="uid://btxqpfblphkiy" path="res://Assets/Sprites/Background/AcidLower_.png" id="11_nmjt2"]
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/acid.gd" id="12_eas0h"]
-[ext_resource type="Texture2D" uid="uid://b855olkmfusmq" path="res://Assets/Sprites/Background/AcidUpper_.png" id="13_eqyth"]
-[ext_resource type="Texture2D" uid="uid://jea7pshvbti4" path="res://Assets/Sprites/SnakeLevel/GridExample.png" id="14_kyn87"]
-[ext_resource type="Texture2D" uid="uid://ds5s6c5s7dw6e" path="res://Assets/Sprites/SnakeLevel/Flechita.png" id="15_cvh84"]
+[ext_resource type="Texture2D" uid="uid://b6i0whuhguax4" path="res://Assets/Sprites/Background/AcidUpper_.png" id="13_eqyth"]
+[ext_resource type="Texture2D" uid="uid://cg33sup2s574a" path="res://Assets/Sprites/SnakeLevel/GridExample.png" id="14_kyn87"]
+[ext_resource type="Texture2D" uid="uid://dkoyukm7es1se" path="res://Assets/Sprites/SnakeLevel/Flechita.png" id="15_cvh84"]
 [ext_resource type="PackedScene" uid="uid://b2qtqejcaw661" path="res://Scenes/Levels/Snake-Level/Fruit/Kiwi.tscn" id="15_idpwr"]
 [ext_resource type="PackedScene" uid="uid://bhvw22svggwec" path="res://Grid32.tscn" id="16_c4hnq"]
 [ext_resource type="Script" path="res://Scenes/Levels/Snake-Level/flechita.gd" id="16_vsofx"]
 [ext_resource type="PackedScene" uid="uid://i02rf07aas0h" path="res://Scenes/Levels/Snake-Level/wall.tscn" id="17_ehdr0"]
 [ext_resource type="PackedScene" uid="uid://h4302js3t2gs" path="res://Scenes/Stuff/barrera.tscn" id="18_eugx0"]
-[ext_resource type="Texture2D" uid="uid://hb8s7depup4j" path="res://Assets/Sprites/Background/Estrellitas.png" id="18_xd3x5"]
+[ext_resource type="Texture2D" uid="uid://i0f54pmvw217" path="res://Assets/Sprites/Background/Estrellitas.png" id="18_xd3x5"]
 [ext_resource type="PackedScene" uid="uid://yn5cyp08chec" path="res://Scenes/Shaders/Shader-Grain.tscn" id="20_wh2sk"]
 [ext_resource type="PackedScene" uid="uid://dllvgv1rftyo" path="res://Scenes/Levels/Snake-Level/Fruit/Naranja.tscn" id="24_nt6hc"]
 [ext_resource type="PackedScene" uid="uid://crxvneikqj06u" path="res://Scenes/Levels/Snake-Level/Fruit/ManzanaReal.tscn" id="25_qxjio"]
@@ -209,6 +209,7 @@ wincammarker = NodePath("../HUD/Wincam")
 camera = NodePath("../Camera2D")
 
 [node name="Label" type="Label" parent="Snake"]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 
@@ -384,13 +385,13 @@ position = Vector2(544, 256)
 position = Vector2(480, 176)
 
 [node name="Wall143" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(552, 176)
+position = Vector2(560, 176)
 
 [node name="Wall144" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(552, 160)
+position = Vector2(560, 160)
 
 [node name="Wall145" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(552, 144)
+position = Vector2(560, 144)
 
 [node name="Wall146" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(432, 144)
@@ -411,28 +412,28 @@ position = Vector2(480, 48)
 position = Vector2(560, 48)
 
 [node name="Wall180" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(216, 112)
+position = Vector2(208, 112)
 
 [node name="Wall181" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(296, 112)
+position = Vector2(288, 112)
 
 [node name="Wall182" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(280, 112)
+position = Vector2(272, 112)
 
 [node name="Wall214" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(264, 112)
+position = Vector2(256, 112)
 
 [node name="Wall215" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(248, 112)
+position = Vector2(240, 112)
 
 [node name="Wall216" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(232, 112)
+position = Vector2(224, 112)
 
 [node name="Wall217" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(184, 152)
+position = Vector2(176, 144)
 
 [node name="Wall218" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(184, 168)
+position = Vector2(176, 160)
 
 [node name="Wall219" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(288, 272)
@@ -1038,13 +1039,13 @@ position = Vector2(384, 160)
 position = Vector2(384, 144)
 
 [node name="Wall203" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(216, 64)
+position = Vector2(208, 64)
 
 [node name="Wall204" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(216, 48)
+position = Vector2(208, 48)
 
 [node name="Wall205" parent="Walls" instance=ExtResource("17_ehdr0")]
-position = Vector2(216, 32)
+position = Vector2(208, 32)
 
 [node name="Wall152" parent="Walls" instance=ExtResource("17_ehdr0")]
 position = Vector2(384, 32)
@@ -1346,3 +1347,6 @@ position = Vector2(144, 272)
 scale = Vector2(15, 12)
 
 [node name="Shaders" parent="." instance=ExtResource("20_wh2sk")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+bus = &"Music"

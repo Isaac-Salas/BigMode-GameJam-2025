@@ -1,10 +1,10 @@
-[gd_scene load_steps=147 format=3 uid="uid://bapqb1gvotcod"]
+[gd_scene load_steps=156 format=3 uid="uid://bapqb1gvotcod"]
 
 [ext_resource type="Script" path="res://PUYO/puyo.gd" id="1_yhwdu"]
-[ext_resource type="Texture2D" uid="uid://wec1yrtsc6pq" path="res://Assets/Sprites/Portraits/BlueSlave_.png" id="2_nqbo8"]
-[ext_resource type="Texture2D" uid="uid://d2d8lqwunumh4" path="res://Assets/Sprites/Portraits/GreenSlave_.png" id="3_pdayo"]
-[ext_resource type="Texture2D" uid="uid://cdxjfyevxriik" path="res://Assets/Sprites/Portraits/YellowSlave_.png" id="4_oiqw4"]
-[ext_resource type="Texture2D" uid="uid://0xu8mok7jupb" path="res://Assets/Sprites/Portraits/RedSlave_.png" id="4_ydqnh"]
+[ext_resource type="Texture2D" uid="uid://dy1875syx6esm" path="res://Assets/Sprites/Portraits/BlueSlave_.png" id="2_nqbo8"]
+[ext_resource type="Texture2D" uid="uid://ci3slt7l2fpr3" path="res://Assets/Sprites/Portraits/GreenSlave_.png" id="3_pdayo"]
+[ext_resource type="Texture2D" uid="uid://bneuba7cxghpc" path="res://Assets/Sprites/Portraits/YellowSlave_.png" id="4_oiqw4"]
+[ext_resource type="Texture2D" uid="uid://mdhj05v8d0vb" path="res://Assets/Sprites/Portraits/RedSlave_.png" id="4_ydqnh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtw33"]
 atlas = ExtResource("2_nqbo8")
@@ -177,6 +177,42 @@ region = Rect2(256, 128, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kxyg"]
 atlas = ExtResource("3_pdayo")
 region = Rect2(256, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_464oa"]
+atlas = ExtResource("3_pdayo")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e35gb"]
+atlas = ExtResource("3_pdayo")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f35gi"]
+atlas = ExtResource("3_pdayo")
+region = Rect2(320, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7admp"]
+atlas = ExtResource("3_pdayo")
+region = Rect2(320, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0gnh"]
+atlas = ExtResource("3_pdayo")
+region = Rect2(320, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vy72l"]
+atlas = ExtResource("3_pdayo")
+region = Rect2(320, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nflh5"]
+atlas = ExtResource("3_pdayo")
+region = Rect2(320, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oally"]
+atlas = ExtResource("3_pdayo")
+region = Rect2(320, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spjtk"]
+atlas = ExtResource("3_pdayo")
+region = Rect2(320, 512, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kwri5"]
 atlas = ExtResource("3_pdayo")
@@ -623,7 +659,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"blue_bomb_explode",
-"speed": 10.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -736,6 +772,38 @@ animations = [{
 "loop": true,
 "name": &"green_bomb",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_464oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e35gb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f35gi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7admp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0gnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vy72l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nflh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oally")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spjtk")
+}],
+"loop": false,
+"name": &"green_bomb_explode",
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -873,7 +941,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"red_bomb_explode",
-"speed": 10.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1014,7 +1082,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"yellow_bomb_explode",
-"speed": 10.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1110,9 +1178,7 @@ script = ExtResource("1_yhwdu")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." groups=["puyo"]]
 sprite_frames = SubResource("SpriteFrames_hcgxv")
-animation = &"yellow_snap"
-frame = 6
-frame_progress = 1.0
+animation = &"green_bomb_explode"
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="animation_looped" from="Sprite" to="." method="_on_sprite_animation_looped"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://i02rf07aas0h"]
 
-[ext_resource type="Texture2D" uid="uid://qvq1x5vi4xib" path="res://Assets/Sprites/SnakeLevel/Rock.png" id="1_ehmfi"]
-[ext_resource type="Texture2D" uid="uid://bw80rjmsuoqsj" path="res://Assets/Lights/Lamparacolgosa.png" id="2_pgw37"]
+[ext_resource type="Texture2D" uid="uid://bjmjqafulb57s" path="res://Assets/Sprites/SnakeLevel/Rock.png" id="1_ehmfi"]
+[ext_resource type="Texture2D" uid="uid://c3jqq2o5stf2y" path="res://Assets/Lights/Lamparacolgosa.png" id="2_pgw37"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wr4o"]
-size = Vector2(16, 16)
+size = Vector2(8, 8)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fmexk"]
 blend_mode = 1
@@ -19,7 +19,6 @@ texture = ExtResource("1_ehmfi")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_4wr4o")
 

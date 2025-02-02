@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://rtx5yg0m0c30" path="res://Scenes/Levels/Snake-Level/Fruit/AliensSmol.tscn" id="4_75esa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_viofg"]
+size = Vector2(16, 16)
 
 [node name="Slavehut" type="Sprite2D"]
 z_index = -3

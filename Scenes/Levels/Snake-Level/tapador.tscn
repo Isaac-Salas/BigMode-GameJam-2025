@@ -5,21 +5,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g808c"]
 size = Vector2(16, 16)
 
-[sub_resource type="Animation" id="Animation_e7lrk"]
-resource_name = "new_animation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.129412, 0.0352941, 0.145098, 1), Color(0.1329, 0.036, 0.15, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_db6no"]
 length = 0.001
 tracks/0/type = "value"
@@ -33,6 +18,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.129412, 0.0352941, 0.145098, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e7lrk"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.129412, 0.0352941, 0.145098, 1), Color(0.1329, 0.036, 0.15, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lp8ka"]

@@ -1,15 +1,14 @@
 [gd_scene load_steps=151 format=3 uid="uid://dtci72hu3oiax"]
 
-[ext_resource type="Texture2D" uid="uid://ckqs3dngys5vm" path="res://Assets/Sprites/Background/Estrellitas.png" id="1_2ty5c"]
+[ext_resource type="Texture2D" uid="uid://hb8s7depup4j" path="res://Assets/Sprites/Background/Estrellitas.png" id="1_2ty5c"]
 [ext_resource type="Script" path="res://Scenes/Startup/InitialAnimScript.gd" id="1_bk8ni"]
 [ext_resource type="SpriteFrames" uid="uid://dpixnst4n47ur" path="res://Scenes/Startup/Piggy.tres" id="3_oapps"]
 [ext_resource type="Script" path="res://Scenes/Startup/piggy.gd" id="4_1nvp4"]
 [ext_resource type="PackedScene" uid="uid://127niqtxnogh" path="res://Components/dialog_box.tscn" id="4_6gcan"]
-[ext_resource type="Texture2D" uid="uid://c7knuerjqoewq" path="res://Assets/Lights/Lamparacolgosa.png" id="5_k1147"]
-[ext_resource type="AudioStream" uid="uid://bmiitky0d547u" path="res://Assets/Music/1.wav" id="6_hv35h"]
-[ext_resource type="Texture2D" uid="uid://dursyllbyg1r0" path="res://Assets/Sprites/Background/FondoMenu.png" id="7_l2rfb"]
+[ext_resource type="Texture2D" uid="uid://c3jqq2o5stf2y" path="res://Assets/Lights/Lamparacolgosa.png" id="5_k1147"]
+[ext_resource type="AudioStream" uid="uid://blgep5e1yn2ub" path="res://Assets/Music/1.wav" id="6_hv35h"]
+[ext_resource type="Texture2D" uid="uid://u5h3p5s22opb" path="res://Assets/Sprites/Background/FondoMenu.png" id="7_l2rfb"]
 [ext_resource type="Script" path="res://Scenes/Startup/sprite_2d.gd" id="8_htdvb"]
-
 [ext_resource type="Texture2D" uid="uid://34eycj4wmsyd" path="res://Assets/Sprites/SnakeLevel/Solologo.png" id="9_cnuhs"]
 [ext_resource type="Texture2D" uid="uid://de082qolr10qb" path="res://Assets/Sprites/Background/FondoMenu_n.png" id="9_qg6jt"]
 [ext_resource type="Texture2D" uid="uid://qp5kjj2hjvod" path="res://Assets/Sprites/Background/PlayLong.png" id="11_ivfti"]
@@ -22,7 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://c1gl8j8gvmoua" path="res://Assets/Sprites/Portraits/Enemigoto_planeta.png" id="19_38rlr"]
 [ext_resource type="Texture2D" uid="uid://dmitcqbbhj6hs" path="res://Assets/Sprites/Portraits/Enemiguito_planeta.png" id="20_un33q"]
 [ext_resource type="Texture2D" uid="uid://h3n3f8v8ikv6" path="res://Assets/Sprites/Portraits/SwampBass_Planet.png" id="21_on254"]
-
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_863sj"]
 light_mode = 1
@@ -1059,6 +1057,21 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_ppe2e"]
+resource_name = "Planetas"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_51c4k"]
 length = 0.001
 tracks/0/type = "value"
@@ -1084,21 +1097,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ppe2e"]
-resource_name = "Planetas"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qdk4r"]

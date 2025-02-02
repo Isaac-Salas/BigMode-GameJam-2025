@@ -20,6 +20,7 @@ class_name FullSnake
 @onready var scale_component : ScaleComponent = $"../HUD/ScaleComponent"
 @onready var ownscale = $ScaleComponent
 @onready var eaten_stuff = $"../HUD/EatenStuff"
+@onready var area_2d = $Head/Area2D
 
 @onready var particles : GPUParticles2D = $Head/CrumbsFruit
 @onready var allthefruit : Array[RigidBody2D]
@@ -60,12 +61,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	label.text = str(score)
-	#head.global_position.x = clamp(head.global_position.x,144,640)
-	#head.global_position.y =clamp(head.global_position.y,0,480)
+	head.global_position.x = clamp(head.global_position.x,144,640)
+	head.global_position.y =clamp(head.global_position.y,0,480)
 	#print(head.global_position)
 
 
-func _unhandled_input(event):
+func _input(event):
 	#print(allthefruit)
 	if Input.is_action_just_pressed("ui_left"):
 		if currentdir != Vector2(1,0) and currentdir != Vector2(-1,0):
@@ -224,6 +225,7 @@ func remove_segment(num_pieces : int , body : Node2D ) :
 	segments = pieces[selectedpiece]
 	timer.wait_time += 0.0008
 	movingcooldown.wait_time += 0.0008
+	allthefruit.pop_back().queue_free()
 	
 
 func win():
@@ -242,10 +244,12 @@ func die():
 func eat(body : RigidBody2D, spawner : Marker2D):
 	body.position = spawner.position
 	body.z_index = 0
-	body.reparent(eaten_stuff)
+	#body.call_deferred("reparent", eaten_stuff)
+	#body.reparent(eaten_stuff)
 	body.set_deferred("freeze", false)
 	body.add_constant_force(Vector2(randi_range(-20,20),0))
 	allthefruit.append(body)
+	print(allthefruit)
 
 
 func _on_area_2d_body_entered(body):
@@ -275,7 +279,9 @@ func _on_area_2d_body_entered(body):
 		eat(body,spawner)
 	elif body.is_in_group("Wall"):
 		if score != 1:
+			area_2d.monitoring = false
 			ownscale.tween_scale()
+			area_2d.monitoring = true
 			piedrotas.restart()
 			piedrotas.emitting = true
 			remove_segment(1, body)

@@ -1,32 +1,33 @@
-[gd_scene load_steps=54 format=4 uid="uid://c1rna4op34asr"]
+[gd_scene load_steps=55 format=4 uid="uid://c1rna4op34asr"]
 
-[ext_resource type="Texture2D" uid="uid://6qx5c7gnj0v7" path="res://Assets/Sprites/Background/Elpurofondo.png" id="1_5ffc7"]
+[ext_resource type="Texture2D" uid="uid://c0vwpf4ukytxu" path="res://Assets/Sprites/Background/Elpurofondo.png" id="1_5ffc7"]
 [ext_resource type="Script" path="res://Scenes/Levels/Snake-Level/reallevel.gd" id="1_6cnhb"]
-[ext_resource type="Texture2D" uid="uid://ce6sf8mwkx7rn" path="res://Assets/Sprites/Background/Elpurofondo_n.png" id="2_4suai"]
+[ext_resource type="Texture2D" uid="uid://6rstfenu8wxr" path="res://Assets/Sprites/Background/Elpurofondo_n.png" id="2_4suai"]
 [ext_resource type="PackedScene" uid="uid://btrdct8207ogu" path="res://Scenes/Levels/Snake-Level/Snake/snake.tscn" id="3_r0f1w"]
-[ext_resource type="Texture2D" uid="uid://u2geem6i1pah" path="res://Assets/Sprites/Background/BacknoHUD-Revision.png" id="4_couw8"]
+[ext_resource type="Texture2D" uid="uid://t4xbv08cq6fx" path="res://Assets/Sprites/Background/BacknoHUD-Revision.png" id="4_couw8"]
 [ext_resource type="SpriteFrames" uid="uid://dpixnst4n47ur" path="res://Scenes/Startup/Piggy.tres" id="5_3pnwi"]
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/Portraitparticles.gd" id="6_6wdmp"]
 [ext_resource type="Material" uid="uid://do655fufnrire" path="res://Scenes/Levels/Snake-Level/Snake/HappyOrsad.tres" id="7_36mmy"]
-[ext_resource type="Texture2D" uid="uid://cghgk338ow1w4" path="res://Assets/Sprites/SnakeLevel/CaraFeliz.png" id="8_fl3wd"]
+[ext_resource type="Texture2D" uid="uid://cu7vhh1dokwhf" path="res://Assets/Sprites/SnakeLevel/CaraFeliz.png" id="8_fl3wd"]
 [ext_resource type="Script" path="res://Components/scale_component.gd" id="9_c3gjg"]
-[ext_resource type="Texture2D" uid="uid://c3jqq2o5stf2y" path="res://Assets/Lights/Lamparacolgosa.png" id="10_osqxa"]
-[ext_resource type="Texture2D" uid="uid://dmfbug1rktk4k" path="res://Assets/Sprites/Background/AcidLower_.png" id="11_nmjt2"]
+[ext_resource type="Texture2D" uid="uid://b0s1eettowrpo" path="res://Assets/Lights/Lamparacolgosa.png" id="10_osqxa"]
+[ext_resource type="Texture2D" uid="uid://btxqpfblphkiy" path="res://Assets/Sprites/Background/AcidLower_.png" id="11_nmjt2"]
 [ext_resource type="Script" path="res://Scripts/SnakeLevel/acid.gd" id="12_eas0h"]
-[ext_resource type="Texture2D" uid="uid://b855olkmfusmq" path="res://Assets/Sprites/Background/AcidUpper_.png" id="13_eqyth"]
-[ext_resource type="Texture2D" uid="uid://jea7pshvbti4" path="res://Assets/Sprites/SnakeLevel/GridExample.png" id="14_kyn87"]
-[ext_resource type="Texture2D" uid="uid://ds5s6c5s7dw6e" path="res://Assets/Sprites/SnakeLevel/Flechita.png" id="15_cvh84"]
+[ext_resource type="Texture2D" uid="uid://b6i0whuhguax4" path="res://Assets/Sprites/Background/AcidUpper_.png" id="13_eqyth"]
+[ext_resource type="Texture2D" uid="uid://cg33sup2s574a" path="res://Assets/Sprites/SnakeLevel/GridExample.png" id="14_kyn87"]
+[ext_resource type="Texture2D" uid="uid://dkoyukm7es1se" path="res://Assets/Sprites/SnakeLevel/Flechita.png" id="15_cvh84"]
 [ext_resource type="PackedScene" uid="uid://b2qtqejcaw661" path="res://Scenes/Levels/Snake-Level/Fruit/Kiwi.tscn" id="15_idpwr"]
 [ext_resource type="PackedScene" uid="uid://bhvw22svggwec" path="res://Grid32.tscn" id="16_c4hnq"]
 [ext_resource type="Script" path="res://Scenes/Levels/Snake-Level/flechita.gd" id="16_vsofx"]
 [ext_resource type="PackedScene" uid="uid://i02rf07aas0h" path="res://Scenes/Levels/Snake-Level/wall.tscn" id="17_ehdr0"]
 [ext_resource type="PackedScene" uid="uid://h4302js3t2gs" path="res://Scenes/Stuff/barrera.tscn" id="18_eugx0"]
-[ext_resource type="Texture2D" uid="uid://hb8s7depup4j" path="res://Assets/Sprites/Background/Estrellitas.png" id="18_xd3x5"]
+[ext_resource type="Texture2D" uid="uid://i0f54pmvw217" path="res://Assets/Sprites/Background/Estrellitas.png" id="18_xd3x5"]
 [ext_resource type="PackedScene" uid="uid://yn5cyp08chec" path="res://Scenes/Shaders/Shader-Grain.tscn" id="20_wh2sk"]
 [ext_resource type="PackedScene" uid="uid://dllvgv1rftyo" path="res://Scenes/Levels/Snake-Level/Fruit/Naranja.tscn" id="24_nt6hc"]
 [ext_resource type="PackedScene" uid="uid://crxvneikqj06u" path="res://Scenes/Levels/Snake-Level/Fruit/ManzanaReal.tscn" id="25_qxjio"]
 [ext_resource type="PackedScene" uid="uid://b5mqjq6q7vuov" path="res://Scenes/Levels/Snake-Level/Slavehut.tscn" id="26_v8ed0"]
 [ext_resource type="PackedScene" uid="uid://btanekdvij824" path="res://Scenes/Levels/Snake-Level/tapador.tscn" id="27_5vur2"]
+[ext_resource type="PackedScene" uid="uid://ryd4xq7l6pc7" path="res://Scenes/LoadingScreens/transition.tscn" id="28_ao4cl"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_qac7u"]
 diffuse_texture = ExtResource("1_5ffc7")
@@ -191,33 +192,6 @@ _data = {
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xinu1"]
 blend_mode = 2
 
-[sub_resource type="Animation" id="Animation_vkx7n"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera2D:zoom")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_a8xyu"]
 resource_name = "Megafade"
 length = 2.0
@@ -244,6 +218,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(3, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_vkx7n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_grohm"]
@@ -1165,6 +1166,10 @@ visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(320, 240)
+
+[node name="transition" parent="Camera2D" instance=ExtResource("28_ao4cl")]
+top_level = true
+z_index = 200
 
 [node name="Fruit" type="Node" parent="."]
 

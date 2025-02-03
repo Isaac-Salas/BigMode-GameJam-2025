@@ -4,7 +4,7 @@ extends Node2D
 @onready var puyo_blueprint: PackedScene = preload("res://PUYO/puyo.tscn")
 @onready var popping_puyos = []
 @onready var update_fall: Timer = $"../Timer"
-
+@onready var player: AudioStreamPlayer = $"../AudioStreamPlayer"
 @onready var base_scale: ScaleComponent = $"../baseScale"
 @onready var mult_scale: ScaleComponent = $"../multScale"
 @onready var update_score: ScaleComponent = $"../updateScore"
@@ -18,6 +18,7 @@ signal score_base(base)
 @warning_ignore("unused_signal")
 signal puyo_multiplied(puyo_multiplied)
 signal free_puyo()
+signal play(sfx)
 var explode_puyo = -1
 var time_drop = 0.5
 
@@ -39,6 +40,7 @@ var cells = [
 	[0, 0, 0, 0, 0, 0],
 	[0, 0, 0, 0, 0, 0],
 ]
+
 signal puyo_removed(cause : String)
 
 func spawn_puyos():
@@ -123,7 +125,8 @@ func is_clear(pos):
 func add_puyo(puyo: Puyo):
 	cells[puyo.grid_pos.y][puyo.grid_pos.x] = puyo.color
 	if puyo.grid_pos.y == 0 and puyo.grid_pos.x == 2:
-		get_tree().reload_current_scene()
+		fall.stop()
+		if get_tree() != null: get_tree().reload_current_scene()
 
 func grid_to_world(grid_pos: Vector2i):
 	return Vector2((grid_pos.x-2) * 36, grid_pos.y * 36)
@@ -157,7 +160,7 @@ func get_puyo_at_position(pos: Vector2i):
 func animate_fall(puyo, drop_to):
 	while puyo.position.y != drop_to.y:
 		puyo.position += Vector2(0, 36)
-		await get_tree().create_timer(0.05).timeout
+		if get_tree() != null: await get_tree().create_timer(0.05).timeout
 	return true
 
 func in_bounds(pos: Vector2i):
@@ -190,8 +193,12 @@ func clear_all(color):
 				puyo_removed.emit("killed")
 				
 	explode_puyo = -1
-	await get_tree().create_timer(0.6).timeout
+	
+	if get_tree() != null: await get_tree().create_timer(0.7).timeout
 	var actual_puyo = await drop_puyos()
+	if !actual_puyo.is_empty():
+			free_puyo.emit()
+			play.emit("snap")
 	for positions in noncolorpuyos:
 		actual_puyo.append(get_puyo_at_position(positions))
 	return actual_puyo
@@ -220,6 +227,8 @@ func update_cells(target_puyos: Array, score) -> bool:
 		mult_scale.scale_amount = Vector2(current_mult, current_mult)
 		mult_scale.tween_scale()
 		emit_signal("puyo_multiplied", current_mult)
+		if current_mult > 3:
+			play.emit("pogger")
 		popping_puyos.clear()
 		for pos in all_popped_positions.keys():
 			cells[pos.y][pos.x] = 0
@@ -227,27 +236,32 @@ func update_cells(target_puyos: Array, score) -> bool:
 			if puyo_to_pop:
 				if puyo_to_pop.isBomb:
 					puyo_to_pop.explode()
+					play.emit("explode")
 					explode_puyo = puyo_to_pop.color
 					popping_puyos.append(puyo_to_pop)
-					await get_tree().create_timer(1).timeout
+					if get_tree() != null: await get_tree().create_timer(1).timeout
 					puyo_removed.emit("killed")
-					await update_cells([], score)
+					await update_cells(target_puyos, score)
 					break
 				elif not puyo_to_pop.is_connected("pop_finished", _on_puyo_popped):
 					puyo_to_pop.connect("pop_finished", _on_puyo_popped)
 				popping_puyos.append(puyo_to_pop)
 				puyo_to_pop.pop()
+				play.emit("pop")
 				puyo_removed.emit("free")
 				score += 200
 				base_scale.scale_amount = Vector2(score/100, score/100)
 				base_scale.tween_scale()
 				emit_signal("score_base", 200)
-		
-		while popping_puyos.size() > 0:
-			await get_tree().process_frame
-		await get_tree().create_timer(0.2).timeout
+		if get_tree() != null:
+			while popping_puyos.size() > 0:
+				await get_tree().process_frame
+		if get_tree() != null: await get_tree().create_timer(0.2).timeout
 		
 		var dropped_puyos = await drop_puyos()
+		if !dropped_puyos.is_empty():
+			free_puyo.emit()
+			play.emit("snap")
 		await update_cells(dropped_puyos, score)
 		return true
 	return false
@@ -260,16 +274,16 @@ func drop_puyos() -> Array:
 		var drop_to = 11
 		for y in range(11, -1, -1):
 			if cells[y][x] != 0:
+				var puyo = get_puyo_at_position(Vector2i(x, y))
 				if drop_to != y:
 					cells[drop_to][x] = cells[y][x]
 					cells[y][x] = 0
-					var puyo = get_puyo_at_position(Vector2i(x, y))
 					if puyo:
 						dropped.append(puyo)
 						puyo.grid_pos = Vector2i(x, drop_to)
 						animate_fall(puyo, grid_to_world(Vector2i(x, drop_to)))
 				drop_to -= 1
-	await get_tree().create_timer(0.3).timeout
+	if get_tree() != null: await get_tree().create_timer(0.5).timeout
 	return dropped
 	
 
@@ -280,7 +294,7 @@ func find_fall():
 			while is_clear(puyo_main.grid_pos + Vector2i(0, 1)):
 				puyo_main.position += Vector2(0, 36)
 				puyo_main.grid_pos += Vector2i(0, 1)
-				await get_tree().create_timer(0.05).timeout
+				if get_tree() != null: await get_tree().create_timer(0.05).timeout
 			add_puyo(puyo_main)
 			score += 100
 			base_scale.scale_amount = Vector2(score/100, score/100)
@@ -289,7 +303,7 @@ func find_fall():
 			while is_clear(puyo_rotate.grid_pos + Vector2i(0, 1)):
 				puyo_rotate.position += Vector2(0, 36)
 				puyo_rotate.grid_pos += Vector2i(0, 1)
-				await get_tree().create_timer(0.05).timeout
+				if get_tree() != null:await get_tree().create_timer(0.05).timeout
 			add_puyo(puyo_rotate)
 			score += 100
 			base_scale.scale_amount = Vector2(score/100, score/100)
@@ -297,12 +311,13 @@ func find_fall():
 			emit_signal("score_base", 100)
 			#await get_tree().create_timer(0.3).timeout
 			free_puyo.emit()
+			play.emit("snap")
 			await update_cells([puyo_main, puyo_rotate], score)
 		1:
 			while is_clear(puyo_rotate.grid_pos + Vector2i(0, 1)):
 				puyo_rotate.position += Vector2(0, 36)
 				puyo_rotate.grid_pos += Vector2i(0, 1)
-				await get_tree().create_timer(0.05).timeout
+				if get_tree() != null: await get_tree().create_timer(0.05).timeout
 			add_puyo(puyo_rotate)
 			score += 100
 			base_scale.scale_amount = Vector2(score/100, score/100)
@@ -311,13 +326,14 @@ func find_fall():
 			while is_clear(puyo_main.grid_pos + Vector2i(0, 1)):
 				puyo_main.position += Vector2(0, 36)
 				puyo_main.grid_pos += Vector2i(0, 1)
-				await get_tree().create_timer(0.05).timeout
+				if get_tree() != null: await get_tree().create_timer(0.05).timeout
 			add_puyo(puyo_main)
 			score += 100
 			base_scale.scale_amount = Vector2(score/100, score/100)
 			base_scale.tween_scale()
 			emit_signal("score_base", 100)
 			free_puyo.emit()
+			play.emit("snap")
 			await update_cells([puyo_rotate, puyo_main], score)
 	return score
 
@@ -325,16 +341,18 @@ func _input(_event):
 	if shit_happening == true:
 		return
 	if Input.is_action_pressed("ui_down"):
-		if fall.time_left > 0.1:
-			fall.start(0.1)
+		if fall.time_left > 0.05:
+			fall.start(0.05)
 
 	if Input.is_action_just_pressed("ui_right"):
 		right(puyo_main)
 		right(puyo_rotate)
+		play.emit("sides")
 
 	if Input.is_action_just_pressed("ui_left"):
 		left(puyo_main)
 		left(puyo_rotate)
+		play.emit("sides")
 	
 	if Input.is_action_just_pressed("clockwise"):
 		match puyorotation:
@@ -366,6 +384,7 @@ func _input(_event):
 					puyo_rotate.position = puyo_main.position + Vector2(36, 0)
 					puyo_rotate.grid_pos = puyo_main.grid_pos + Vector2i(1, 0)
 					puyorotation = 0
+		play.emit("rotate")
 
 	if Input.is_action_just_pressed("counterclockwise"):
 		match puyorotation:
@@ -397,6 +416,7 @@ func _input(_event):
 					puyo_rotate.position = puyo_main.position + Vector2(-36, 0)
 					puyo_rotate.grid_pos = puyo_main.grid_pos + Vector2i(-1, 0)
 					puyorotation = 2
+		play.emit("rotate")
 
 func _on_fall_timeout():
 	if is_clear(puyo_main.grid_pos + Vector2i(0, 1)) and is_clear(puyo_rotate.grid_pos + Vector2i(0, 1)) and !shit_happening:
@@ -405,17 +425,16 @@ func _on_fall_timeout():
 		puyo_main.grid_pos.y += 1
 		puyo_rotate.grid_pos.y += 1
 		fall.start(time_drop)
+
 	elif !shit_happening:
 		shit_happening = true
 		var score_pog = current_mult * await find_fall()
 		total_score += score_pog
-		update_score.scale_amount = Vector2(total_score/1000, total_score/1000)
+		update_score.scale_amount = Vector2(score_pog/1000, score_pog/1000)
 		update_score.tween_scale()
 		current_mult = 1
 		emit_signal("score_updated", total_score)
 		shit_happening = false
-		
-		free_puyo.emit()
 		puyo_main = null
 		puyo_rotate = null
 		fall.start(time_drop)
@@ -423,10 +442,7 @@ func _on_fall_timeout():
 	else:
 		fall.start(time_drop)
 
-
 func _on_timer_timeout() -> void:
 	if time_drop > 0.20:
 		time_drop -= 0.02
 		update_fall.start()
-	
-	

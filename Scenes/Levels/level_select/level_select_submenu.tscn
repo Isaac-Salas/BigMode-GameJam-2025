@@ -1,12 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmllajmd5msgw"]
+[gd_scene load_steps=10 format=3 uid="uid://bmllajmd5msgw"]
 
 [ext_resource type="Texture2D" uid="uid://c5kxh0cfc0muq" path="res://Assets/Level_select/central_menu.png" id="1_166aw"]
 [ext_resource type="Texture2D" uid="uid://rl0fu6fvoyk0" path="res://Assets/Level_select/start_game_button2.png" id="2_0mbxg"]
 [ext_resource type="Texture2D" uid="uid://cahmsvusaii3w" path="res://Assets/Level_select/preview_text.png" id="2_lp3ma"]
 [ext_resource type="Script" path="res://Scenes/Levels/level_select/level_select_submenu.gd" id="2_qlm5u"]
 [ext_resource type="Theme" uid="uid://cd6d31tdgl3h8" path="res://Assets/Fonts/text_theme.tres" id="3_5eydt"]
-[ext_resource type="Texture2D" uid="uid://b85qx585jlw4k" path="res://Assets/Level_select/start_game_button.png" id="3_7gbxf"]
 [ext_resource type="VideoStream" path="res://Assets/preview_video/puyo_video.ogv" id="5_8gg52"]
+[ext_resource type="Texture2D" uid="uid://cuttf7tlp1hia" path="res://Assets/Level_select/start_game_button1.png" id="6_s7htq"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_43ogs"]
+light_mode = 1
 
 [sub_resource type="Theme" id="Theme_6rhyc"]
 
@@ -29,6 +32,9 @@ offset_bottom = 120.0
 texture = ExtResource("2_lp3ma")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TextureRect"]
+z_index = 22
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_43ogs")
 layout_mode = 0
 offset_left = 139.0
 offset_top = 4.0
@@ -55,7 +61,7 @@ offset_top = 130.0
 offset_right = 329.0
 offset_bottom = 176.0
 theme = SubResource("Theme_6rhyc")
-texture_normal = ExtResource("2_0mbxg")
-texture_pressed = ExtResource("3_7gbxf")
+texture_normal = ExtResource("6_s7htq")
+texture_pressed = ExtResource("2_0mbxg")
 
 [connection signal="pressed" from="startButton" to="." method="_on_start_button_pressed"]

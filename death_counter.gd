@@ -9,7 +9,8 @@ var heart_texture = Vector2i(0,1)
 var skull_texture = Vector2i(0,2)
 var queue = []
 var adding = false
-signal game_finished
+signal game_finished(ending)
+const PUYO_POP = preload("res://Assets/SFX/Puyo/puyo_pop.wav")
 
 @onready var counter_tile: TileMapLayer = $counter
 
@@ -20,8 +21,11 @@ func _process(_delta: float) -> void:
 		add(queue[-1])
 	
 func _on_puyo_despawn(cause : String):
-	if (next_position.x == width-1 and next_position.y == height) or next_position.y > height:
-		game_finished.emit()
+	if (next_position.x == width-1 and next_position.y == height) or next_position.y >= height:
+		if killed > 10:
+			game_finished.emit("bad")
+		else:
+			game_finished.emit("good")
 		counter_tile.clear()
 		next_position = Vector2i(-1,0)
 		return false
@@ -42,7 +46,7 @@ func add(item):
 			counter_tile.set_cell(get_next_position(next_position), 0, heart_texture)
 		'killed':
 			counter_tile.set_cell(get_next_position(next_position), 0, skull_texture)
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.2).timeout
 	queue.erase(queue.back())
 	adding = false
 	

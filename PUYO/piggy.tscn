@@ -1,6 +1,6 @@
 [gd_scene load_steps=63 format=3 uid="uid://b6627n6vwkqpe"]
 
-[ext_resource type="Texture2D" uid="uid://byhb1ot4iew6a" path="res://Assets/Sprites/Portraits/ufo-sheet.png" id="1_jyydy"]
+[ext_resource type="Texture2D" uid="uid://ckrx5yfsw74xp" path="res://Assets/Sprites/Portraits/ufo-sheet.png" id="1_jyydy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3k700"]
 atlas = ExtResource("1_jyydy")

@@ -36,7 +36,7 @@ func _on_planet2_clicked():
 	if not visible:
 		show()
 	video_stream_player.stop()
-	planet_selected = 4
+	planet_selected = 2
 	rich_text_label.text = "WIP"
 	
 func _on_planet3_clicked():
@@ -47,6 +47,7 @@ func _on_planet3_clicked():
 	planet_selected = 3
 
 func _on_planet4_clicked():
+	#snakegame
 	if not visible:
 		show()
 	var video = ResourceLoader.load("res://Assets/preview_video/snakerec.ogv")
@@ -54,7 +55,7 @@ func _on_planet4_clicked():
 		video_stream_player.stream = video
 		video_stream_player.play()
 	rich_text_label.text = snakeTXT
-	planet_selected = 2
+	planet_selected = 4
 
 func _on_start_button_pressed() -> void:
 	print(planet_selected)

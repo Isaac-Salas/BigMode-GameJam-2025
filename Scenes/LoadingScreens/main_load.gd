@@ -23,7 +23,6 @@ func _process(delta):
 		if timer.timeout:
 			newScene = ResourceLoader.load_threaded_get(ScenePath)
 			thing = true
-			
 	
 	match thing:
 		false:
@@ -32,8 +31,6 @@ func _process(delta):
 		true:
 			timer.start(2)
 			thing = false
-
-
 
 func _on_timer_timeout():
 	get_tree().change_scene_to_packed(newScene)

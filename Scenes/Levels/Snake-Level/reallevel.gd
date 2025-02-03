@@ -2,9 +2,11 @@ extends Node2D
 @onready var music = $Music
 const SNEK = preload("res://Assets/Music/Snek.mp3")
 @onready var animation_player = $HUD/Borde/Portrait/AnimationPlayer
+@onready var transition: Node2D = $Camera2D/transition
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	await transition.opening()
 	animation_player.play("new_animation")
 	music.stream = SNEK
 	music.play()

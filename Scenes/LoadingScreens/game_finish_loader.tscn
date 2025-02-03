@@ -1,15 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7sxxpwir5omv"]
+[gd_scene load_steps=6 format=3 uid="uid://bermk3e6m8x7l"]
 
-[ext_resource type="Script" path="res://Scenes/LoadingScreens/main_load.gd" id="1_vep7t"]
-[ext_resource type="Theme" uid="uid://cd6d31tdgl3h8" path="res://Assets/Fonts/text_theme.tres" id="2_4lrfc"]
-[ext_resource type="Texture2D" uid="uid://edaptjofqkfe" path="res://Assets/Sprites/Loading/Loading.png" id="3_3b8yl"]
-[ext_resource type="Texture2D" uid="uid://i0f54pmvw217" path="res://Assets/Sprites/Background/Estrellitas.png" id="4_e6t3m"]
+[ext_resource type="Script" path="res://Scenes/LoadingScreens/main_load.gd" id="1_jm80j"]
+[ext_resource type="Theme" uid="uid://cd6d31tdgl3h8" path="res://Assets/Fonts/text_theme.tres" id="2_qkusy"]
+[ext_resource type="Texture2D" uid="uid://edaptjofqkfe" path="res://Assets/Sprites/Loading/Loading.png" id="3_rgjwn"]
+[ext_resource type="Texture2D" uid="uid://i0f54pmvw217" path="res://Assets/Sprites/Background/Estrellitas.png" id="4_chhqv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5eju6"]
 light_mode = 1
 
 [node name="Tablero" type="Node2D"]
-script = ExtResource("1_vep7t")
+script = ExtResource("1_jm80j")
 ScenePath = "res://Scenes/Levels/Win_Lose/game_finish_scene.tscn"
 
 [node name="Timer" type="Timer" parent="."]
@@ -23,12 +23,12 @@ offset_left = 128.0
 offset_top = 272.0
 offset_right = 512.0
 offset_bottom = 299.0
-theme = ExtResource("2_4lrfc")
+theme = ExtResource("2_qkusy")
 
 [node name="Loading" type="Sprite2D" parent="."]
 z_index = 21
 position = Vector2(328, 240)
-texture = ExtResource("3_3b8yl")
+texture = ExtResource("3_rgjwn")
 centered = false
 offset = Vector2(-327, -162)
 
@@ -48,7 +48,7 @@ autoscroll = Vector2(-50, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Si tienes particulas, cargalas aqui/ColorRect/Parallax2D"]
 z_index = -6
-texture = ExtResource("4_e6t3m")
+texture = ExtResource("4_chhqv")
 centered = false
 
 [node name="Parallax2D2" type="Parallax2D" parent="Si tienes particulas, cargalas aqui/ColorRect"]
@@ -60,7 +60,7 @@ autoscroll = Vector2(-200, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Si tienes particulas, cargalas aqui/ColorRect/Parallax2D2"]
 z_index = -7
-texture = ExtResource("4_e6t3m")
+texture = ExtResource("4_chhqv")
 centered = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

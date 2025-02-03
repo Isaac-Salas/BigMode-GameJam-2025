@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://crqm7yqxvx50a"]
 
-[ext_resource type="Texture2D" uid="uid://ddt707gvj000o" path="res://Assets/puyo/puyo-frame.png" id="1_88x16"]
+[ext_resource type="Texture2D" uid="uid://deu0ugru2liuw" path="res://Assets/puyo/puyo-frame.png" id="1_88x16"]
 
 [node name="Puyo-frame" type="Sprite2D"]
 z_index = 5

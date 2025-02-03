@@ -2,12 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://cwovn7k08nguf" path="res://Assets/Sprites/Portraits/enemigote_planeta.png" id="1_518ad"]
 [ext_resource type="Script" path="res://Scenes/Levels/level_select/level_select.gd" id="1_csfcu"]
-[ext_resource type="Texture2D" uid="uid://cam0ulfldm4gj" path="res://Assets/Sprites/Portraits/square_planet_outline.png" id="1_qitui"]
 [ext_resource type="Texture2D" uid="uid://c5i6cix6qvett" path="res://Assets/Sprites/Portraits/leaf_planet_outline.png" id="2_rfwer"]
 [ext_resource type="Texture2D" uid="uid://ckkpe4yn35871" path="res://Assets/Sprites/Portraits/Enemiguito_planeta.png" id="2_xb54k"]
 [ext_resource type="Texture2D" uid="uid://ckkg7lodotaci" path="res://Assets/Sprites/Portraits/SwampBass_Planet.png" id="3_w3c3s"]
 [ext_resource type="Texture2D" uid="uid://dokgdm7mqp060" path="res://Assets/Sprites/Portraits/Enemigoto_planeta.png" id="4_6dyuc"]
 [ext_resource type="Texture2D" uid="uid://yb3dnbs38do5" path="res://Assets/Sprites/Portraits/oval_planet_outline.png" id="4_btad5"]
+[ext_resource type="Texture2D" uid="uid://d18hik5muygg3" path="res://Assets/Sprites/Portraits/enemigote_outline.png" id="5_2l8mi"]
 [ext_resource type="Texture2D" uid="uid://b5kgc1rthpy77" path="res://Assets/Sprites/Portraits/egg_planet_outline.png" id="7_t4v7n"]
 [ext_resource type="PackedScene" uid="uid://bmllajmd5msgw" path="res://Scenes/Levels/level_select/level_select_submenu.tscn" id="10_xh6i6"]
 [ext_resource type="Texture2D" uid="uid://i0f54pmvw217" path="res://Assets/Sprites/Background/Estrellitas.png" id="11_pjnxx"]
@@ -20,17 +20,19 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ek0nd"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h0edt"]
-texture = ExtResource("1_qitui")
+texture = ExtResource("5_2l8mi")
 expand_margin_left = 3.0
 expand_margin_top = 3.0
 expand_margin_right = 3.0
 expand_margin_bottom = 3.0
+region_rect = Rect2(49, 49, 100, 100)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7wpsd"]
 texture = ExtResource("1_518ad")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0cemb"]
-texture = ExtResource("1_qitui")
+texture = ExtResource("5_2l8mi")
+region_rect = Rect2(49, 49, 100, 100)
 
 [sub_resource type="Theme" id="Theme_ha1if"]
 Button/styles/disabled = SubResource("StyleBoxTexture_for2s")
@@ -196,14 +198,6 @@ theme = SubResource("Theme_0lxue")
 theme_type_variation = &"egg_cloud"
 text = "  "
 
-[node name="Sub_menu" parent="." instance=ExtResource("10_xh6i6")]
-visible = false
-layout_mode = 1
-offset_left = 152.0
-offset_top = 131.0
-offset_right = -150.0
-offset_bottom = -164.0
-
 [node name="Parallax2D" type="Parallax2D" parent="."]
 repeat_size = Vector2(640, 0)
 autoscroll = Vector2(-50, 0)
@@ -214,6 +208,14 @@ texture = ExtResource("11_pjnxx")
 centered = false
 
 [node name="Shaders" parent="." instance=ExtResource("12_wo6qs")]
+
+[node name="Sub_menu" parent="." instance=ExtResource("10_xh6i6")]
+visible = false
+layout_mode = 1
+offset_left = 152.0
+offset_top = 131.0
+offset_right = -150.0
+offset_bottom = -164.0
 
 [connection signal="pressed" from="prism_planet" to="Sub_menu" method="_on_planet1_clicked"]
 [connection signal="pressed" from="leaf_planet" to="Sub_menu" method="_on_planet2_clicked"]

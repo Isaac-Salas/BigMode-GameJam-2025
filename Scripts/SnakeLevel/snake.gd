@@ -251,6 +251,11 @@ func win():
 			Global.allthealiens += 1 
 	winplayer.play("Megafade")
 	await winplayer.animation_finished
+	if Global.allthefruit > Global.allthealiens:
+		Global.ending = "good"
+	else:
+		Global.ending = "bad"
+	Global.game = "snake"
 	get_tree().change_scene_to_packed(SNAKE_SCORE)
 	
 		
